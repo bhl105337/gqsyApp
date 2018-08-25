@@ -1,0 +1,81 @@
+<ion-view hide-nav-bar="true" hide-back-button="true">
+    <style>
+        .zx-info-top{
+            min-height:44px;
+            border-bottom:1px solid #f0f0f0;
+            background:#ff2d4b;
+        }
+
+        .zx-info-top button{
+            height:44px;
+            color:white;
+        }
+
+        .zx-info-top button:hover{
+            color:white;
+        }
+
+        .info_top_title{
+            min-height:40px;
+            border-bottom:1px solid #f0f0f0;
+        }
+
+        .info_top_title span{
+            width:100%;
+            padding:5px 10px;
+            font-size:18px;
+            word-break:break-all;
+            display:inline-block;
+            font-weight:bold;
+            font-family:"微软雅黑", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            text-align:center;
+        }
+
+        .info_con p{
+            width: 100%;
+            display: inline-block;
+            padding: 0 5px;
+            font-size: 14px;
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #8f8f94;
+        }
+
+        .read_info_con p{
+            width: 100%;
+            display: inline-block;
+            padding: 0 5px;
+            font-size: 14px;
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #8f8f94;
+        }
+
+        .read_info_con p img{
+            float:left;
+            width:100%;
+        }
+
+    </style>
+
+    <ion-header-bar class="bar bar-header zx-info-top top-header-nav" style="">
+
+        <div class="zx-info-nav">
+            <button class="button button-icon" ng-click="goBack({{uid}})">
+                <i class="icon ion-ios-arrow-back"></i>
+            </button>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="zx-info-content">
+
+        <div class="info_top_title">
+            <span>{{info.title}}</span>
+        </div>
+        <div class="read_info_con" ng-bind-html="info.content">
+            {{info.content}}
+        </div>
+
+
+    </ion-content>
+</ion-view>

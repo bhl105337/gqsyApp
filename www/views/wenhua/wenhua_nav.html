@@ -1,0 +1,111 @@
+<ion-view hide-nav-bar="true" hide-back-button="true">
+    <style>
+        .sy-info-nav.dj_nav{
+            width:100%;
+            min-height:44px;
+            border-bottom:1px solid #f0f0f0;
+            background:#ff2d4b;
+            overflow:hidden;
+        }
+
+        .sy-info-nav button{
+            height:44px;
+            color:white;
+        }
+
+        .sy-info-nav button:hover{
+            color:white;
+        }
+
+        .sy-info-nav span{
+            height:44px;
+            line-height:44px;
+            color:white;
+            font-size:16px;
+        }
+
+        .sy-wenhua-nav-list, .sy--list{
+            float:left;
+            width:100%;
+        }
+
+        .sy-wenhua-nav-list .sy-wenhua-nav-items{
+            width:100%;
+            float:left;
+            border:0;
+            height:112px;
+            border-bottom:1px solid #f0f0f0;
+            margin-bottom:2px;
+        }
+
+        .sy-wenhua-nav-items .img{
+            width:45%;
+            float:left;
+        }
+
+        .sy-wenhua-nav-items .img img{
+            width:100%;
+            height:100px;
+            border-radius:6px;
+            float:left;
+        }
+
+        .sy-wenhua-nav-items .item-content{
+            padding:5px;
+        }
+
+        .sy-wenhua-nav-items .sy-article{
+            width:53%;
+            float:right;
+            font-size:14px;
+            position:relative;
+            height:100px;
+        }
+
+        .sy-article-title,
+        .sy-article-memo,
+        .sy-article-num{
+            float:left;
+            width:100%;
+            white-space:normal;
+            max-height:40px;
+            overflow:hidden;
+            text-overflow:ellipsis;
+        }
+
+        .sy-article-memo, .sy-article-num{
+            font-size:12px;
+            color:#999;
+        }
+
+        .sy-article-num{
+            text-align:right;
+            position:absolute;
+            width:100%;
+            bottom:0;
+            right:0;
+        }
+    </style>
+    <ion-header-bar class="bar bar-header zx-info-top top-header-nav" style="">
+        <div class="sy-info-nav dj_nav">
+            <button class="button button-icon" ng-click="goBackWh()">
+                <i class="icon ion-ios-arrow-back"></i>
+            </button>
+            <span>{{navtitle}}</span>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="sy-content" style="top:46px;">
+        <ion-list class="sy-wenku-list">
+            <ion-item href="#/wenhuainfo/{{item.id}}/{{yid}}/{{nav}}" class="sy-wenhua-nav-items"  ng-repeat="(key,item) in list">
+                <div class="img">
+                    <img ng-src="{{item.imgUrl}}">
+                </div>
+                <div class="sy-article">
+                    <span class="sy-article-title">{{item.title}}</span>
+                    <span class="sy-article-memo">{{item.ms}}</span>
+                </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

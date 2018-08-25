@@ -1,0 +1,176 @@
+<ion-view view-title="我" hide-nav-bar="true" hide-back-button="true">
+    <style>
+        .u_head{
+            width:100%;
+        }
+
+        .u_top_img{
+            width:100%;
+            text-align:center;
+            padding:10px 5px 5px 5px;
+        }
+
+        .u_top_img img{
+            width:90px;
+            height:90px;
+            border-radius:50%;
+        }
+
+        .u_nikename{
+            width:100%;
+            color:#333;
+            text-align:center;
+            padding:0 10px 5px 10px;
+        }
+
+        .all_order{
+            text-align:right;
+            padding:0 10px;
+            height:30px;
+        }
+
+        .all_order a{
+            color:#999;
+            padding-bottom:2px;
+        }
+
+        .order_types{
+            border-top:1px solid #f0f0f0;
+            border-bottom:1px solid #f0f0f0;
+            width:100%;
+            float:left;
+        }
+
+        .order_types a{
+            width:25%;
+            float:left;
+            text-align:center;
+            height:55px;
+            margin-top:15px;
+            color:#999;
+        }
+
+        .order_types i,
+        .order_types span{
+            width:100%;
+            float:left;
+        }
+
+        .order_types span{
+            font-size:12px;
+        }
+
+        .order_types i{
+            font-size:32px;
+            height:30px;
+        }
+
+        .funs{
+            width:100%;
+            float:left;
+        }
+
+        .u_funs_1, .u_funs_2, .u_funs_3{
+            width:100%;
+            float:left;
+            border-bottom:1px solid #f0f0f0;
+        }
+
+        .u_funs_item_1, .u_funs_item_2, .u_funs_item_3{
+            float:left;
+            width:33.33333333%;
+            border-right:1px solid #f0f0f0;
+            padding:5px 10px;
+            text-align:center;
+        }
+
+        .u_funs_item_1 a, .u_funs_item_2 a, .u_funs_item_3 a{
+            padding:10px 0;
+            float:left;
+            width:100%;
+            color:#333;
+        }
+
+        .u_funs_item_1 i, .u_funs_item_2 i, .u_funs_item_3 i{
+            font-size:1.8em;
+            color:#ff2d4b;
+        }
+
+        .funs_name{
+            font-size:12px;
+            margin-top:5px;
+        }
+    </style>
+    <ion-content class="u_center">
+        <div class="u_head">
+            <div class="u_top_img"><img src="{{userIcon}}" alt=""></div>
+            <div class="u_nikename">昵称：{{user.username}}</div>
+        </div>
+
+        <div class="u_order">
+            <div class="all_order"><a href="">查看所有订单></a></div>
+            <div class="order_types">
+                <a href=""><i class="icon iconfont icon-icondaifukuan"></i><span>待付款</span></a>
+                <a href=""><i class="icon iconfont icon-icon-test"></i><span>待发货</span></a>
+                <a href=""><i class="icon iconfont icon-che1"></i><span>待收货</span></a>
+                <a href=""><i class="icon iconfont icon-pingjia"></i><span>待评价</span></a>
+            </div>
+        </div>
+
+
+        <div class="funs">
+            <ul class="u_funs_1">
+                <li class="u_funs_item_1">
+                    <a href="#/tab/read_log/{{user.id}}">
+                        <i class="icon iconfont icon-yuedu2"></i>
+                        <div class="funs_name">阅读纪录</div>
+                    </a>
+                </li>
+                <li class="u_funs_item_1">
+                    <a href="#/read_idea/{{user.id}}">
+                        <i class="icon iconfont icon-xindetihui"></i>
+                        <div class="funs_name">学习心得</div>
+                    </a>
+                </li>
+                <li class="u_funs_item_2">
+                    <a href="#/user_coin/{{user.id}}">
+                        <i class="icon iconfont icon-guanli1"></i>
+                        <div class="funs_name">积分管理</div>
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="u_funs_2">
+
+                <li class="u_funs_item_2">
+                    <a href="">
+                        <i class="icon iconfont icon-jilu2-copy"></i>
+                        <div class="funs_name">兑换记录</div>
+                    </a>
+                </li>
+                <li class="u_funs_item_2 ">
+                    <a href="">
+                        <i class="icon iconfont icon-renwu"></i>
+                        <div class="funs_name">历史任务</div>
+                    </a>
+                </li>
+                <li class="u_funs_item_3">
+                    <a href="#/shoping/{{user.id}}">
+                        <i class="icon iconfont icon-shangcheng"></i>
+                        <div class="funs_name">商城</div>
+                    </a>
+                </li>
+            </ul>
+            <ul class="u_funs_3">
+                <li class="u_funs_item_3">
+                    <a href="#/tab/user_setting/{{user.id}}">
+                        <i class="icon iconfont icon-ttpodicon"></i>
+                        <div class="funs_name">设置</div>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+
+    </ion-content>
+</ion-view>

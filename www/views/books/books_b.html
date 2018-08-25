@@ -1,0 +1,48 @@
+<ion-view hide-nav-bar="true" hide-back-button="true">
+    <style>
+
+    </style>
+
+    <ion-header-bar class="sy-top-search top-header-nav" style=" position:relative">
+        <div class="sy-top-search-input">
+            <form ng-submit="submitFormSearch(search)" novalidate>
+                <div>
+                    <label class="item-input-wrapper">
+                        <i class="icon ion-ios-search placeholder-icon"></i>
+                        <input style="display:none">
+                        <input type="search" name="keywords" id="keywords" ng-model="search.keywords" placeholder="搜索" style="width:80%" autocomplete="off">
+                    </label>
+                </div>
+                <div class="buttons">
+                    <button class="button" type="submit">
+                        搜索
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="sy-top-nav sy-top-navs">
+            <div>
+                <a ng-href="#/tab/books">经典阅读</a>
+                <a ng-href="#/tab/books_b" class="active">新书推荐</a>
+                <a ng-href="#/tab/books_c">美丽广西</a>
+            </div>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="sy-content">
+
+        <ion-list class="sy-tuijian-list">
+            <ion-item  ng-if="item.l_t == 2" href="#/tab/booksnav/{{item.id}}/2" class="sy-tuijian-item" ng-repeat="(key,item) in list">
+                <img ng-src="{{item.imgUrl}}">
+                <!--<img ng-src="{{chat.face}}">-->
+                <span>{{item.titles}}</span>
+            </ion-item>
+            <ion-item  ng-if="item.l_t == 1" href="#/booksinfo/{{item.id}}/0/2" class="sy-tuijian-item" ng-repeat="(key,item) in list">
+                <img ng-src="{{item.imgUrl}}">
+                <!--<img ng-src="{{chat.face}}">-->
+                <span>{{item.titles}}</span>
+            </ion-item>
+        </ion-list>
+
+    </ion-content>
+</ion-view>

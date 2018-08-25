@@ -1,0 +1,154 @@
+<ion-view hide-nav-bar="true" hide-back-button="true">
+    <style>
+        .sy-shop-nav.shop_nav.pro-li-top{
+            width:100%;
+            min-height:44px;
+            border-bottom:1px solid #f0f0f0;
+            background:#ff2d4b;
+            overflow:hidden;
+            box-shadow:0 1px 6px 0 #f0f0f0;
+        }
+
+        .sy-shop-nav button{
+            height:44px;
+            color:white;
+        }
+
+        .sy-shop-nav button:hover{
+            color:white;
+            padding:0 5px;
+        }
+
+        .sy-shop-nav.pro-li-top span{
+            height:44px;
+            line-height:44px;
+            font-size:16px;
+            position:absolute;
+            width:100%;
+            display:block;
+            text-align:center;
+            left:0;
+            top:0;
+            color:#fff;
+        }
+
+        .top-img{
+            width:100%;
+        }
+
+        .top-img img{
+            width:100%;
+            max-height:100px;
+        }
+
+        .cate-order{
+            width:100%;
+        }
+
+        .cate-order a{
+            width:25%;
+            height:40px;
+            line-height:40px;
+            text-align:center;
+            font-size:.9em;
+            color:#999;
+            float:left;
+            border-bottom:1px solid #f9f9f9;
+            border-right:1px solid #f9f9f9;
+        }
+
+        .cate-order a.active{
+            color:#fff;
+            border-right:1px solid #ff2d4b;
+            background:#ff2d4b;
+        }
+
+        .product-list{
+            width:100%;
+        }
+
+        .sy-product-items.pro-lis{
+            width:100%;
+            padding:5px;
+        }
+
+        .sy-product-items img{
+            width:90px;
+            height:60px;
+            float:left;
+            margin-right:10px;
+        }
+
+        .sy-pro-foot{
+            position:fixed; bottom:0; left:0; height:50px; width:100%; float:left;
+        }
+
+        .sy-pro-foot span, .sy-pro-foot a{
+            width:50%;
+            float:left;
+            text-align:center;
+            line-height:50px;
+        }
+
+        .sy-pro-foot span{
+            background:#000;
+            color:white;
+            font-size:18px;
+        }
+
+        .sy-pro-foot a{
+            background:#ff2d4b;
+            color:white;
+            font-size:18px;
+        }
+        .pl-total-money b{
+            font-weight:normal;
+        }
+    </style>
+    <ion-header-bar class="bar bar-header zx-info-top top-header-nav" style="">
+        <div class="sy-shop-nav shop_nav pro-li-top">
+            <button class="button button-icon" ng-click="goBack()" style="padding: 0 5px;">
+                <i class="icon ion-ios-arrow-back"></i>
+            </button>
+            <span>商品中心</span>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="sy-content pro-content" style="top:44px; margin-bottom:52px;">
+        <div class="top-img">
+            <img src="../../img/protop1.jpg" alt="">
+        </div>
+        <div class="cate-order">
+            <a ng-click="" class="active">默认排序</a>
+            <a ng-click="">销量</a>
+            <a ng-click="">评分</a>
+            <a ng-click="">价格</a>
+        </div>
+        <ion-list class="product-list">
+            <ion-item href="#/product_info/{{v.id}}" class="sy-product-items pro-lis" ng-repeat="(k,v) in prolist">
+                <img src="{{v.imgUrl}}" alt="" class="pro_img">
+                <div>
+                    <div class="pro-item-name" style="font-size:16px; color:#999">{{v.name}}</div>
+                    <div class="pro-item-guige" style="font-size:0.8em; color:#999">
+                        <span>规格：{{v.standard}}</span>
+                        <span style="float:right; margin-right:10px;">销量：{{v.sell_num}} 评分 {{v.score_num}}</span>
+                    </div>
+                    <div class="pro-item-buy" style="font-size:0.8em; color:#ff2d4b">
+                        <span>￥{{v.price}}/赠积分9999</span>
+                        <span class="icon iconfont icon-shangcheng" style="float:right; margin-right:10px"></span>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+    <div class="sy-pro-foot" style="">
+        <span class="pl-total-money">
+            <i class="icon iconfont icon-gouwucheman" style="color:#ff2d4b; font-size:18px"></i>
+            <b>共</b>
+            <b class="money">0.00</b>
+            <b>元</b>
+        </span>
+        <a ng-href="">去结算</a>
+    </div>
+
+</ion-view>

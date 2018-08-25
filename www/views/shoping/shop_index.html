@@ -1,0 +1,95 @@
+<ion-view hide-nav-bar="true" hide-back-button="true">
+    <style>
+        .sy-content .slider{
+            height:220px;
+        }
+
+        .sy-content .slider img{
+            float:left;
+            width:100%;
+            height:220px;
+        }
+
+        .sy-shop-nav.shop_nav{
+            width:100%;
+            min-height:44px;
+            border-bottom:1px solid #f0f0f0;
+            background:#ff2d4b;
+            overflow:hidden;
+        }
+
+        .sy-shop-nav button{
+            height:44px;
+            color:white;
+        }
+
+        .sy-shop-nav button:hover{
+            color:white;
+            padding:0 5px;
+        }
+
+        .sy-shop-nav span{
+            height:44px;
+            line-height:44px;
+            color:white;
+            font-size:16px;
+        }
+        .banner-imgs img{
+            width:100%;
+        }
+
+    </style>
+    <ion-header-bar class="bar bar-header zx-info-top top-header-nav" style="">
+        <div class="sy-shop-nav shop_nav">
+            <button class="button button-icon" ng-click="goBack()" style="padding: 0 5px;">
+                <i class="icon ion-ios-arrow-back"></i>
+            </button>
+            <span>返回书院</span>
+
+            <!--<button class="button button-icon" style="float:right">-->
+            <!--<i class="icon ion-ios-arrow-back"></i>-->
+            <!--</button>-->
+            <!--<button class="button button-icon icon ion-navicon" style="float:right;padding: 0 5px;" ng-click="navShowModel()"></button>-->
+            <button menu-toggle="right" class="button button-icon icon ion-navicon" style="float:right;padding: 0 5px;"></button>
+        </div>
+    </ion-header-bar>
+
+
+    <ion-content class="sy-content" style="top:46px;">
+
+        <!-- start 轮播图-->
+        <ion-slide-box auto-play="true" does-continue="true" slide-interval=2000 show-pager="true" does-continue="true" delegate-handle="slideimgs">
+            <!--<ion-slide does-continue="true">-->
+            <ion-slide  ng-repeat="(bkey,bitem) in banner">
+                <div class="box banner"><img src="{{bitem.imgUrl}}"/></div>
+                <!--<div class="box banner"><img src="../../img/banner1.jpg"/></div>-->
+            </ion-slide>
+        </ion-slide-box>
+        <!-- end 轮播图-->
+
+
+        <ion-list class="sy-product-list">
+
+            <div class="sy-product-item">
+                <span class="title">热销商品</span>
+                <!--<span class="more" ng-click="goMore({{uid}})">更多</span>-->
+                <a class="more" ng-href="#/product/{{uid}}">更多</a>
+            </div>
+            <div class="mui-table-view mui-grid-view">
+                <ion-item href="#/produtc_info/{{item.id}}" class="sy-product-items" ng-repeat="(key,item) in list">
+                    <div class="img">
+                        <img ng-src="{{item.imgUrl}}" style="width:100%">
+                    </div>
+                    <div class="sy-article">
+                        <span class="sy-article-title">{{item.name}}</span>
+                        <div class="price">
+                            <span class="money icon iconfont icon-fl-renminbi">{{item.price}}</span>
+                            <span class="addCart icon iconfont icon-shangcheng" ng-click="goAddCart({{item.id}})"></span>
+                        </div>
+                    </div>
+                </ion-item>
+            </div>
+
+        </ion-list>
+    </ion-content>
+</ion-view>

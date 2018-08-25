@@ -1,0 +1,158 @@
+<ion-view hide-nav-bar="true" hide-back-button="true">
+    <style>
+        .sy-login-nav.login_nav{
+            width:100%;
+            min-height:44px;
+            border-bottom:1px solid #f0f0f0;
+            /*background:#ff2d4b;*/
+            overflow:hidden;
+            -webkit-box-shadow:0 1px 6px #ccc;
+            box-shadow:0 1px 6px #ccc;
+        }
+
+        .sy-login-nav button{
+            height:44px;
+            color:#333;
+        }
+
+        .sy-login-nav button:hover{
+            color:#333;
+            padding:0 8px;
+        }
+
+        .sy-login-nav span{
+            height:44px;
+            line-height:44px;
+            color:#333;
+            font-size:16px;
+            position:absolute;
+            width:100%;
+            display:block;
+            text-align:center;
+            left:0;
+            top:0;
+        }
+
+        .sy-content, .sy-login-logo{
+            width:100%;
+            float:left;
+        }
+
+        .sy-login-logo{
+            text-align:center;
+            padding:20px 0 0 0;
+        }
+
+        .sy-login-logo img{
+            width:90px;
+        }
+
+        .login_form{
+            width:100%;
+            float:left;
+            padding:10px 0;
+        }
+
+        .login_form div{
+            width:90%;
+            padding:0 1%;
+            float:left;
+            margin-bottom:15px;
+            border:1px solid #ccc;
+            margin-left:5%;
+            border-radius:6px;
+        }
+
+        #username, #password{
+            width:85%;
+            padding:5px;
+            line-height:50px;
+            height:50px;
+            float:right;
+        }
+
+        .login_form i{
+            font-size:30px;
+            height:50px;
+            float:left;
+            line-height:50px;
+            padding:0 2%;
+            color:#f60;
+        }
+
+        .login_form button{
+            width:90%;
+            margin-left:5%;
+            min-height:40px;
+            line-height:40px;
+            background:#303032 !important;
+            border-radius:6px;
+            font-size:14px;
+            position:relative;
+            top:20px;
+        }
+
+        .sy-login-jihuo{
+            width:90%;
+            float:left;
+            margin-left:5%;
+            margin-top:20px;
+        }
+
+        .sy-login-jihuo a{
+            width:100%;
+            text-align:right;
+            padding:5px;
+            float:left;
+            color:#303032;
+        }
+
+        .log-foot{
+            width:100%; float:left;
+            margin-top:80px;
+        }
+
+        .log-foot p{
+            width:100%; float:left; font-size:14px; text-align:center;
+        }
+
+    </style>
+    <ion-header-bar class="bar bar-header zx-info-top top-header-nav" style="">
+        <div class="sy-login-nav login_nav">
+            <button class="button button-icon" ng-click="goBack()" style="z-index: 99999;">
+                <i class="icon ion-ios-arrow-back"></i>
+            </button>
+            <span>登录</span>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="sy-content" style="top:46px;">
+        <div class="sy-login-logo">
+            <img src="../../img/gqsy.png" alt="">
+        </div>
+        <div class="login_form">
+            <form ng-submit="submitForm(user)" novalidate>
+                <div>
+                    <i class="icon iconfont icon-yonghu"></i>
+                    <input type="text" name="username" id="username" ng-model="user.username" placeholder="请输入手机号">
+                </div>
+                <div>
+                    <i class="icon iconfont icon-mima"></i>
+                    <input type="password" name="password" id="password" ng-model="user.password" placeholder="请输入密码">
+                </div>
+
+                <button type="submit" class="button  button-block button-calm">登录</button>
+            </form>
+        </div>
+        <div class="sy-login-jihuo">
+            <a ng-href="">激活帐号</a>
+        </div>
+
+        <div style="" class="log-foot">
+            <p style="">©国企书院版权所有 桂IPC16007885-1号</p>
+            <p style="">联系我们 丨 企业邮箱</p>
+        </div>
+
+
+    </ion-content>
+</ion-view>

@@ -1,0 +1,113 @@
+/*积分管理*/
+.user-coin-top{
+    width:100%;
+    float:left;
+    height:160px;
+    background:#f0f0f0;
+    position:relative;
+}
+
+.user-coin-today{
+    width:60%;
+    float:left;
+    margin-left:20%;
+    height:100px;
+}
+
+.user-coin-today div{
+    width:33.33%;
+    float:left;
+    height:100%;
+}
+
+.user-coin-today div span{
+    width:100%;
+    float:left;
+    text-align:center;
+}
+
+div.xian{
+    float:left;
+    width:90%;
+    height:50%;
+    border-bottom:1px solid #333;
+    margin-left:5%
+}
+
+.user-coin-total{
+    width:100%;
+    height:60px;
+    float:left;
+}
+
+.coin-cate-l, .coin-cate-r{
+    width:50%;
+    float:left;
+    height:100%;
+}
+
+.coin-cate-l div{
+    float:left;
+    width:40%;
+    height:100%;
+    font-size:12px;
+    text-align:center;
+}
+
+.coin-cate-l div span, .coin-cate-r div span{
+    padding:0px 0;
+    width:100%;
+    float:left;
+}
+
+.user-coin-img{
+    width:100%;
+    position:absolute;
+    bottom:-45px;
+    text-align:center;
+    float:left;
+    height:90px;
+}
+
+.user-coin-img img{
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    display:inline-block;
+}
+
+.coin-ct{
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    float: left;
+}
+
+.coin-ct div{
+    height: 40px;
+    line-height: 40px;
+    width: 50%;
+    float: left;
+    margin: 15px 0;
+    border-right: 1px solid #ccc;
+    text-align: center;
+}
+
+.coin-ct div i{
+    font-size: 20px;
+    background: deepskyblue;
+    color: white;
+    margin: 0 5px;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    display: inline-block;
+    float: left;
+    margin-left: 18%;
+}
+
+.coin-ct div span{
+    font-size: 14px;
+    float: left;
+}

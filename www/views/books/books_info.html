@@ -1,0 +1,143 @@
+<ion-view hide-nav-bar="true" hide-back-button="true">
+    <style>
+        .sy-info-nav.dj_nav{
+            width:100%;
+            min-height:44px;
+            border-bottom:1px solid #f0f0f0;
+            background:#ff2d4b;
+            overflow:hidden;
+        }
+
+        .sy-info-nav button{
+            height:44px;
+            color:white;
+        }
+
+        .sy-info-nav button:hover{
+            color:white;
+        }
+
+        .sy-info-nav span{
+            height:44px;
+            line-height:44px;
+            color:white;
+            font-size:16px;
+        }
+
+        .sy-book-imgs{
+            width:100%;
+            height:275px;
+            text-align:center;
+            border-bottom:1px solid #ccc;
+        }
+
+        .sy-book-imgs div{
+            width:255px;
+            height:255px;
+            margin-top:20px;
+            display:inline-block;
+        }
+
+        .sy-book-imgs img{
+            float:left;
+            width:100%;
+            height:100%;
+            border:1px solid #f0f0f0;
+        }
+
+        @media (max-width:769px){
+            .sy-book-imgs{
+                height:550px;
+            }
+        }
+
+        @media (max-width:415px){
+            .sy-book-imgs{
+                height:365px;
+            }
+        }
+
+        @media (max-width:376px){
+            .sy-book-imgs{
+                height:320px;
+            }
+        }
+
+        .sy-book-bottom{
+            padding:10px 5px;
+            float:left;
+            width:100%;
+            border-bottom:1px solid #ccc;
+        }
+
+        .sy-book-bottom a{
+            padding:5px;
+            width:25%;
+            float:left;
+            border:1px solid deepskyblue;
+            color:deepskyblue;
+            text-align:center;
+            border-radius:6px;
+            font-size:16px;
+        }
+
+        .sy-b-content{
+            width:100%;
+            padding:5px;
+            float:left;
+        }
+
+        .sy-b-content span.b-synopsis{
+            display:inline-block;
+            width:100%;
+            padding:10px;
+            font-size:16px;
+        }
+
+        .bc-top p{
+            text-indent:0px;
+            line-height:2em;
+            margin-left:0px;
+            margin-right:0px;
+            color:#8f8f94;
+        }
+
+        .bc-top p img{
+            float:left;
+            width:100%;
+        }
+
+        .bc-top span{
+            font-family:微软雅黑, sans-serif;
+            background:white;
+            font-size:16px;
+        }
+    </style>
+    <ion-header-bar class="bar bar-header zx-info-top top-header-nav" style="">
+        <div class="sy-info-nav dj_nav">
+            <button class="button button-icon" ng-click="goBackYd()">
+                <i class="icon ion-ios-arrow-back"></i>
+            </button>
+            <span>{{info.title}}</span>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="sy-content" style="top:46px;">
+        <div class="sy-book-imgs">
+            <div>
+                <img src="{{info.imgUrl}}" alt="">
+            </div>
+        </div>
+        <div class="sy-book-bottom">
+            <a href="">阅读</a>
+        </div>
+
+        <div class="sy-b-content">
+            <div class="bc-top" id="pdf" ng-bind-html="info.content">
+                <span class="b-synopsis">内容</span>
+                {{info.content}}
+            </div>
+            <input type="hidden" id="pdfck" value="{$Posts.pdfStatus}">
+        </div>
+    </ion-content>
+</ion-view>

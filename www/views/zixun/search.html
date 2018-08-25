@@ -1,0 +1,50 @@
+<ion-view hide-nav-bar="true" hide-back-button="true">
+    <style>
+        .sy-info-nav.dj_nav{
+            width:100%;
+            min-height:44px;
+            border-bottom:1px solid #f0f0f0;
+            background:#ff2d4b;
+            overflow:hidden;
+        }
+
+        .sy-info-nav button{
+            height:44px;
+            color:white;
+        }
+
+        .sy-info-nav button:hover{
+            color:white;
+        }
+
+        .sy-info-nav span{
+            height:44px;
+            line-height:44px;
+            color:white;
+            font-size:16px;
+        }
+    </style>
+    <ion-header-bar class="bar bar-header zx-info-top top-header-nav" style="">
+        <div class="sy-info-nav dj_nav" style="position:relative">
+            <button class="button button-icon" ng-click="goBackZx()">
+                <i class="icon ion-ios-arrow-back"></i>
+            </button>
+            <span style="position:absolute; left:0; width:100%; text-align:center">关键字：{{keyword}}</span>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="sy-content" style="top:46px;">
+        <ion-list class="sy-dj_nav-list">
+
+            <ion-item href="#/search_info/{{item.id}}/{{item.l_t}}" class="sy-xuexi-items" ng-repeat="(key,item) in lists">
+                <div class="img">
+                    <img ng-src="{{item.imgUrl}}">
+                </div>
+                <div class="sy-article">
+                    <span class="sy-article-title">{{item.titles}}</span>
+                    <span class="sy-article-memo">{{item.l_Memo}}</span>
+                </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,90 @@
+<ion-view hide-nav-bar="true" hide-back-button="true">
+    <style>
+        .sy-coin-nav.dj_nav{
+            width:100%;
+            min-height:44px;
+            border-bottom:1px solid #f0f0f0;
+            background:#ff2d4b;
+            overflow:hidden;
+        }
+
+        .sy-coin-nav button{
+            height:44px;
+            color:white;
+        }
+
+        .sy-coin-nav button:hover{
+            color:white;
+        }
+
+        .sy-coin-nav span{
+            height:44px;
+            line-height:44px;
+            color:white;
+            font-size:16px;
+            position:absolute;
+            width:100%;
+            display:block;
+            text-align:center;
+            left:0;
+            top:0;
+        }
+
+    </style>
+    <ion-header-bar class="bar bar-header zx-info-top top-header-nav" style="">
+        <div class="sy-coin-nav dj_nav">
+            <button class="button button-icon" ng-click="goBack()">
+                <i class="icon ion-ios-arrow-back"></i>
+            </button>
+            <span>积分管理</span>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="sy-content" style="top:45px;">
+        <div class="user-coin-top">
+            <div class="user-coin-today">
+                <div>
+                    <div class="xian"></div>
+                </div>
+                <div>
+                    <span style="font-size:42px; height:54px; line-height:54px;">0</span>
+                    <span style="font-size:12px;">今日积分</span>
+                    <span style="font-size:16px;">测试</span>
+                </div>
+                <div>
+                    <div class="xian"></div>
+                </div>
+            </div>
+            <div class="user-coin-total">
+                <div class="coin-cate-l">
+                    <div>
+                        <span>年积分</span>
+                        <span>0</span>
+                    </div>
+                    <div>
+                        <span>月积分</span>
+                        <span>0</span>
+                    </div>
+                </div>
+                <div class="coin-cate-r">
+                    <div style="width: 60%; float: right;">
+                        <span style="font-size:12px; padding-bottom:5px;">总积分</span>
+                        <span style="font-size: 26px;">0</span>
+                    </div>
+                </div>
+            </div>
+            <div class="user-coin-img">
+                <img src="{{userIcon}}" alt="">
+            </div>
+        </div>
+        <div style="height: 60px; width: 100%; float: left;"></div>
+        <div class="coin-ct">
+            <div><i class="icon iconfont icon-yuedu1"></i><span>阅读100</span></div>
+            <div style="border-right:0px"><i class="icon iconfont icon-yuedu1" style="background: #e268a1;"></i><span>阅读100</span></div>
+        </div>
+        <div class="coin-ct">
+            <div><i class="icon iconfont icon-yuedu1" style="background: green;"></i><span>阅读100</span></div>
+            <div style="border-right:0px"><i class="icon iconfont icon-yuedu1" style="background: orangered;"></i><span>阅读100</span></div>
+        </div>
+    </ion-content>
+</ion-view>

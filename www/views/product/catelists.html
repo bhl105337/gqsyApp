@@ -1,0 +1,69 @@
+<ion-view hide-nav-bar="true" hide-back-button="true">
+    <style>
+        .sy-shop-nav.shop_nav.pro-li-top{
+            width:100%;
+            min-height:44px;
+            border-bottom:1px solid #f0f0f0;
+            background:#ff2d4b;
+            overflow:hidden;
+            box-shadow:0 1px 6px 0 #f0f0f0;
+        }
+
+        .sy-shop-nav button{
+            height:44px;
+            color:white;
+        }
+
+        .sy-shop-nav button:hover{
+            color:white;
+            padding:0 5px;
+        }
+
+        .sy-shop-nav.pro-li-top span{
+            height:44px;
+            line-height:44px;
+            font-size:16px;
+            position:absolute;
+            width:100%;
+            display:block;
+            text-align:center;
+            left:0;
+            top:0;
+            color:white;
+        }
+
+
+    </style>
+    <ion-header-bar class="bar bar-header zx-info-top top-header-nav" style="">
+        <div class="sy-shop-nav shop_nav pro-li-top">
+            <button class="button button-icon" ng-click="goBack()">
+                <i class="icon ion-ios-arrow-back"></i>
+            </button>
+            <span>商品中心</span>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="sy-content pro-cate-content" style="top:44px; background:#f0f0f0">
+
+        <ion-list class="product-cate-list">
+            <!--<ion-item href="#/tab/djnav/{{item.id}}/1" class="sy-xuexi-items"  ng-repeat="(key,item) in list">-->
+            <ion-item href="#/catlist/{{uid}}/{{v.id}}" class="sy-product-cate-items" ng-repeat="(k,v) in catelist">
+                <span>{{v.name}}</span>
+            </ion-item>
+
+        </ion-list>
+    </ion-content>
+
+    <ion-content class="sy-content2 pro-contents" style="top:44px;">
+        <ion-list class="product-list">
+            <ion-item href="#/prolist/{{uid}}/{{item.id}}" class="sy-product-items" ng-repeat="(key,item) in catelists">
+                <div class="img">
+                    <img ng-src="{{item.imgUrl}}" style="width:100%; height:auto">
+                </div>
+                <div class="sy-article">
+                    <span class="sy-article-title">{{item.name}}</span>
+                </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,46 @@
+<ion-view hide-nav-bar="true" hide-back-button="true">
+    <style>
+
+    </style>
+
+    <ion-header-bar class="sy-top-search top-header-nav" style=" position:relative">
+        <div class="sy-top-search-input">
+            <form ng-submit="submitFormSearch(search)" novalidate>
+                <div>
+                    <label class="item-input-wrapper">
+                        <i class="icon ion-ios-search placeholder-icon"></i>
+                        <input style="display:none">
+                        <input type="search" name="keywords" id="keywords" ng-model="search.keywords" placeholder="搜索" style="width:80%" autocomplete="off">
+                    </label>
+                </div>
+                <div class="buttons">
+                    <button class="button" type="submit">
+                        搜索
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="sy-top-nav sy-top-navs">
+            <div>
+                <a ng-href="#/tab/wenhua" class="active">国企文库</a>
+                <a ng-href="#/tab/wenhua_b">影像国企</a>
+                <a ng-href="#/tab/wenhua_c">国企论坛</a>
+            </div>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="sy-content">
+        <ion-list class="sy-wenku-list">
+            <ion-item  ng-if="item.l_t == 2" href="#/tab/wenhua_nav/{{item.id}}/1" class="sy-wenku-item"  ng-repeat="(key,item) in list">
+                <img ng-src="{{item.imgUrl}}">
+                <!--<img ng-src="{{chat.face}}">-->
+                <span>{{item.titles}}</span>
+            </ion-item>
+            <ion-item ng-if="item.l_t == 1" href="#/wenhuainfo/{{item.id}}/0/1" class="sy-wenku-item"  ng-repeat="(key,item) in list">
+                <img ng-src="{{item.imgUrl}}">
+                <!--<img ng-src="{{chat.face}}">-->
+                <span>{{item.titles}}</span>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

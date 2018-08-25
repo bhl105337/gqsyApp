@@ -1,0 +1,56 @@
+<ion-view hide-nav-bar="true" hide-back-button="true">
+    <style>
+
+    </style>
+    <ion-header-bar class="sy-top-search top-header-nav" style=" position:relative">
+        <div class="sy-top-search-input">
+            <form ng-submit="submitFormSearch(search)" novalidate>
+                <div>
+                    <label class="item-input-wrapper">
+                        <i class="icon ion-ios-search placeholder-icon"></i>
+                        <input style="display:none">
+                        <input type="search" name="keywords" id="keywords" ng-model="search.keywords" placeholder="搜索" style="width:80%" autocomplete="off">
+                    </label>
+                </div>
+                <div class="buttons">
+                    <button class="button" type="submit">
+                        搜索
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="sy-top-nav sy-top-navs">
+            <div>
+                <a ng-href="#/tab/dangjian">党员学习</a>
+                <a ng-href="#/tab/dangke">在线党课</a>
+                <a ng-href="#/tab/kaoshi">党员考试</a>
+                <a ng-href="#/tab/zhichuang" class="active">党建之窗</a>
+            </div>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="sy-content">
+        <ion-list class="sy-djzc-list">
+            <ion-item ng-if="item.l_t == 2" href="#/tab/djnav/{{item.id}}/4" class="sy-xuexi-items"  ng-repeat="(key,item) in list">
+                <div class="img">
+                    <img ng-src="{{item.imgUrl}}">
+                </div>
+                <div class="sy-article">
+                    <span class="sy-article-title">{{item.titles}}</span>
+                    <span class="sy-article-memo">{{item.l_Memo}}</span>
+                    <span class="sy-article-num" ng-show="{{item.l_t}}==2">文章：{{item.p_count}}</span>
+                </div>
+            </ion-item>
+
+            <ion-item ng-if="item.l_t == 1" href="#/djinfo/{{item.id}}/4/0" class="sy-xuexi-items"  ng-repeat="(key,item) in list">
+                <div class="img">
+                    <img ng-src="{{item.imgUrl}}">
+                </div>
+                <div class="sy-article">
+                    <span class="sy-article-title">{{item.titles}}</span>
+                    <span class="sy-article-memo">{{item.l_Memo}}</span>
+                </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

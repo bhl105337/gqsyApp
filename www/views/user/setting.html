@@ -1,0 +1,102 @@
+<ion-view hide-nav-bar="true" hide-back-button="true">
+    <style>
+        .sy-user-setting-nav.dj_nav{
+            width:100%;
+            min-height:44px;
+            border-bottom:1px solid #f0f0f0;
+            background:#ff2d4b;
+            overflow:hidden;
+        }
+
+        .sy-user-setting-nav button{
+            height:44px;
+            color:white;
+        }
+
+        .sy-user-setting-nav button:hover{
+            color:white;
+        }
+
+        .sy-user-setting-nav span{
+            height:44px;
+            line-height:44px;
+            color:white;
+            font-size:16px;
+            position:absolute;
+            width:100%;
+            display:block;
+            text-align:center;
+            left:0;
+            top:0;
+        }
+
+        .user-s-info{
+            width:100%;
+            float:left;
+        }
+
+        .user-s-info li{
+            width:100%;
+            float:left;
+            height:40px;
+            line-height:40px;
+            padding:0 5%;
+            border-bottom:1px solid #ccc;
+        }
+
+        .user-s-info li span{
+            float:left;
+            height:40px;
+            line-height:40px;
+        }
+
+        .user-s-info li span.s-r{
+            float:right;
+            height:40px;
+            line-height:40px;
+            color:#999;
+        }
+
+        .logout{
+            width:100%;
+            float:left;
+        }
+
+        .logout span{
+            float:left;
+            width:94%;
+            margin-left:3%;
+            height:40px;
+            line-height:40px;
+            color:white;
+            background:#ff2d4b;
+            border-radius:6px;
+            text-align:center;
+            margin-top:10px;
+        }
+
+    </style>
+    <ion-header-bar class="bar bar-header zx-info-top top-header-nav" style="">
+        <div class="sy-user-setting-nav dj_nav">
+            <button class="button button-icon" ng-click="goBack()">
+                <i class="icon ion-ios-arrow-back"></i>
+            </button>
+            <span>设置</span>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="sy-content" style="top:46px;">
+        <div class="user-s-info">
+            <ul>
+                <li><span class="s-l">用户名</span><span class="s-r">{{user.username}}</span></li>
+                <li><span class="s-l">昵称</span><span class="s-r">{{user.nickname}}</span></li>
+                <li><span class="s-l">手机号</span><span class="s-r">{{user.mobile}}</span></li>
+                <!--<li><span class="s-l">邮箱</span><span class="s-r">admin</span></li>-->
+                <!--<li><span class="s-l">登录密码</span><span class="s-r">******</span></li>-->
+            </ul>
+        </div>
+        <div class="logout">
+            <!--<span>退出</span>-->
+        </div>
+    </ion-content>
+</ion-view>

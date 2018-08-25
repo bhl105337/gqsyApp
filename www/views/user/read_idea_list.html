@@ -1,0 +1,85 @@
+<ion-view hide-nav-bar="true" hide-back-button="true">
+    <style>
+        .sy-read-log-nav.dj_nav{
+            width:100%;
+            min-height:44px;
+            border-bottom:1px solid #f0f0f0;
+            background:#ff2d4b;
+            overflow:hidden;
+        }
+
+        .sy-read-log-nav button{
+            height:44px;
+            color:white;
+        }
+
+        .sy-read-log-nav button:hover{
+            color:white;
+        }
+
+        .sy-read-log-nav span{
+            height:44px;
+            line-height:44px;
+            color:white;
+            font-size:16px;
+            position:absolute;
+            width:100%;
+            display:block;
+            text-align:center;
+            left:0;
+            top:0;
+        }
+
+        .sy-log-status{
+            width:100%;
+            height:40px;
+            float:left;
+        }
+
+        .sy-log-status div{
+            width:33.33%;
+            height:40px;
+            line-height:40px;
+            float:left;
+            text-align:center;
+        }
+
+        .sy-log-status div span{
+            width:80%;
+            height:20px;
+            margin-left:10%;
+            border-bottom:1px solid #ccc;
+            float:left;
+        }
+    </style>
+    <ion-header-bar class="bar bar-header zx-info-top top-header-nav" style="">
+        <div class="sy-read-log-nav dj_nav">
+            <button class="button button-icon" ng-click="goBack()">
+                <i class="icon ion-ios-arrow-back"></i>
+            </button>
+            <span>学习心得</span>
+            <button class="button button-icon" ng-click="goIdeaAdd()" style="float:right">
+                <i class="icon ion-plus-round"></i>
+            </button>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="sy-content" style="top:46px;">
+        <ion-list class="sy-dj_nav-list" ng-if="logstatus == 1">
+
+            <!--<ion-refresher pulling-text="下拉刷新..." on-refresh="reloadTz('refresher')" refreshing-text="正在刷新"></ion-refresher>-->
+            <ion-item href="#/read_idea_info/{{uid}}/{{item.id}}" class="sy-tz-item" ng-repeat="(key,item) in lists">
+                <span>{{item.title}}</span>
+            </ion-item>
+        </ion-list>
+        <div ng-if="logstatus != 1" class="sy-log-status">
+            <div>
+                <span></span>
+            </div>
+            <div style="color:#999">暂无学习心得</div>
+            <div>
+                <span></span>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
