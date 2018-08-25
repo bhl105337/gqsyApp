@@ -1,0 +1,58 @@
+1.生成签名文件，执行以下命令，把alias_name改成具体应用的名字，然后按提示操作
+
+$ keytool -genkey -v -keystore my-release-key.keystore -alias alias_name -keyalg RSA -keysize 2048 -validity 10000    
+$ keytool -genkey -v -keystore gqsy.keystore       -alias gqsy   -keyalg RSA -keysize 2048 -validity 10000
+
+添加平台
+
+$ cordova platform add android@6.0.0
+
+2.生成 release包 
+
+$ cordova build  android --release
+
+3.将第一步生成的 my-release-key.keystore 文件复制到/platforms/android/build/outputs/apk 跟第2步生成的 android-release-unsigned.apk 放在同一文件夹
+
+$ copy   gqsy.keystore platforms\android\build\outputs\apk\gqsy.keystore
+
+4.cd 到 /platforms/android/build/outputs/apk，并执行以下命令,同样把alias_name改成具体应用的名字
+
+$ cd platforms\android\build\outputs\apk
+
+
+$ jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA1 -keystore gqsy.keystore -storepass ljgqsy android-release-unsigned.apk ljgqsy
+
+运行
+
+$ start android-release-unsigned.apk
+5.查看生成的签名
+
+$ keytool -exportcert -alias prosumer -keypass prosumer -keystore ./prosumer.keystore -storepass prosumer >out.txt
+
+$ keytool -list -v -keystore  prosumer.keystore -storepass prosumer >out.txt
+
+结果 md5  dbcfb54698136750dacd39cb9380df4e
+
+证书指纹 (SHA1): 5A:F0:01:B8:5D:05:19:A4:03:61:AB:65:EF:7A:FF:8F:31:E5:D1:C0
+
+
+一次性运行
+$ D: && cd d:\www\gqsy\gqsy\ && cordova build  android --release  && jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA1 -keystore gqsy.keystore -storepass ljgqsy platforms\android\build\outputs\apk\android-release-unsigned.apk gqsy && start platforms\android\build\outputs\apk\android-release-unsigned.apk
+
+
+调试
+
+$ D: && cd d:\www\jeesell\prosumer\ && ionic run android -l -c -s
+
+
+serve
+
+$ D: && cd d:\www\jeesell\prosumer\ && ionic serve
+
+
+$ D: && cd d:\www\jeesell\yun\www && php server.php -status
+
+
+/alidata/server/nginx-1.4.7/conf/vhosts
+
+1105756035
