@@ -16,6 +16,8 @@ angular.module('starter', requireModules)
 
     .run(function ($ionicPlatform, $rootScope, $ionicHistory) {
 
+        $rootScope.server_url = "http://guoqishuyuan.com/app.php";
+
         //$rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState) {
         //    if ($rootScope.userIsLogin === -1) {
         //        $rootScope.userIsLogin = false;

@@ -1,6 +1,19 @@
 ctrls
-    .controller('Dangjian_aCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $ionicSlideBoxDelegate, $state) {
-        $rootScope.server_url = "http://guoqishuyuan.com/app.php";
+    .controller('Dangjian_aCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $ionicSlideBoxDelegate, $state, $ionicModal) {
+        console.log($rootScope.server_url)
+        // $rootScope.server_url = "http://guoqishuyuan.com/app.php";
+
+        $ionicModal.fromTemplateUrl('playlists.html', function (userModal) {
+            $scope.modal = userModal;
+        }, {
+            scope: $scope,
+            animation: 'slide-in-left'
+        });
+
+        $scope.showUser = function () {
+            // $ionicBackdrop.retain();
+            $scope.modal.show();
+        };
 
         $scope.init = function (data) {
             $ionicSlideBoxDelegate.update(true);
@@ -12,15 +25,12 @@ ctrls
 
                 $scope.banner = data.data.banner
                 $scope.init($scope.banner);
-                //console.log($scope.banner)
             });
         })
 
 
     })
     .controller('Dangjian_bCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $state, $ionicPopup, $formValid) {
-        $rootScope.server_url = "http://guoqishuyuan.com/app.php";
-
         $scope.$on('$ionicView.beforeEnter', function () {
             //page_no     = 1;
             $http.get($rootScope.server_url + '/Dangjian/dangjian_b').success(function (data) {
@@ -98,8 +108,6 @@ ctrls
         };
     })
     .controller('Dangjian_dCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $state, $ionicPopup, $formValid) {
-        $rootScope.server_url = "http://guoqishuyuan.com/app.php";
-
         $scope.$on('$ionicView.beforeEnter', function () {
             //page_no     = 1;
             $http.get($rootScope.server_url + '/Dangjian/dangjian_d').success(function (data) {
@@ -143,8 +151,6 @@ ctrls
 
 
     .controller('Dangjian_navCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $ionicHistory, $state) {
-        $rootScope.server_url = "http://guoqishuyuan.com/app.php";
-
         $scope.yid = $stateParams.id;
         $scope.nav = $stateParams.nav;
         //page_no     = 1;
@@ -171,8 +177,6 @@ ctrls
 
     })
     .controller('DjInfoCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $ionicHistory, $state) {
-        $rootScope.server_url = "http://guoqishuyuan.com/app.php";
-
         $scope.yid = $stateParams.id;
         $scope.nav = $stateParams.nav;
         $scope.cid = $stateParams.cid;
