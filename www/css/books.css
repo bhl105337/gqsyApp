@@ -1,0 +1,381 @@
+/**基本书目列表*/
+.sy-shumu-list{
+    float:left;
+    margin-top:5px;
+    width:100%;
+}
+
+.sy-shumu-list .sy-shumu-item{
+    width:48%;
+    float:left;
+    margin-left:1%;
+    border:none;
+    height:150px;
+    margin-bottom:10px;
+}
+
+.sy-shumu-list .sy-shumu-item .item-content{
+    padding:0;
+    display:inline-block;
+    width:100%;
+    height:150px;
+    border:1px solid #f0f0f0;
+    border-radius:4px;
+}
+
+.sy-shumu-list .sy-shumu-item .item-content.activated{
+    background-color:#f0f0f0;
+    border-color:#f0f0f0;
+    border-radius:6px;
+!important;
+}
+
+.sy-shumu-list .sy-shumu-item img{
+    display:inline-block;
+    width:100%;
+    border-radius:6px;
+    height:69%;
+}
+
+@media (max-width:415px){
+    .sy-shumu-list .sy-shumu-item,
+    .sy-shumu-list .sy-shumu-item .item-content{
+        height:235px;
+    }
+
+    .sy-shumu-list .sy-shumu-item img{
+        height:196.72px;
+    }
+}
+
+@media (max-width:376px){
+    .sy-shumu-list .sy-shumu-item,
+    .sy-shumu-list .sy-shumu-item .item-content{
+        height:215px;
+    }
+
+    .sy-shumu-list .sy-shumu-item img{
+        height:178px;
+    }
+}
+
+@media (max-width:361px){
+    .sy-shumu-list .sy-shumu-item,
+    .sy-shumu-list .sy-shumu-item .item-content{
+        height:205px;
+    }
+
+    .sy-shumu-list .sy-shumu-item img{
+        height:170.8px;
+    }
+}
+
+@media (max-width:321px){
+
+    .sy-shumu-list .sy-shumu-item,
+    .sy-shumu-list .sy-shumu-item .item-content{
+        height:190px;
+    }
+
+    .sy-shumu-list .sy-shumu-item img{
+        height:151.08px;
+    }
+}
+
+.sy-shumu-list .sy-shumu-item span{
+    float:left;
+    width:100%;
+    white-space:normal;
+    height:25px;
+    line-height:25px;
+    text-align:center;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    font-size:16px;
+}
+
+/**新书推荐列表*/
+.sy-tuijian-list{
+    float:left;
+    margin-top:5px;
+    width:100%;
+}
+
+.sy-tuijian-list .sy-tuijian-item{
+    width:48%;
+    float:left;
+    margin-left:1%;
+    border:none;
+    height:150px;
+}
+
+.sy-tuijian-list .sy-tuijian-item .item-content{
+    padding:0;
+    display:inline-block;
+    width:100%;
+    height:150px;
+    border:1px solid #f0f0f0;
+    border-radius:4px;
+}
+
+.sy-tuijian-list .sy-tuijian-item .item-content.activated{
+    background-color:#f0f0f0;
+    border-color:#f0f0f0;
+    border-radius:6px;
+!important;
+}
+
+.sy-tuijian-list .sy-tuijian-item img{
+    display:inline-block;
+    width:100%;
+    border-radius:6px;
+    height:69%;
+}
+
+@media (max-width:415px){
+    .sy-tuijian-list .sy-tuijian-item,
+    .sy-tuijian-list .sy-tuijian-item .item-content{
+        height:235px;
+    }
+
+    .sy-tuijian-list .sy-tuijian-item img{
+        height:196.72px;
+    }
+}
+
+@media (max-width:376px){
+    .sy-tuijian-list .sy-tuijian-item,
+    .sy-tuijian-list .sy-tuijian-item .item-content{
+        height:215px;
+    }
+
+    .sy-tuijian-list .sy-tuijian-item img{
+        height:178px;
+    }
+}
+
+@media (max-width:361px){
+    .sy-tuijian-list .sy-tuijian-item,
+    .sy-tuijian-list .sy-tuijian-item .item-content{
+        height:205px;
+    }
+
+    .sy-tuijian-list .sy-tuijian-item img{
+        height:170.8px;
+    }
+}
+
+@media (max-width:321px){
+
+    .sy-tuijian-list .sy-tuijian-item,
+    .sy-tuijian-list .sy-tuijian-item .item-content{
+        height:190px;
+    }
+
+    .sy-tuijian-list .sy-tuijian-item img{
+        height:151.08px;
+    }
+}
+
+.sy-tuijian-list .sy-tuijian-item span{
+    float:left;
+    width:100%;
+    white-space:nowrap;
+    height:25px;
+    line-height:25px;
+    text-align:center;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    font-size:16px;
+}
+
+/**书院联盟列表*/
+.sy-sylm-list{
+    float:left;
+    margin-top:5px;
+    width:100%;
+}
+
+.sy-sylm-list .sy-sylm-item{
+    width:48%;
+    float:left;
+    margin-left:1%;
+    border:none;
+    height:150px;
+}
+
+.sy-sylm-list .sy-sylm-item .item-content{
+    padding:0;
+    display:inline-block;
+    width:100%;
+    height:150px;
+    border:1px solid #f0f0f0;
+    border-radius:4px;
+}
+
+.sy-sylm-list .sy-sylm-item .item-content.activated{
+    background-color:#f0f0f0;
+    border-color:#f0f0f0;
+    border-radius:6px;
+!important;
+}
+
+.sy-sylm-list .sy-sylm-item img{
+    display:inline-block;
+    width:100%;
+    border-radius:6px;
+    height:69%;
+}
+
+@media (max-width:415px){
+    .sy-sylm-list .sy-sylm-item,
+    .sy-sylm-list .sy-sylm-item .item-content{
+        height:235px;
+    }
+
+    .sy-sylm-list .sy-sylm-item img{
+        height:196.72px;
+    }
+}
+
+@media (max-width:376px){
+    .sy-sylm-list .sy-sylm-item,
+    .sy-sylm-list .sy-sylm-item .item-content{
+        height:215px;
+    }
+
+    .sy-sylm-list .sy-sylm-item img{
+        height:178px;
+    }
+}
+
+@media (max-width:361px){
+    .sy-sylm-list .sy-sylm-item,
+    .sy-sylm-list .sy-sylm-item .item-content{
+        height:205px;
+    }
+
+    .sy-sylm-list .sy-sylm-item img{
+        height:170.8px;
+    }
+}
+
+@media (max-width:321px){
+
+    .sy-sylm-list .sy-sylm-item,
+    .sy-sylm-list .sy-sylm-item .item-content{
+        height:190px;
+    }
+
+    .sy-sylm-list .sy-sylm-item img{
+        height:151.08px;
+    }
+}
+
+.sy-sylm-list .sy-sylm-item span{
+    float:left;
+    width:100%;
+    white-space:normal;
+    height:25px;
+    line-height:25px;
+    text-align:center;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    font-size:16px;
+}
+
+/**书本目录专题列表*/
+.sy-books-nav-list{
+    float:left;
+    margin-top:5px;
+    width:100%;
+}
+
+.sy-books-nav-list .sy-books-nav-item{
+    width:48%;
+    float:left;
+    margin-left:1%;
+    border:none;
+    height:150px;
+    margin-bottom:10px;
+}
+
+.sy-books-nav-list .sy-books-nav-item .item-content{
+    padding:0;
+    display:inline-block;
+    width:100%;
+    height:150px;
+    border:1px solid #f0f0f0;
+    border-radius:4px;
+}
+
+.sy-books-nav-list .sy-books-nav-item .item-content.activated{
+    background-color:#f0f0f0;
+    border-color:#f0f0f0;
+    border-radius:6px;
+!important;
+}
+
+.sy-books-nav-list .sy-books-nav-item img{
+    display:inline-block;
+    width:100%;
+    border-radius:6px;
+    height:69%;
+}
+
+@media (max-width:415px){
+    .sy-books-nav-list .sy-books-nav-item,
+    .sy-books-nav-list .sy-books-nav-item .item-content{
+        height:235px;
+    }
+
+    .sy-books-nav-list .sy-books-nav-item img{
+        height:196.72px;
+    }
+}
+
+@media (max-width:376px){
+    .sy-books-nav-list .sy-books-nav-item,
+    .sy-books-nav-list .sy-books-nav-item .item-content{
+        height:215px;
+    }
+
+    .sy-books-nav-list .sy-books-nav-item img{
+        height:178px;
+    }
+}
+
+@media (max-width:361px){
+    .sy-books-nav-list .sy-books-nav-item,
+    .sy-books-nav-list .sy-books-nav-item .item-content{
+        height:205px;
+    }
+
+    .sy-books-nav-list .sy-books-nav-item img{
+        height:170.8px;
+    }
+}
+
+@media (max-width:321px){
+
+    .sy-books-nav-list .sy-books-nav-item,
+    .sy-books-nav-list .sy-books-nav-item .item-content{
+        height:190px;
+    }
+
+    .sy-books-nav-list .sy-books-nav-item img{
+        height:151.08px;
+    }
+}
+
+.sy-books-nav-list .sy-books-nav-item span{
+    float:left;
+    width:100%;
+    white-space:normal;
+    height:25px;
+    line-height:25px;
+    text-align:center;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    font-size:16px;
+}

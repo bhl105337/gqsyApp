@@ -11,62 +11,9 @@
             width:100%;
             height:180px;
         }
-
-        .modal-backdrop-bg{
-            background:rgba(0, 0, 0, 0.4);
-            opacity:0.8;
-        }
-
-        .sy-user-info{
-            display:inline-block;
-            width:100%;
-            height:175px;
-            background-color:#fe2d4c;
-        }
-
-        .sy-user-topImg{
-            display:block;
-            height:90px;
-            margin-top:10px;
-        }
-
-        .u-img{
-            display:inline-block;
-            width:80px;height:80px;
-            margin-left:10px;
-            margin-top:5px;
-            background-color:white;
-            border-radius:50%;
-        }
-
-        .u-img img{
-            display:inline-block;
-            width:100%;height:100%;
-        }
-
-        .u-names{
-            margin-top:10px;
-            padding:0 10px;
-            color:white;
-            font-size:16px;
-        }
-
-        .u-coin{
-            display:block;
-            margin-top:5px;
-            padding:0 10px;
-        }
-
-        .u-coin span{
-            color:white;
-        }
-
     </style>
 
     <ion-header-bar class="bar bar-header sy-top-search top-header-nav" style="min-height:40px;">
-        <!--<div ng-click="showUser()">-->
-        <!--aaa-->
-        <!--</div>-->
         <div class="header-comment">
             <div class="user-comment">
                 <div class="user-info" ng-click="showUser()">
@@ -82,7 +29,7 @@
         </div>
     </ion-header-bar>
 
-    <ion-content class="sy-content" style="top:40px">
+    <ion-content class="sy-content">
 
         <!-- start 轮播图-->
         <ion-slide-box auto-play="true" does-continue="true" slide-interval=2000 show-pager="fales" delegate-handle="slideimgs">
@@ -119,18 +66,4 @@
 
         </ion-list>
     </ion-content>
-    <script id="playlists.html" type="text/ng-template">
-        <div class="modal slide-in-right" style="width:65%;">
-            <div class="sy-user-info">
-                <div class="sy-user-topImg">
-                    <div class="u-img"><img src="" alt=""></div>
-                    <div class="u-names">便当笑笑</div>
-                    <div class="u-coin">
-                        <span>积分：</span>
-                        <span>100</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </script>
 </ion-view>

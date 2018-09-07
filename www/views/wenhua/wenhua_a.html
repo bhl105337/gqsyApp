@@ -1,30 +1,21 @@
 <ion-view hide-nav-bar="true" hide-back-button="true">
+    <link rel="stylesheet" href="./css/wenhua.css">
     <style>
 
     </style>
 
-    <ion-header-bar class="sy-top-search top-header-nav" style=" position:relative">
-        <div class="sy-top-search-input">
-            <form ng-submit="submitFormSearch(search)" novalidate>
-                <div>
-                    <label class="item-input-wrapper">
-                        <i class="icon ion-ios-search placeholder-icon"></i>
-                        <input style="display:none">
-                        <input type="search" name="keywords" id="keywords" ng-model="search.keywords" placeholder="搜索" style="width:80%" autocomplete="off">
-                    </label>
+    <ion-header-bar class="bar bar-header sy-top-search top-header-nav" style="min-height:40px;">
+        <div class="header-comment">
+            <div class="user-comment">
+                <div class="user-info" ng-click="showUser()">
+                    <div class="u-top-img"><i class="user-top-img icon iconfont icon-yonghu"></i></div>
                 </div>
-                <div class="buttons">
-                    <button class="button" type="submit">
-                        搜索
-                    </button>
+            </div>
+            <div class="top-search">
+                <div class="top-s-con">
+                    <i class="search-icon icon iconfont icon-fangdajing"></i>
+                    <span></span>
                 </div>
-            </form>
-        </div>
-        <div class="sy-top-nav sy-top-navs">
-            <div>
-                <a ng-href="#/tab/wenhua" class="active">国企文库</a>
-                <a ng-href="#/tab/wenhua_b">影像国企</a>
-                <a ng-href="#/tab/wenhua_c">国企论坛</a>
             </div>
         </div>
     </ion-header-bar>

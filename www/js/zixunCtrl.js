@@ -1,84 +1,54 @@
 ctrls
 
-    .controller('ZixunCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $formValid, $state) {
+    .controller('ZixunCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $formValid, $state, $ionicModal, $timeout) {
 
-        $rootScope.server_url = "http://guoqishuyuan.com/app.php";
         $scope.newsList = [];
-        var _arguments = arguments;
-        var page_no = 1;
-        var page_size = 20;
-        var page_total = 0;
-        var search = "";
+        $rootScope.page = 1;
+        $rootScope.totalPage = 0;
+
+        $ionicModal.fromTemplateUrl('userInfo.html', function (userModal) {
+            $scope.modal = userModal;
+        }, {
+            scope: $scope,
+            animation: 'slide-in-left'
+        });
+
+        $scope.showUser = function () {
+            // $ionicBackdrop.retain();
+            $scope.modal.show();
+        };
 
         $scope.$on('$ionicView.beforeEnter', function () {
-            page_no = 1;
-            $http.get($rootScope.server_url + '/index/index').success(function (data) {
-                $scope.newsList = data.data
-
+            $ionicLoading.show({
+                template: '加载中...'
             });
+            $http.get($rootScope.server_url + '/index/index?page=' + $rootScope.page).success(function (data) {
+                $scope.newsList = data.data.lists
+
+                $rootScope.totalPage = data.data.totalPage
+            });
+            $ionicLoading.hide();
         });
 
 
         $scope.reloadNews = function (types) {
-
-            $http.get($rootScope.server_url + '/index/index').success(function (data) {
-                $scope.newsList = data.data
-
+            $rootScope.page = 1
+            if (types == "infinite") {
+                $rootScope.page += 1;
+            }
+            $http.get($rootScope.server_url + '/index/index?page=' + $rootScope.page).success(function (data) {
                 if (types == "refresher") {
-                    $scope.newsList = data.data;
+                    $scope.newsList = data.data.lists;
                     $scope.$broadcast('scroll.refreshComplete');
                 } else {
-                    $scope.newsList = $scope.newsList.concat(data.data);
+                    $scope.newsList = $scope.newsList.concat(data.data.lists);
                     $scope.$broadcast('scroll.infiniteScrollComplete');
                 }
             });
         }
-
-        $scope.submitFormSearch = function (search) {
-            var formRules = {
-                keywords: {required: "请输入内容"}
-            };
-            if ($formValid(formRules, search)) {
-                $http.post($rootScope.server_url + '/Base/search', search, null, "搜索中").success(function (data) {
-                    var msg = JSON.parse(data)
-                    if (msg.code == "FAIL") {
-                        $scope.showAlert(msg);
-                    } else {
-                        $scope.searchSuccess(msg, search.keywords);
-                    }
-                });
-            }
-        };
-
-        $scope.showAlert = function (msg) {
-            var alertPopup = $ionicPopup.alert({
-                title: '提示',
-                template: msg.info
-            });
-            alertPopup.then(function (res) {
-                console.log(res);
-            });
-        };
-
-        $scope.searchSuccess = function (data, keyword) {
-            //console.log(keyword);
-            $rootScope.data = data.data;
-            $rootScope.keyword = keyword;
-            $rootScope.clearHistory();
-            $state.go("search");
-            return false;
-        };
-
-        //$scope.can_loadmore = function(){
-        //    return page_no<page_total;
-        //};
-        //
-        //$scope.loadMore = function(){
-        //    page_no     += 1;
-        //    get_goods_list(_arguments, {'cat_id':$stateParams.cat_id, 'page_no':page_no, 'page_size':page_size},function(){
-        //        $scope.$broadcast('scroll.infiniteScrollComplete');
-        //    });
-        //};
+        $scope.isLoadMore = function () {
+            return $rootScope.page < $rootScope.totalPage;
+        }
 
     })
 

@@ -1,6 +1,6 @@
 ctrls
 
-    .controller('Wenhua_aCtrl', function ($scope, $http, $rootScope, $state) {
+    .controller('Wenhua_aCtrl', function ($scope, $http, $rootScope, $state, $ionicModal) {
         $rootScope.server_url = "http://guoqishuyuan.com/app.php";
 
         $scope.$on('$ionicView.beforeEnter', function () {
@@ -25,6 +25,18 @@ ctrls
                     }
                 });
             }
+        };
+
+        $ionicModal.fromTemplateUrl('userInfo.html', function (userModal) {
+            $scope.modal = userModal;
+        }, {
+            scope: $scope,
+            animation: 'slide-in-left'
+        });
+
+        $scope.showUser = function () {
+            // $ionicBackdrop.retain();
+            $scope.modal.show();
         };
 
         $scope.showAlert = function (msg) {

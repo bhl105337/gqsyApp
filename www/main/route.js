@@ -44,15 +44,15 @@ angular.module('starter.routes', []).config(function ($stateProvider, $urlRouter
             templateUrl: 'views/user/login.html'
         })
         //
-        // .state('tab.zixun', {
-        //     url: '/zixun',
-        //     views: {
-        //         'tab-zixun': {
-        //             templateUrl: 'views/zixun/zixun.html',
-        //             controller: 'ZixunCtrl'
-        //         }
-        //     }
-        // })
+        .state('tab.zixun', {
+            url: '/zixun',
+            views: {
+                'tab-zixun': {
+                    templateUrl: 'views/zixun/zixun.html',
+                    controller: 'ZixunCtrl'
+                }
+            }
+        })
         // .state('tab.tongzhi', {
         //     url: '/tongzhi',
         //     views: {
@@ -116,15 +116,15 @@ angular.module('starter.routes', []).config(function ($stateProvider, $urlRouter
     // })
     //
     //
-    // .state('tab.books', {
-    //     url: '/books',
-    //     views: {
-    //         'tab-books': {
-    //             templateUrl: 'views/books/books.html',
-    //             controller: 'BooksCtrl'
-    //         }
-    //     }
-    // })
+        .state('tab.books', {
+            url: '/books',
+            views: {
+                'tab-books': {
+                    templateUrl: 'views/books/books.html',
+                    controller: 'BooksCtrl'
+                }
+            }
+        })
     // .state('tab.books_b', {
     //     url: '/books_b',
     //     views: {
@@ -160,15 +160,15 @@ angular.module('starter.routes', []).config(function ($stateProvider, $urlRouter
     //     templateUrl: 'views/books/books_info.html'
     // })
     //
-    // .state('tab.wenhua', {
-    //     url: '/wenhua',
-    //     views: {
-    //         'tab-wenhua': {
-    //             templateUrl: 'views/wenhua/wenhua_a.html',
-    //             controller: 'Wenhua_aCtrl'
-    //         }
-    //     }
-    // })
+        .state('tab.wenhua', {
+            url: '/wenhua',
+            views: {
+                'tab-wenhua': {
+                    templateUrl: 'views/wenhua/wenhua_a.html',
+                    controller: 'Wenhua_aCtrl'
+                }
+            }
+        })
     // .state('tab.wenhua_b', {
     //     url: '/wenhua_b',
     //     views: {

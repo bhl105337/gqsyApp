@@ -1,0 +1,228 @@
+/**国企文库列表*/
+.sy-wenku-list{
+    float:left;
+    margin-top:5px;
+    width:100%;
+}
+
+.sy-wenku-list .sy-wenku-item{
+    width:48%;
+    float:left;
+    margin-left:1%;
+    border:none;
+    height:150px;
+    margin-bottom:10px;
+}
+
+.sy-wenku-list .sy-wenku-item .item-content{
+    padding:0;
+    display:inline-block;
+    width:100%;
+    height:150px;
+    border:1px solid #f0f0f0;
+    border-radius:4px;
+}
+
+.sy-wenku-list .sy-wenku-item .item-content.activated{
+    background-color:#f0f0f0;
+    border-color:#f0f0f0;
+    border-radius:6px;
+!important;
+}
+
+.sy-wenku-list .sy-wenku-item img{
+    display:inline-block;
+    width:100%;
+    border-radius:6px;
+    height:79%;
+}
+
+@media (max-width:415px){
+    .sy-wenku-list .sy-wenku-item,
+    .sy-wenku-list .sy-wenku-item .item-content{
+        height:180px;
+    }
+
+}
+
+@media (max-width:376px){
+    .sy-wenku-list .sy-wenku-item,
+    .sy-wenku-list .sy-wenku-item .item-content{
+        height:170px;
+    }
+
+}
+
+@media (max-width:361px){
+    .sy-wenku-list .sy-wenku-item,
+    .sy-wenku-list .sy-wenku-item .item-content{
+        height:160px;
+    }
+
+}
+
+@media (max-width:321px){
+
+    .sy-wenku-list .sy-wenku-item,
+    .sy-wenku-list .sy-wenku-item .item-content{
+        height:150px;
+    }
+}
+
+.sy-wenku-list .sy-wenku-item span{
+    float:left;
+    width:100%;
+    white-space:nowrap;
+    height:25px;
+    line-height:25px;
+    text-align:center;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    font-size:16px;
+}
+
+/**影像国企列表*/
+.sy-yxgq-list{
+    float:left;
+    margin-top:5px;
+    width:100%;
+}
+
+.sy-yxgq-list .sy-yxgq-item{
+    width:48%;
+    float:left;
+    margin-left:1%;
+    border:none;
+    height:150px;
+    margin-bottom:10px;
+}
+
+.sy-yxgq-list .sy-yxgq-item .item-content{
+    padding:0;
+    display:inline-block;
+    width:100%;
+    height:150px;
+    border:1px solid #f0f0f0;
+    border-radius:4px;
+}
+
+.sy-yxgq-list .sy-yxgq-item .item-content.activated{
+    background-color:#f0f0f0;
+    border-color:#f0f0f0;
+    border-radius:6px;
+!important;
+}
+
+.sy-yxgq-list .sy-yxgq-item img{
+    display:inline-block;
+    width:100%;
+    border-radius:6px;
+    height:79%;
+}
+
+@media (max-width:415px){
+    .sy-yxgq-list .sy-yxgq-item,
+    .sy-yxgq-list .sy-yxgq-item .item-content{
+        height:180px;
+    }
+
+}
+
+@media (max-width:376px){
+    .sy-yxgq-list .sy-yxgq-item,
+    .sy-yxgq-list .sy-yxgq-item .item-content{
+        height:170px;
+    }
+
+}
+
+@media (max-width:361px){
+    .sy-yxgq-list .sy-yxgq-item,
+    .sy-yxgq-list .sy-yxgq-item .item-content{
+        height:160px;
+    }
+
+}
+
+@media (max-width:321px){
+
+    .sy-yxgq-list .sy-yxgq-item,
+    .sy-yxgq-list .sy-yxgq-item .item-content{
+        height:150px;
+    }
+
+}
+
+.sy-yxgq-list .sy-yxgq-item span{
+    float:left;
+    width:100%;
+    white-space:nowrap;
+    height:25px;
+    line-height:25px;
+    text-align:center;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    font-size:16px;
+}
+
+/**国企论坛列表*/
+.sy-lt-list{
+    float:left;
+    width:100%;
+}
+
+.sy-lt-list .sy-lt-items{
+    width:100%;
+    float:left;
+    border:0;
+    height:112px;
+    border-bottom:1px solid #f0f0f0;
+}
+
+.sy-lt-items .img{
+    width:45%;
+    float:left;
+}
+
+.sy-lt-items .img img{
+    width:100%;
+    height:100px;
+    border-radius:6px;
+    float:left;
+}
+
+.sy-lt-items .item-content{
+    padding:5px;
+}
+
+.sy-lt-items .sy-article{
+    width:53%;
+    float:right;
+    font-size:14px;
+    position:relative;
+    height:100px;
+}
+
+.sy-article-title,
+.sy-article-memo,
+.sy-article-num{
+    float:left;
+    width:100%;
+    white-space:normal;
+    max-height:40px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.sy-article-memo, .sy-article-num{
+    font-size:12px;
+    color:#999;
+}
+
+.sy-article-num{
+    text-align:right;
+    position:absolute;
+    width:100%;
+    bottom:0;
+    right:0;
+}

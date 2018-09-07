@@ -3,7 +3,7 @@ ctrls
         console.log($rootScope.server_url)
         // $rootScope.server_url = "http://guoqishuyuan.com/app.php";
 
-        $ionicModal.fromTemplateUrl('playlists.html', function (userModal) {
+        $ionicModal.fromTemplateUrl('userInfo.html', function (userModal) {
             $scope.modal = userModal;
         }, {
             scope: $scope,
