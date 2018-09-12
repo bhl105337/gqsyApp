@@ -10,7 +10,8 @@ var requireModules = [
     'starter.controllers',
     'starter.configs',
     'starter.routes',
-    'starter.services'
+    'starter.services',
+    'starter.directives'
 ]
 angular.module('starter', requireModules)
 

@@ -40,6 +40,8 @@
     <!--<script src="main/filter.js"></script>-->
     <script src="main/route.js"></script>
 
+    <script src="directive/directives.js"></script>
+
     <!--controllers-->
     <!--<script src="controller/app.js"></script>-->
     <!--<script src="js/indexCtrl.js"></script>-->
@@ -82,6 +84,19 @@
                         <span>积分：</span>
                         <span>100</span>
                     </div>
+                </div>
+            </div>
+        </div>
+    </script>
+    <script id="search.html" type="text/ng-template">
+        <div class="modal" style="width:100%;">
+            <div class="sy-search-text">
+                <div class="sy-search-left">
+                    <i class="icon iconfont icon-fangdajing"></i>
+                    <div class="search-label"><input type="text"></div>
+                </div>
+                <div class="sy-search-right" ng-click="search('hide')">
+                    取 消
                 </div>
             </div>
         </div>

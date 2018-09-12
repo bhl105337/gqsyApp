@@ -1,5 +1,5 @@
 ctrls
-    .controller('Dangjian_aCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $ionicSlideBoxDelegate, $state, $ionicModal) {
+    .controller('Dangjian_aCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $ionicSlideBoxDelegate, $state, $ionicModal, $ionicScrollDelegate) {
         console.log($rootScope.server_url)
         // $rootScope.server_url = "http://guoqishuyuan.com/app.php";
 
@@ -9,10 +9,23 @@ ctrls
             scope: $scope,
             animation: 'slide-in-left'
         });
-
         $scope.showUser = function () {
-            // $ionicBackdrop.retain();
+
             $scope.modal.show();
+        };
+
+        $ionicModal.fromTemplateUrl('search.html', function (searchModal) {
+            $scope.searchModal = searchModal;
+        }, {
+            scope: $scope,
+            animation: 'slide-in-right'
+        });
+        $scope.search = function (key) {
+            if (key == "show") {
+                $scope.searchModal.show();
+            } else {
+                $scope.searchModal.hide();
+            }
         };
 
         $scope.init = function (data) {
@@ -27,7 +40,6 @@ ctrls
                 $scope.init($scope.banner);
             });
         })
-
 
     })
     .controller('Dangjian_bCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $state, $ionicPopup, $formValid) {

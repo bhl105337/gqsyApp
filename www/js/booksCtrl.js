@@ -39,6 +39,20 @@ ctrls
             $scope.modal.show();
         };
 
+        $ionicModal.fromTemplateUrl('search.html', function (searchModal) {
+            $scope.searchModal = searchModal;
+        }, {
+            scope: $scope,
+            animation: 'slide-in-right'
+        });
+        $scope.search = function (key) {
+            if (key == "show") {
+                $scope.searchModal.show();
+            } else {
+                $scope.searchModal.hide();
+            }
+        };
+
         $scope.showAlert = function (msg) {
             var alertPopup = $ionicPopup.alert({
                 title: '提示',

@@ -12,13 +12,27 @@ ctrls
             scope: $scope,
             animation: 'slide-in-left'
         });
-
         $scope.showUser = function () {
             // $ionicBackdrop.retain();
             $scope.modal.show();
         };
 
+        $ionicModal.fromTemplateUrl('search.html', function (searchModal) {
+            $scope.searchModal = searchModal;
+        }, {
+            scope: $scope,
+            animation: 'slide-in-right'
+        });
+        $scope.search = function (key) {
+            if (key == "show") {
+                $scope.searchModal.show();
+            } else {
+                $scope.searchModal.hide();
+            }
+        };
+
         $scope.$on('$ionicView.beforeEnter', function () {
+            $rootScope.page = 1
             $ionicLoading.show({
                 template: '加载中...'
             });
@@ -26,15 +40,17 @@ ctrls
                 $scope.newsList = data.data.lists
 
                 $rootScope.totalPage = data.data.totalPage
+
             });
             $ionicLoading.hide();
         });
 
 
         $scope.reloadNews = function (types) {
-            $rootScope.page = 1
             if (types == "infinite") {
                 $rootScope.page += 1;
+            } else if (types == "refresher") {
+                $rootScope.page = 1
             }
             $http.get($rootScope.server_url + '/index/index?page=' + $rootScope.page).success(function (data) {
                 if (types == "refresher") {

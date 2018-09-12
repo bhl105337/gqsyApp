@@ -1,4 +1,4 @@
-<ion-view hide-nav-bar="true" hide-back-button="true">
+<ion-view hide-nav-bar="true" hide-back-button="true" hide-show-nav-bar>
     <link rel="stylesheet" href="./css/wenhua.css">
     <style>
 
@@ -12,15 +12,24 @@
                 </div>
             </div>
             <div class="top-search">
-                <div class="top-s-con">
+                <div class="top-s-con" ng-click="search('show')">
                     <i class="search-icon icon iconfont icon-fangdajing"></i>
                     <span></span>
                 </div>
             </div>
         </div>
+        <ion-scroll class="sy-scroll-tab-x" direction="x" scrollbar-x="false" style="overflow-x: hidden;">
+            <div class="sy-nav-lv2" style="">
+                <div>
+                    <a ng-href="#/tab/wenhua" class="active">国企文库</a>
+                    <a ng-href="#/tab/wenhua_b">影像国企</a>
+                    <a ng-href="#/tab/wenhua_c">国企论坛</a>
+                </div>
+            </div>
+        </ion-scroll>
     </ion-header-bar>
 
-    <ion-content class="sy-content">
+    <ion-content class="sy-content" scrollbar-y="false">
         <ion-list class="sy-wenku-list">
             <ion-item  ng-if="item.l_t == 2" href="#/tab/wenhua_nav/{{item.id}}/1" class="sy-wenku-item"  ng-repeat="(key,item) in list">
                 <img ng-src="{{item.imgUrl}}">

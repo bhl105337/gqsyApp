@@ -9,6 +9,7 @@ a{ text-decoration:none }
 /** 头部搜索框部分*/
 .top-header-nav{
     padding:0;
+    display:inline-block;
 }
 
 .top-header-nav .item-input-inset{
@@ -97,9 +98,38 @@ a{ text-decoration:none }
     border-radius:40px;
 }
 
+.sy-scroll-tab-x{
+    white-space:nowrap;
+    width:100%;
+    background-color:white;
+    border-bottom:1px solid #ccc;
+    z-index:999;
+}
+
+.sy-nav-lv2{
+    height:38px;
+    display:inline-block;
+    width:100%;
+    white-space:nowrap;
+    padding:0 15px;
+}
+
+.sy-nav-lv2 a{
+    padding:8px 15px;
+    display:inline-block;
+    color:#666;
+}
+
+.sy-nav-lv2 a.active{
+    color:#fe2d4c;
+    border-bottom:2px solid #fe2d4c;
+}
+
 /**内容部分*/
 .sy-content{
-    top:45px;
+    top:44px !important;
+    /*margin-top:44px;*/
+    padding-top:40px;
 }
 
 /** 底部自定义图标*/
@@ -206,4 +236,48 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active{
 .slide-in-left.ng-leave, .slide-in-left > .ng-leave{
     -webkit-transition:all ease-in-out 250ms;
     transition:all ease-in-out 250ms;
+}
+
+
+/*搜索页*/
+.sy-search-text{
+    width:100%;
+    padding:5px 2%;
+    background-color:#fe2d4c;
+    height:44px;
+    display:inline-block;
+}
+
+.sy-search-left{
+    display:inline-block;
+    width:80%;
+    position:relative;
+}
+
+.sy-search-left i{
+    position:absolute;
+    top:8px;
+    left:8px;
+}
+
+.sy-search-left .search-label{
+    background:white;
+    padding:0 0 0 34px;
+    border-radius:20px;
+}
+
+.search-label input{
+    padding:3px;
+    width:90%;
+}
+
+.sy-search-right{
+    width:15%;
+    display:inline-block;
+    height:34px;
+    float:right;
+    line-height:34px;
+    text-align:center;
+    color:white;
+    font-size:16px;
 }

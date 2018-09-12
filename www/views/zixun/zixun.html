@@ -1,7 +1,8 @@
-<ion-view hide-nav-bar="true" hide-back-button="true">
+<ion-view hide-nav-bar="true" hide-back-button="true" hide-show-nav-bar>
     <link rel="stylesheet" href="./css/zx.css">
     <style>
         .item-input-inset{ background-image:linear-gradient(0deg, #fff, #fff 50%, transparent 50%) !important; }
+
     </style>
 
     <ion-header-bar class="bar bar-header sy-top-search top-header-nav" style="min-height:40px;">
@@ -12,17 +13,25 @@
                 </div>
             </div>
             <div class="top-search">
-                <div class="top-s-con">
+                <div class="top-s-con" ng-click="search('show')">
                     <i class="search-icon icon iconfont icon-fangdajing"></i>
                     <span></span>
                 </div>
             </div>
         </div>
+        <ion-scroll class="sy-scroll-tab-x" direction="x" scrollbar-x="false" style="overflow-x: hidden;">
+            <div class="sy-nav-lv2" style="">
+                <div>
+                    <a ng-href="#/tab/zixun" class="active">新闻资讯</a>
+                    <a ng-href="#/tab/tongzhi">公告通知</a>
+                </div>
+            </div>
+        </ion-scroll>
     </ion-header-bar>
 
-    <ion-content class="sy-content">
+    <ion-content class="sy-content" style="background-color:#f0f0f0;" scrollbar-y="false">
 
-        <ion-list class="sy-zx-list">
+        <ion-list class="sy-zx-list" style="top: 100px;">
             <ion-refresher pulling-text="下拉刷新..." on-refresh="reloadNews('refresher')" refreshing-text="正在刷新"></ion-refresher>
 
             <ion-item href="#/zixun_info/{{item.id}}" class="sy-zx-item" ng-repeat="(key,item) in newsList">
