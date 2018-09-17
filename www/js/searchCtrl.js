@@ -13,6 +13,13 @@ ctrls
             $ionicHistory.goBack(-1);
             return;
         }
+
+        $scope.submitForm = function () {
+
+        }
+        $scope.search = function () {
+            console.log(1)
+        }
     })
 
     .controller('Search_infoCtrl', function ($scope, $stateParams, $rootScope, $http, $state, $ionicHistory) {

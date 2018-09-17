@@ -2,6 +2,8 @@ ctrls
     .controller('Dangjian_aCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $ionicSlideBoxDelegate, $state, $ionicModal, $ionicScrollDelegate) {
         console.log($rootScope.server_url)
         // $rootScope.server_url = "http://guoqishuyuan.com/app.php";
+        $scope.search_list = "none"
+        $scope.search_backdrop = "none"
 
         $ionicModal.fromTemplateUrl('userInfo.html', function (userModal) {
             $scope.modal = userModal;
@@ -24,9 +26,22 @@ ctrls
             if (key == "show") {
                 $scope.searchModal.show();
             } else {
+                $scope.ItemSearch = []
+                $scope.search_list = "none"
+                $scope.search_backdrop = "none"
                 $scope.searchModal.hide();
             }
         };
+
+        $scope.toSearch = function (info) {
+            $scope.ItemSearch = []
+            $http.get($rootScope.server_url + '/Dangjian/dangjian_search?searchName=' + info.searchName).success(function (data) {
+                $scope.search_list = "inline-block";
+                $scope.search_backdrop = "#333"
+                console.log(data.data);
+                $scope.itemSearch = data.data;
+            });
+        }
 
         $scope.init = function (data) {
             $ionicSlideBoxDelegate.update(true);
@@ -40,7 +55,6 @@ ctrls
                 $scope.init($scope.banner);
             });
         })
-
     })
     .controller('Dangjian_bCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $state, $ionicPopup, $formValid) {
         $scope.$on('$ionicView.beforeEnter', function () {

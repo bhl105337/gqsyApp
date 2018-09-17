@@ -88,15 +88,66 @@
             </div>
         </div>
     </script>
+    <style>
+        .sy-search-list{
+            width:100%;
+            background:#f9f9f9;
+            display:inline-block;
+            padding:0 3%;
+        }
+
+        .sy-search-con{
+            width:100%;
+            display:inline-block;
+        }
+
+        .sy-search-con li{
+            width:100%;
+            height:40px;
+            line-height:40px;
+            border-bottom:1px solid #ccc;
+            overflow:hidden;
+        }
+
+        .sy-search-con li.last{
+            border-bottom:none;
+        }
+
+        .search-backdrop-bg{
+            position:fixed;
+            top:44px;
+            left:0;
+            height:100%;
+            width:100%;
+            z-index:-1;
+            /*background:rgba(0, 0, 0, 0.4);*/
+            opacity:0.6;
+        }
+    </style>
     <script id="search.html" type="text/ng-template">
         <div class="modal" style="width:100%;">
             <div class="sy-search-text">
-                <div class="sy-search-left">
-                    <i class="icon iconfont icon-fangdajing"></i>
-                    <div class="search-label"><input type="text"></div>
-                </div>
-                <div class="sy-search-right" ng-click="search('hide')">
-                    取 消
+                <form ng-submit="submitForm(inputInfo)" novalidate>
+                    <div class="sy-search-left">
+                        <i class="icon iconfont icon-fangdajing"></i>
+                        <div class="search-label">
+                            <input type="search" placeholder="搜索" ng-model="info.searchName" ng-change="toSearch(info)" style="padding:0px">
+                        </div>
+                    </div>
+                    <div class="sy-search-right" ng-click="search('hide')">
+                        取 消
+                    </div>
+                </form>
+            </div>
+            <div class="search-backdrop-bg" style="background: {{search_backdrop}};">
+
+            </div>
+            <div class="sy-search-list" style="display:{{search_list}}">
+                <div class="sy-search-con">
+                    <ul>
+                        <li class="sy-search-li" ng-if="key < 9" ng-repeat="(key,val) in itemSearch">{{val.title}}</li>
+                        <li class="sy-search-li last" ng-if="key == 9" ng-repeat="(key,val) in itemSearch">{{val.title}}</li>
+                    </ul>
                 </div>
             </div>
         </div>
