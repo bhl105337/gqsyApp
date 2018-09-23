@@ -4,7 +4,11 @@ ctrls
         // $rootScope.server_url = "http://guoqishuyuan.com/app.php";
         $scope.search_list = "none"
         $scope.search_backdrop = "none"
-
+        $rootScope.page = 1;
+        $rootScope.totalPage = 0;
+        /**
+         * 用户主页
+         */
         $ionicModal.fromTemplateUrl('userInfo.html', function (userModal) {
             $scope.modal = userModal;
         }, {
@@ -15,7 +19,9 @@ ctrls
 
             $scope.modal.show();
         };
-
+        /**
+         * 搜索页
+         */
         $ionicModal.fromTemplateUrl('search.html', function (searchModal) {
             $scope.searchModal = searchModal;
         }, {
@@ -32,14 +38,42 @@ ctrls
                 $scope.searchModal.hide();
             }
         };
+        /**
+         * 搜索结果
+         */
+        $ionicModal.fromTemplateUrl('searchInfo.html', function (searchInfoModal) {
+            $scope.searchInfo = searchInfoModal;
+        }, {
+            scope: $scope,
+            animation: 'slide-in-right'
+        });
 
-        $scope.toSearch = function (info) {
+        $scope.search_Info = function (key) {
+            if (key == "show") {
+                $scope.searchInfo.show();
+            } else {
+                // $scope.ItemSearch = []
+                // $scope.search_list = "none"
+                // $scope.search_backdrop = "none"
+                $scope.searchInfo.hide();
+            }
+        };
+
+        $scope.toSearch = function (info, type) {
             $scope.ItemSearch = []
-            $http.get($rootScope.server_url + '/Dangjian/dangjian_search?searchName=' + info.searchName).success(function (data) {
+            $http.get($rootScope.server_url + '/Dangjian/dangjian_search?searchName=' + info.searchName + '&page=' + $rootScope.page).success(function (data) {
                 $scope.search_list = "inline-block";
                 $scope.search_backdrop = "#333"
-                console.log(data.data);
-                $scope.itemSearch = data.data;
+                $rootScope.itemSearch = data.data;
+                if (type == "go") {
+                    $scope.search_list = "none"
+                    $scope.search_backdrop = "none"
+                    $scope.searchModal.hide();
+                    console.log(type)
+                    $scope.searchInfo.show();
+                    // $state.go("search");
+                    // return false;
+                }
             });
         }
 

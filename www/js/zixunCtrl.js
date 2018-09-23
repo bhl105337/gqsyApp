@@ -27,9 +27,23 @@ ctrls
             if (key == "show") {
                 $scope.searchModal.show();
             } else {
+                $scope.ItemSearch = []
+                $scope.search_list = "none"
+                $scope.search_backdrop = "none"
                 $scope.searchModal.hide();
             }
         };
+
+        $scope.toSearch = function (info, type) {
+            $scope.ItemSearch = []
+            $http.get($rootScope.server_url + '/index/search?searchName=' + info.searchName).success(function (data) {
+                $scope.search_list = "inline-block";
+                $scope.search_backdrop = "#333"
+                console.log(data.data);
+                $scope.itemSearch = data.data;
+            });
+        }
+
 
         $scope.$on('$ionicView.beforeEnter', function () {
             $rootScope.page = 1

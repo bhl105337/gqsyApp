@@ -2,6 +2,7 @@
 .sy-xuexi-list, .sy--list{
     float:left;
     width:100%;
+    margin-bottom: 40px;
 }
 
 .sy-xuexi-list .sy-xuexi-items{

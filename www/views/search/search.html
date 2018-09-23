@@ -1,60 +1,59 @@
 <ion-view hide-nav-bar="true" hide-back-button="true">
+    <link rel="stylesheet" href="./css/search.css">
     <style>
-        .sy-info-nav.dj_nav{
-            width:100%;
-            min-height:44px;
-            border-bottom:1px solid #f0f0f0;
-            background:#ff2d4b;
-            overflow:hidden;
-        }
 
-        .sy-info-nav button{
-            height:44px;
-            color:white;
-        }
-
-        .sy-info-nav button:hover{
-            color:white;
-        }
-
-        .sy-info-nav span{
-            height:44px;
-            line-height:44px;
-            color:white;
-            font-size:16px;
-        }
     </style>
-    <ion-header-bar class="bar bar-header zx-info-top top-header-nav" style="">
-        <div class="sy-info-nav dj_nav" style="position:relative">
-            <button class="button button-icon" ng-click="goBackZx()">
-                <i class="icon ion-ios-arrow-back"></i>
-            </button>
-            <span style="position:absolute; left:0; width:100%; text-align:center">搜索：{{keyword}}</span>
+    <ion-header-bar class="bar bar-header sy-top-search top-header-nav bar-positive" style="min-height:40px;">
+        <div class="sy-search-text">
+            <form ng-submit="toSearch(info,'go')" novalidate>
+                <div class="sy-search-left">
+                    <i class="icon iconfont icon-fangdajing"></i>
+                    <div class="search-label">
+                        <input type="search" placeholder="搜索" ng-model="info.searchName" ng-change="toSearch(info,'auto')" style="padding:0px">
+                        <!--<input type="search" placeholder="搜索" ng-model="info.searchName" style="padding:0px">-->
+                    </div>
+                </div>
+                <div class="sy-search-right" ng-click="goBack()">
+                    取 消
+                </div>
+            </form>
         </div>
+        <ion-scroll class="sy-scroll-tab-x" direction="x" scrollbar-x="false" style="overflow-x: hidden; display:inline-block">
+            <div class="sy-nav-lv2" style="">
+                <div>
+                    <a ng-href="#/tab/dangjian" class="active">综合</a>
+                </div>
+            </div>
+        </ion-scroll>
     </ion-header-bar>
 
     <ion-content class="sy-content" style="top:46px;">
-        <ion-list class="sy-dj_nav-list">
 
-            <ion-item ng-if="item.l_t == 2" href="#/search_nav/{{item.id}}" class="sy-xuexi-items" ng-repeat="(key,item) in lists">
+        <!--<div class="search-backdrop-bg" style="background: {{search_backdrop}};z-index: 10;">-->
+
+        <!--</div>-->
+        <!--<div class="sy-search-list" style="display:{{search_list}}; position:absolute; z-index:1000">-->
+            <!--<div class="sy-search-con">-->
+                <!--<ul>-->
+                    <!--<li class="sy-search-li" ng-if="key < 9" ng-repeat="(key,val) in itemSearch">{{val.title}}</li>-->
+                    <!--<li class="sy-search-li last" ng-if="key == 9" ng-repeat="(key,val) in itemSearch">{{val.title}}</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <ion-list class="search-list">
+
+            <ion-item href="#/search_info/{{item.id}}" class="search-items" ng-repeat="(key,item) in itemSearch">
                 <div class="img">
                     <img ng-src="{{item.imgUrl}}">
                 </div>
-                <div class="sy-article">
-                    <span class="sy-article-title">{{item.titles}}</span>
-                    <span class="sy-article-memo">{{item.l_Memo}}</span>
+                <div class="search-items-r">
+                    <span class="sy-article-title">{{item.title}}</span>
+                    <span class="sy-article-memo">{{item.ms}}</span>
                 </div>
             </ion-item>
 
-            <ion-item ng-if="item.l_t == 1" href="#/search_info/{{item.id}}/0" class="sy-xuexi-items" ng-repeat="(key,item) in lists">
-                <div class="img">
-                    <img ng-src="{{item.imgUrl}}">
-                </div>
-                <div class="sy-article">
-                    <span class="sy-article-title">{{item.titles}}</span>
-                    <span class="sy-article-memo">{{item.l_Memo}}</span>
-                </div>
-            </ion-item>
         </ion-list>
+
     </ion-content>
 </ion-view>

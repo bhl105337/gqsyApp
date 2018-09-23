@@ -1,25 +1,35 @@
 ctrls
 
-    .controller('SearchCtrl', function ($scope, $stateParams, $rootScope, $http, $state, $ionicHistory) {
+    .controller('SearchCtrl', function ($scope, $stateParams, $rootScope, $http, $state, $ionicHistory, $ionicModal) {
         $scope.lists = $rootScope.data
         $scope.keyword = $rootScope.keyword
+        $scope.search_list = "none"
+        $scope.search_backdrop = "none"
 
         $scope.$on('$ionicView.beforeEnter', function () {
+            $scope.itemSearch = $rootScope.itemSearch;
+            console.log($scope.itemSearch)
+
             //console.log($scope.keyword);
             //console.log($scope.lists);
         });
 
-        $scope.goBackZx = function () {
-            $ionicHistory.goBack(-1);
-            return;
+        $scope.goBack = function () {
+            console.log("goBack")
+            $ionicHistory.goBack();
+            return false;
         }
 
-        $scope.submitForm = function () {
-
-        }
-        $scope.search = function () {
+        $scope.toSearch = function (info, type) {
+            $scope.ItemSearch = []
             console.log(1)
+            $http.get($rootScope.server_url + '/Dangjian/dangjian_search?searchName=' + info.searchName + '&page=' + $rootScope.page).success(function (data) {
+                $scope.search_list = "inline-block";
+                $scope.search_backdrop = "#333"
+                $scope.itemSearch = data.data;
+            });
         }
+
     })
 
     .controller('Search_infoCtrl', function ($scope, $stateParams, $rootScope, $http, $state, $ionicHistory) {
@@ -31,9 +41,9 @@ ctrls
             $scope.p = data.content
         });
 
-        $scope.goBackZx = function () {
-            $ionicHistory.goBack(-1);
-            return;
+        $scope.goBack = function () {
+            $ionicHistory.goBack();
+            return false;
         }
     })
 
