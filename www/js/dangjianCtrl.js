@@ -77,6 +77,20 @@ ctrls
             });
         }
 
+
+        /**
+         * 文章详情
+         * @param id
+         * @param type
+         * @returns {boolean}
+         */
+        $scope.goSearchInfo = function (id, type) {
+            $scope.searchInfo.hide();
+            $rootScope.itemSearch = $rootScope.itemSearch;
+            $state.go("search_info", {id: id, type: type});
+            return false;
+        }
+
         $scope.init = function (data) {
             $ionicSlideBoxDelegate.update(true);
         };
@@ -222,16 +236,8 @@ ctrls
 
 
         $scope.goBackDj = function () {
-            if ($scope.nav == 1) {
-                $state.go("tab.dangjian");
-            } else if ($scope.nav == 2) {
-                $state.go("tab.dangke");
-            } else if ($scope.nav == 3) {
-                $state.go("tab.kaoshi");
-            } else if ($scope.nav == 4) {
-                $state.go("tab.zhichuang");
-            }
-            return;
+            $ionicHistory.goBack();
+            return false;
         }
 
 
@@ -248,19 +254,8 @@ ctrls
 
 
         $scope.goBackDj = function () {
-            if ($scope.cid != 0) {
-                $state.go("tab.djnav", {id: $scope.cid, nav: $scope.nav});
-            } else {
-                if ($scope.nav == 1) {
-                    $state.go("tab.dangjian");
-                } else if ($scope.nav == 2) {
-                    $state.go("tab.dangke");
-                } else if ($scope.nav == 3) {
-                    $state.go("tab.kaoshi");
-                } else if ($scope.nav == 4) {
-                    $state.go("tab.zhichuang");
-                }
-            }
+            $ionicHistory.goBack();
+            return false;
         }
     })
 

@@ -32,19 +32,45 @@ ctrls
 
     })
 
-    .controller('Search_infoCtrl', function ($scope, $stateParams, $rootScope, $http, $state, $ionicHistory) {
-        $rootScope.server_url = "http://guoqishuyuan.com/app.php";
-        $scope.Url = $rootScope.server_url + '/base/search_info?id=' + $stateParams.id + '&nav=' + $stateParams.nav;
+    .controller('Search_infoCtrl', function ($scope, $stateParams, $rootScope, $http, $state, $ionicHistory, $ionicModal) {
+        $scope.id = $stateParams.id;
+        $scope.itemSearch = $rootScope.itemSearch;
+        $scope.$on('$ionicView.beforeEnter', function () {
+
+        });
+
+        $scope.Url = $rootScope.server_url + '/base/search_info?id=' + $scope.id
+
         $http.get($scope.Url).success(function (data) {
-            //console.log(data.data);
+            console.log(data.data);
             $scope.info = data.data
             $scope.p = data.content
         });
 
+        $ionicModal.fromTemplateUrl('searchInfo.html', function (searchInfoModal) {
+            $scope.searchInfo = searchInfoModal;
+        }, {
+            scope: $scope,
+            animation: 'slide-in-right'
+        });
+
         $scope.goBack = function () {
+            console.log($scope.itemSearch);
+            $scope.searchInfo.show();
             $ionicHistory.goBack();
             return false;
         }
+
+        $scope.search_Info = function (key) {
+            if (key == "show") {
+                $scope.searchInfo.show();
+            } else {
+                // $scope.ItemSearch = []
+                // $scope.search_list = "none"
+                // $scope.search_backdrop = "none"
+                $scope.searchInfo.hide();
+            }
+        };
     })
 
     .controller('Search_navCtrl', function ($scope, $stateParams, $rootScope, $http, $state, $ionicHistory) {
