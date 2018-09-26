@@ -143,7 +143,7 @@ ctrls
 
     })
 
-    .controller('ZixunInfoCtrl', function ($scope, $stateParams, $rootScope, $http, $state) {
+    .controller('ZixunInfoCtrl', function ($scope, $stateParams, $rootScope, $http, $ionicHistory, $state, $ionicViewSwitcher) {
         $rootScope.server_url = "http://guoqishuyuan.com/app.php";
         $http.get($rootScope.server_url + '/index/zixun_info?yid=' + $stateParams.id).success(function (data) {
             $scope.info = data.data
@@ -154,12 +154,13 @@ ctrls
         });
 
         $scope.goBackZx = function () {
-            $state.go("tab.zixun");
-            return;
+            $ionicHistory.goBack();
+            $ionicViewSwitcher.nextDirection("back");
+            return false;
         }
     })
 
-    .controller('TzInfoCtrl', function ($scope, $stateParams, $rootScope, $http, $state) {
+    .controller('TzInfoCtrl', function ($scope, $stateParams, $rootScope, $http, $ionicHistory, $state, $ionicViewSwitcher) {
         $rootScope.server_url = "http://guoqishuyuan.com/app.php";
         $http.get($rootScope.server_url + '/index/zixun_info?yid=' + $stateParams.id).success(function (data) {
             $scope.info = data.data
@@ -169,8 +170,9 @@ ctrls
         });
 
         $scope.goBackZx = function () {
-            $state.go("tab.tongzhi");
-            return;
+            $ionicHistory.goBack();
+            $ionicViewSwitcher.nextDirection("back");
+            return false;
         }
     })
 

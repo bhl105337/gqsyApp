@@ -224,7 +224,7 @@ ctrls
     })
 
 
-    .controller('Dangjian_navCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $ionicHistory, $state) {
+    .controller('Dangjian_navCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $ionicHistory, $state, $ionicViewSwitcher) {
         $scope.yid = $stateParams.id;
         $scope.nav = $stateParams.nav;
         //page_no     = 1;
@@ -237,12 +237,13 @@ ctrls
 
         $scope.goBackDj = function () {
             $ionicHistory.goBack();
+            $ionicViewSwitcher.nextDirection("back");
             return false;
         }
 
 
     })
-    .controller('DjInfoCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $ionicHistory, $state) {
+    .controller('DjInfoCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $ionicHistory, $state, $ionicViewSwitcher) {
         $scope.yid = $stateParams.id;
         $scope.nav = $stateParams.nav;
         $scope.cid = $stateParams.cid;
@@ -255,6 +256,7 @@ ctrls
 
         $scope.goBackDj = function () {
             $ionicHistory.goBack();
+            $ionicViewSwitcher.nextDirection("back");
             return false;
         }
     })
