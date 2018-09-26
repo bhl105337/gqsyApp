@@ -1,32 +1,32 @@
 <ion-view hide-nav-bar="true" hide-back-button="true">
+    <link rel="stylesheet" href="./css/dj-1.css">
     <style>
 
     </style>
-    <ion-header-bar class="sy-top-search top-header-nav" style=" position:relative">
-        <div class="sy-top-search-input">
-            <form ng-submit="submitFormSearch(search)" novalidate>
-                <div>
-                    <label class="item-input-wrapper">
-                        <i class="icon ion-ios-search placeholder-icon"></i>
-                        <input style="display:none">
-                        <input type="search" name="keywords" id="keywords" ng-model="search.keywords" placeholder="搜索" style="width:80%" autocomplete="off">
-                    </label>
+    <ion-header-bar class="bar bar-header sy-top-search top-header-nav bar-positive" style="min-height:40px;">
+        <div class="header-comment">
+            <div class="user-comment">
+                <div class="user-info" ng-click="showUser()">
+                    <div class="u-top-img"><i class="user-top-img icon iconfont icon-yonghu"></i></div>
                 </div>
-                <div class="buttons">
-                    <button class="button" type="submit">
-                        搜索
-                    </button>
+            </div>
+            <div class="top-search">
+                <div class="top-s-con" ng-click="search('show')">
+                    <i class="search-icon icon iconfont icon-fangdajing"></i>
+                    <span></span>
                 </div>
-            </form>
-        </div>
-        <div class="sy-top-nav sy-top-navs">
-            <div>
-                <a ng-href="#/tab/dangjian">党员学习</a>
-                <a ng-href="#/tab/dangke">在线党课</a>
-                <a ng-href="#/tab/kaoshi" class="active">党员考试</a>
-                <a ng-href="#/tab/zhichuang">党建之窗</a>
             </div>
         </div>
+        <ion-scroll class="sy-scroll-tab-x" direction="x" scrollbar-x="false" style="overflow-x: hidden; display:inline-block">
+            <div class="sy-nav-lv2" style="">
+                <div>
+                    <a ng-href="#/tab/dangjian">党员学习</a>
+                    <a ng-href="#/tab/dangke">在线党课</a>
+                    <a ng-href="#/tab/kaoshi" class="active">党员考试</a>
+                    <a ng-href="#/tab/zhichuang">党建之窗</a>
+                </div>
+            </div>
+        </ion-scroll>
     </ion-header-bar>
 
     <ion-content class="sy-content">
