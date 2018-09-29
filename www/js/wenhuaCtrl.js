@@ -158,7 +158,7 @@ ctrls
             return false;
         };
     })
-    .controller('WenhuaNavCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $ionicHistory, $state) {
+    .controller('WenhuaNavCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $ionicHistory, $state, $ionicViewSwitcher) {
         $rootScope.server_url = "http://guoqishuyuan.com/app.php";
         //page_no     = 1;
         $scope.yid = $stateParams.id;
@@ -169,18 +169,13 @@ ctrls
 
         });
 
-        $scope.goBackWh = function () {
-            if ($scope.nav == 1) {
-                $state.go('tab.wenhua');
-            } else if ($scope.nav == 2) {
-                $state.go('tab.wenhua_b');
-            } else if ($scope.nav == 3) {
-                $state.go('tab.wenhua_c');
-            }
-            return;
+        $scope.goBack = function () {
+            $ionicHistory.goBack();
+            $ionicViewSwitcher.nextDirection("back");
+            return false;
         }
     })
-    .controller('WenhuaInfoCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $ionicHistory, $state) {
+    .controller('WenhuaInfoCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $ionicHistory, $state, $ionicViewSwitcher) {
         $rootScope.server_url = "http://guoqishuyuan.com/app.php";
 
         //page_no     = 1;
@@ -192,19 +187,10 @@ ctrls
 
         });
 
-        $scope.goBackWh = function () {
-            if ($scope.cid != 0) {
-                $state.go('tab.wenhua_nav', {id: $scope.cid, nav: $scope.nav});
-            } else {
-                if ($scope.nav == 1) {
-                    $state.go('tab.wenhua');
-                } else if ($scope.nav == 2) {
-                    $state.go('tab.wenhua_b');
-                } else if ($scope.nav == 3) {
-                    $state.go('tab.wenhua_c');
-                }
-            }
-            return;
+        $scope.goBack = function () {
+            $ionicHistory.goBack();
+            $ionicViewSwitcher.nextDirection("back");
+            return false;
         }
 
     })

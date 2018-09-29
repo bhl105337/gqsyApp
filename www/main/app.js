@@ -15,7 +15,7 @@ var requireModules = [
 ]
 angular.module('starter', requireModules)
 
-    .run(function ($ionicPlatform, $rootScope, $ionicHistory) {
+    .run(function ($ionicPlatform, $rootScope, $ionicHistory, $ionicViewSwitcher) {
 
         $rootScope.server_url = "http://guoqishuyuan.com/app.php";
 

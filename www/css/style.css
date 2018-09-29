@@ -80,7 +80,7 @@ a{ text-decoration:none }
     line-height:2rem;
     display:inline-block;
     position:relative;
-    top:.1rem;
+    top:.035rem;
 }
 
 .search-icon{
@@ -115,9 +115,12 @@ a{ text-decoration:none }
 }
 
 .sy-nav-lv2 a{
-    padding:8px 15px;
     display:inline-block;
     color:#666;
+    line-height:38px;
+    width:22%;
+    text-align:center;
+    height:38px;
 }
 
 .sy-nav-lv2 a.active{
@@ -238,7 +241,6 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active{
     transition:all ease-in-out 250ms;
 }
 
-
 /*搜索页*/
 .sy-search-text{
     width:100%;
@@ -285,7 +287,7 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active{
 /*自动搜索结果*/
 .sy-search-list{
     width:100%;
-    background:#f9f9f9;
+    background:#fff;
     display:inline-block;
     padding:0 3%;
 }

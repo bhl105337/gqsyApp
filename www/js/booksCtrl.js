@@ -182,7 +182,7 @@ ctrls
 
 
     })
-    .controller('BookInfoCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $ionicHistory, $state) {
+    .controller('BookInfoCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $ionicHistory, $state, $ionicViewSwitcher) {
         $rootScope.server_url = "http://guoqishuyuan.com/app.php";
 
         $scope.yid = $stateParams.id;
@@ -195,20 +195,10 @@ ctrls
         });
 
 
-        $scope.goBackYd = function () {
-            if ($scope.cid != 0) {
-                $state.go('tab.booksnav', {id: $scope.cid, nav: $scope.nav})
-            } else {
-                if ($scope.nav == 1) {
-                    $state.go("tab.books")
-                } else if ($scope.nav == 2) {
-                    $state.go("tab.books_b")
-                } else if ($scope.nav == 3) {
-                    $state.go("tab.books_c")
-                }
-            }
-
-            return;
+        $scope.goBack = function () {
+            $ionicHistory.goBack();
+            $ionicViewSwitcher.nextDirection("back");
+            return false;
         }
 
 

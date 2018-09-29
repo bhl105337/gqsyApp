@@ -34,14 +34,57 @@ ctrls
             }
         };
 
+        /**
+         * 搜索结果
+         */
+        $ionicModal.fromTemplateUrl('searchInfo.html', function (searchInfoModal) {
+            $scope.searchInfo = searchInfoModal;
+        }, {
+            scope: $scope,
+            animation: 'slide-in-right'
+        });
+
+        $scope.search_Info = function (key) {
+            if (key == "show") {
+                $scope.searchInfo.show();
+            } else {
+                // $scope.ItemSearch = []
+                // $scope.search_list = "none"
+                // $scope.search_backdrop = "none"
+                $scope.searchInfo.hide();
+            }
+        };
+
         $scope.toSearch = function (info, type) {
             $scope.ItemSearch = []
-            $http.get($rootScope.server_url + '/index/search?searchName=' + info.searchName).success(function (data) {
+            $http.get($rootScope.server_url + '/index/search?searchName=' + info.searchName + "&page=" + $rootScope.page).success(function (data) {
+                console.log(data)
                 $scope.search_list = "inline-block";
                 $scope.search_backdrop = "#333"
-                console.log(data.data);
-                $scope.itemSearch = data.data;
+                $rootScope.itemSearch = data.data;
+                if (type == "go") {
+                    $scope.search_list = "none"
+                    $scope.search_backdrop = "none"
+                    $scope.searchModal.hide();
+                    console.log(type)
+                    $scope.searchInfo.show();
+                    // $state.go("search");
+                    // return false;
+                }
             });
+        }
+
+        /**
+         * 文章详情
+         * @param id
+         * @param type
+         * @returns {boolean}
+         */
+        $scope.goSearchInfo = function (id, type) {
+            $scope.searchInfo.hide();
+            $rootScope.itemSearch = $rootScope.itemSearch;
+            $state.go("search_info", {id: id, type: type});
+            return false;
         }
 
 
@@ -82,8 +125,92 @@ ctrls
 
     })
 
-    .controller('GonggaoCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $formValid, $state) {
-        $rootScope.server_url = "http://guoqishuyuan.com/app.php";
+    .controller('GonggaoCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $formValid, $state, $ionicModal) {
+
+        $scope.newsList = [];
+        $rootScope.page = 1;
+        $rootScope.totalPage = 0;
+
+        $ionicModal.fromTemplateUrl('userInfo.html', function (userModal) {
+            $scope.modal = userModal;
+        }, {
+            scope: $scope,
+            animation: 'slide-in-left'
+        });
+        $scope.showUser = function () {
+            // $ionicBackdrop.retain();
+            $scope.modal.show();
+        };
+
+        $ionicModal.fromTemplateUrl('search.html', function (searchModal) {
+            $scope.searchModal = searchModal;
+        }, {
+            scope: $scope,
+            animation: 'slide-in-right'
+        });
+        $scope.search = function (key) {
+            if (key == "show") {
+                $scope.searchModal.show();
+            } else {
+                $scope.ItemSearch = []
+                $scope.search_list = "none"
+                $scope.search_backdrop = "none"
+                $scope.searchModal.hide();
+            }
+        };
+
+        /**
+         * 搜索结果
+         */
+        $ionicModal.fromTemplateUrl('searchInfo.html', function (searchInfoModal) {
+            $scope.searchInfo = searchInfoModal;
+        }, {
+            scope: $scope,
+            animation: 'slide-in-right'
+        });
+
+        $scope.search_Info = function (key) {
+            if (key == "show") {
+                $scope.searchInfo.show();
+            } else {
+                // $scope.ItemSearch = []
+                // $scope.search_list = "none"
+                // $scope.search_backdrop = "none"
+                $scope.searchInfo.hide();
+            }
+        };
+
+        $scope.toSearch = function (info, type) {
+            $scope.ItemSearch = []
+            $http.get($rootScope.server_url + '/index/search?searchName=' + info.searchName + "&page=" + $rootScope.page).success(function (data) {
+                console.log(data)
+                $scope.search_list = "inline-block";
+                $scope.search_backdrop = "#333"
+                $rootScope.itemSearch = data.data;
+                if (type == "go") {
+                    $scope.search_list = "none"
+                    $scope.search_backdrop = "none"
+                    $scope.searchModal.hide();
+                    console.log(type)
+                    $scope.searchInfo.show();
+                    // $state.go("search");
+                    // return false;
+                }
+            });
+        }
+
+        /**
+         * 文章详情
+         * @param id
+         * @param type
+         * @returns {boolean}
+         */
+        $scope.goSearchInfo = function (id, type) {
+            $scope.searchInfo.hide();
+            $rootScope.itemSearch = $rootScope.itemSearch;
+            $state.go("search_info", {id: id, type: type});
+            return false;
+        }
 
         $scope.$on('$ionicView.beforeEnter', function () {
             //page_no     = 1;
@@ -107,53 +234,17 @@ ctrls
                 }
             });
         }
-
-        $scope.submitFormSearch = function (search) {
-            var formRules = {
-                keywords: {required: "请输入内容"}
-            };
-            if ($formValid(formRules, search)) {
-                $http.post($rootScope.server_url + '/Base/search', search, null, "搜索中").success(function (data) {
-                    var msg = JSON.parse(data)
-                    if (msg.code == "FAIL") {
-                        $scope.showAlert(msg);
-                    } else {
-                        $scope.searchSuccess(msg, search.keyword);
-                    }
-                });
-            }
-        };
-
-        $scope.showAlert = function (msg) {
-            var alertPopup = $ionicPopup.alert({
-                title: '提示',
-                template: msg.info
-            });
-            alertPopup.then(function (res) {
-                console.log(res);
-            });
-        };
-
-        $scope.searchSuccess = function (data, keyword) {
-            $rootScope.data = data.data;
-            $rootScope.data.keyword = keyword;
-            $state.go("search");
-            return false;
-        };
-
     })
 
     .controller('ZixunInfoCtrl', function ($scope, $stateParams, $rootScope, $http, $ionicHistory, $state, $ionicViewSwitcher) {
-        $rootScope.server_url = "http://guoqishuyuan.com/app.php";
+
         $http.get($rootScope.server_url + '/index/zixun_info?yid=' + $stateParams.id).success(function (data) {
             $scope.info = data.data
             $scope.p = data.content
-
-            //console.log(data)
-
+            $scope.imgUrl = "http://guoqishuyuan.com" + $scope.info.cover
         });
 
-        $scope.goBackZx = function () {
+        $scope.goBack = function () {
             $ionicHistory.goBack();
             $ionicViewSwitcher.nextDirection("back");
             return false;
@@ -169,7 +260,7 @@ ctrls
 
         });
 
-        $scope.goBackZx = function () {
+        $scope.goBack = function () {
             $ionicHistory.goBack();
             $ionicViewSwitcher.nextDirection("back");
             return false;

@@ -146,15 +146,15 @@ angular.module('starter.directives', [])
 
      （2）隐藏父级原来的导航条，重新定义<ion-head-bar>
      <ion-view title="User" hide-back-button="false" hide-nav-bar='true' hide-show-nav-bar>
-        <ion-header-bar align-title="center" no-tap-scroll='true' class="bar-positive">
-            <div class="buttons">
-                <button class="button button-icon icon ion-android-arrow-back"></button>
-            </div>
-            <h1 class="title">Title</h1>
-            <div class="buttons">
-                <button class="button button-icon icon ion-navicon"></button>
-            </div>
-        </ion-header-bar>
+     <ion-header-bar align-title="center" no-tap-scroll='true' class="bar-positive">
+     <div class="buttons">
+     <button class="button button-icon icon ion-android-arrow-back"></button>
+     </div>
+     <h1 class="title">Title</h1>
+     <div class="buttons">
+     <button class="button button-icon icon ion-navicon"></button>
+     </div>
+     </ion-header-bar>
      ........
      *hide-nav-bar='true'设置为true，在<ion-view>下面重新定义<ion-header-bar>标签内容即可
      *
@@ -229,5 +229,116 @@ angular.module('starter.directives', [])
 
             }
         };
-    }]);
+    }])
+
+
+    /**
+     *translucentBar指令
+     *实现沉浸式顶部导航栏，滚动时产生不同颜色透明效果
+     *用法：
+     <ion-content delegate-handle="mycontent">
+     ......
+     </ion-content>
+
+     <ion-header-bar align-title="center" no-tap-scroll='true' translucent-bar="mycontent" translucent-color-opacity="0.01" translucent-color="rgb(238, 187, 17)" translucent-scroll-maxtop="88">
+     <div class="buttons">
+     <button class="button button-icon icon ion-navicon" icon-click-round-ripple icon-round-ripple-width="20" icon-round-ripple-color="red" style="color:white"></button>
+     </div>
+     <h1 class="title" style="color:white">Dashboard</h1>
+     <div class="buttons">
+     <button class="button button-icon icon ion-android-notifications" head-red-point='true' icon-click-round-ripple style="color:white"></button>
+     </div>
+     </ion-header-bar>
+     *
+     1)要把原理view的默认header隐藏掉，<ion-view view-title="Dashboard" hide-nav-bar='true'>
+     2)重新定义的<ion-header-bar>要放在</ion-content>之后，因为首先要编译ion-content指令，translucentBar指令才能从继承的父级作用域中获取ion-content的scope.$$childHead.$onScroll函数，所以<ion-header-bar>必须放在</ion-content>之后。
+     3)可配置的参数
+     translucent-bar："mycontent"  // 与<ion-content delegate-handle="mycontent">相同,指定操作的视图对象
+     translucent-color-opacity："0.01" //header初始化的颜色的初始透明度，默认0.01
+     translucent-color："rgb(238, 187, 17)" //header的颜色值
+     translucent-scroll-maxtop："88" //滚动条移至多少px时开始停止渐变透明.默认88
+     translucent-color-total:"90"    //计算透明度的分母，默认90
+
+     *透明度值= translucent-scroll-maxtop / translucent-color-total
+     translucent-scroll-maxtop是滚动距离顶部距离，动态数值。
+
+     *对于需要在header中的button图标的颜色设置，可以设置style="color:white"
+     eg:<h1 class="title" style="color:white">Dashboard</h1>
+     <div class="buttons">
+     <button class="button button-icon icon ion-android-notifications" head-red-point='true' icon-click-round-ripple style="color:white"></button>
+     </div>
+     */
+    .directive('translucentBar', ['$ionicScrollDelegate', function ($ionicScrollDelegate) {
+        return {
+            scope: false,
+            restrict: 'A',
+            replace: false,
+            link: function (scope, element, attrs) {
+
+                var el = angular.element(element);
+
+                var ion = angular.element(element).parent().find('ion-content').css({
+                    top: '0',
+                });
+
+                var delegateHandle = attrs.translucentBar;
+                var translucentColorOpacity = attrs.translucentColorOpacity;
+                var translucentColor = attrs.translucentColor;
+                var translucentScrollMaxtop = attrs.translucentScrollMaxtop;
+                var translucentColorTotal = attrs.translucentColorTotal;
+
+                if (!delegateHandle) {
+                    throw new ('please dingfine the ion-content of delegate-handle');
+                }
+                if (!translucentColorOpacity) {
+                    throw new ('you must set translucentColorOpacity directive of the value');
+                }
+                if (!translucentColor) {
+                    throw new ('you must set translucentColor directive of the value');
+                }
+
+                if (!translucentScrollMaxtop) {
+                    translucentScrollMaxtop = 88;
+                }
+
+                if (!translucentColorTotal) {
+                    translucentColorTotal = 90;
+                }
+
+                var rgb = translucentColor.substring(4, translucentColor.length - 1);
+
+                var initCss = {
+                    'background': "rgba(" + rgb + "," + translucentColorOpacity + ")",
+                }
+
+                el.css(initCss);
+
+                var scroollTop = null;
+                var distance = null;
+                var opacity = null;
+                var translucentCss = null;
+
+                scope.$$childHead.$onScroll = function () {
+                    distance = $ionicScrollDelegate.$getByHandle(delegateHandle).getScrollPosition();
+                    console.log(distance,translucentScrollMaxtop)
+                    scroollTop = distance.top;
+
+                    if (scroollTop <= translucentScrollMaxtop) {
+                        opacity = scroollTop / translucentColorTotal;
+                        translucentCss = {
+                            'background': "rgba(" + rgb + "," + opacity + ")",
+                        };
+
+                        el.css(translucentCss);
+                    }
+                }
+            }
+        };
+    }])
+
 ;
+
+
+
+
+

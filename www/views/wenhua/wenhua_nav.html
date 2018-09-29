@@ -88,14 +88,14 @@
     </style>
     <ion-header-bar class="bar bar-header zx-info-top top-header-nav" style="">
         <div class="sy-info-nav dj_nav">
-            <button class="button button-icon" ng-click="goBackWh()">
+            <button class="button button-icon" ng-click="goBack()">
                 <i class="icon ion-ios-arrow-back"></i>
             </button>
             <span>{{navtitle}}</span>
         </div>
     </ion-header-bar>
 
-    <ion-content class="sy-content" style="top:46px;">
+    <ion-content class="sy-content" style="top:5px!important;">
         <ion-list class="sy-wenku-list">
             <ion-item href="#/wenhuainfo/{{item.id}}/{{yid}}/{{nav}}" class="sy-wenhua-nav-items"  ng-repeat="(key,item) in list">
                 <div class="img">
