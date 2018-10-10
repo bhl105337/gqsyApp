@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="./css/dj-1.css">
     <style>
 
-        .sy-content .slider{
+        .sy-content .slide-img{
             height:180px;
         }
 
@@ -27,7 +27,7 @@
                 </div>
             </div>
         </div>
-        <ion-scroll class="sy-scroll-tab-x" direction="x" scrollbar-x="false" style="overflow-x: hidden; display:inline-block">
+        <ion-slide-box class="sy-scroll-tab-x" direction="x" scrollbar-x="false" show-pager="fales" style="overflow-x: hidden; display:inline-block">
             <div class="sy-nav-lv2" style="">
                 <div>
                     <a ng-href="#/tab/dangjian" class="active">党员学习</a>
@@ -36,7 +36,7 @@
                     <a ng-href="#/tab/zhichuang">党建之窗</a>
                 </div>
             </div>
-        </ion-scroll>
+        </ion-slide-box>
     </ion-header-bar>
     <ion-content class="sy-content" id="sy-cons" scrollbar-y="false">
         <!-- start 轮播图-->
@@ -49,7 +49,7 @@
         </ion-slide-box>
         <!-- end 轮播图-->
 
-        <ion-list class="sy-xuexi-list">
+        <ion-list class="sy-xuexi-list" on-swipe-left="leftChange()">
 
             <ion-item ng-if="item.l_t == 2" href="#/tab/djnav/{{item.id}}/1" class="sy-xuexi-items" ng-repeat="(key,item) in list">
                 <div class="img">

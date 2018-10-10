@@ -319,3 +319,34 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active{
     /*background:rgba(0, 0, 0, 0.4);*/
     opacity:0.6;
 }
+
+/*搜索结果页*/
+.sy-search_info-list{
+    width:100%;
+    background:#f2f2f2;
+    display:inline-block;
+}
+
+.sy-search_info-list .sy-search_info-items .img{
+    width:45%;
+    display:inline-block;
+}
+
+.sy-search_info-items,
+.sy-search_info-items a{
+    padding:5px !important;
+}
+
+.sy-search_info-items .img img{
+    width:100%;
+    display:inline-block;
+    border-radius:6px;
+}
+
+.sy-search_info-items .sy-article{
+    width:53%;
+    float:right;
+    font-size:14px;
+    position:relative;
+    height:100px;
+}

@@ -67,7 +67,7 @@ angular.module('starter.routes', []).config(function ($stateProvider, $urlRouter
             url: '/dangjian',
             views: {
                 'tab-dangjian': {
-                    templateUrl: 'views/dangjian/d_index_1.html',
+                    templateUrl: 'views/dangjian/dj_index_1.html',
                     controller: 'Dangjian_aCtrl'
                 }
             }
@@ -76,7 +76,7 @@ angular.module('starter.routes', []).config(function ($stateProvider, $urlRouter
             url: '/dangke',
             views: {
                 'tab-dangjian': {
-                    templateUrl: 'views/dangjian/d_index_2.html',
+                    templateUrl: 'views/dangjian/dj_index_2.html',
                     controller: 'Dangjian_bCtrl'
                 }
             }
@@ -85,7 +85,7 @@ angular.module('starter.routes', []).config(function ($stateProvider, $urlRouter
             url: '/kaoshi',
             views: {
                 'tab-dangjian': {
-                    templateUrl: 'views/dangjian/d_index_3.html',
+                    templateUrl: 'views/dangjian/dj_index_3.html',
                     controller: 'Dangjian_cCtrl'
                 }
             }
@@ -94,7 +94,7 @@ angular.module('starter.routes', []).config(function ($stateProvider, $urlRouter
             url: '/zhichuang',
             views: {
                 'tab-dangjian': {
-                    templateUrl: 'views/dangjian/d_index_4.html',
+                    templateUrl: 'views/dangjian/dj_index_4.html',
                     controller: 'Dangjian_dCtrl'
                 }
             }

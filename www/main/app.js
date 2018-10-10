@@ -15,7 +15,7 @@ var requireModules = [
 ]
 angular.module('starter', requireModules)
 
-    .run(function ($ionicPlatform, $rootScope, $ionicHistory, $ionicViewSwitcher) {
+    .run(function ($ionicPlatform, $rootScope, $ionicHistory, $ionicViewSwitcher, $ionicModal) {
 
         $rootScope.server_url = "http://guoqishuyuan.com/app.php";
 
@@ -41,6 +41,63 @@ angular.module('starter', requireModules)
             $ionicHistory.clearHistory();
         };
 
+        /**
+         * 用户主页
+         */
+        $ionicModal.fromTemplateUrl('userInfo.html', function (userModal) {
+            $rootScope.modal = userModal;
+        }, {
+            scope: $rootScope,
+            animation: 'slide-in-left'
+        });
+        $rootScope.showUser = function () {
+
+            $rootScope.modal.show();
+        };
+        /**
+         * 搜索页
+         */
+        $ionicModal.fromTemplateUrl('search.html', function (searchModal) {
+            $rootScope.searchModal = searchModal;
+        }, {
+            scope: $rootScope,
+            animation: 'slide-in-right'
+        });
+        $rootScope.search = function (key) {
+            if (key == "show") {
+                $rootScope.searchModal.show();
+            } else {
+                $rootScope.ItemSearch = []
+                $rootScope.search_list = "none"
+                $rootScope.search_backdrop = "none"
+                $rootScope.searchModal.hide();
+            }
+        };
+
+        /**
+         * 搜索结果
+         */
+        $ionicModal.fromTemplateUrl('searchInfo.html', function (searchInfoModal) {
+            $rootScope.searchInfo = searchInfoModal;
+        }, {
+            scope: $rootScope,
+            animation: 'slide-in-right'
+        });
+
+        $rootScope.search_Info = function (key) {
+            if (key == "show") {
+                $rootScope.searchInfo.show();
+            } else {
+                // $scope.ItemSearch = []
+                // $scope.search_list = "none"
+                // $scope.search_backdrop = "none"
+                $rootScope.searchInfo.hide();
+            }
+        };
+
+        /**
+         * 初始化
+         */
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)

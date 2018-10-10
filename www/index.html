@@ -113,45 +113,13 @@
             <div class="sy-search-list" style="display:{{search_list}}">
                 <div class="sy-search-con">
                     <ul>
-                        <li class="sy-search-li" ng-if="key < 9" ng-repeat="(key,val) in itemSearch">{{val.title}}</li>
-                        <li class="sy-search-li last" ng-if="key == 9" ng-repeat="(key,val) in itemSearch">{{val.title}}</li>
+                        <li ng-click="goSearchInfo({{val.id}},'goinfo')" class="sy-search-li" ng-if="key < 9" ng-repeat="(key,val) in itemSearch">{{val.title}}</li>
+                        <li ng-click="goSearchInfo({{val.id}},'goinfo')" class="sy-search-li last" ng-if="key == 9" ng-repeat="(key,val) in itemSearch">{{val.title}}</li>
                     </ul>
                 </div>
             </div>
         </div>
     </script>
-
-    <style>
-        .sy-search_info-list{
-            width:100%;
-            background:#f2f2f2;
-            display:inline-block;
-        }
-
-        .sy-search_info-list .sy-search_info-items .img{
-            width:45%;
-            display:inline-block;
-        }
-
-        .sy-search_info-items,
-        .sy-search_info-items a{
-            padding:5px !important;
-        }
-
-        .sy-search_info-items .img img{
-            width:100%;
-            display:inline-block;
-            border-radius:6px;
-        }
-
-        .sy-search_info-items .sy-article{
-            width:53%;
-            float:right;
-            font-size:14px;
-            position:relative;
-            height:100px;
-        }
-    </style>
     <script id="searchInfo.html" type="text/ng-template">
         <div class="modal" style="width:100%;">
             <div class="sy-search-text">

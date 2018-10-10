@@ -21,17 +21,17 @@
             <div class="sy-nav-lv2" style="">
                 <div>
                     <a ng-href="#/tab/dangjian">党员学习</a>
-                    <a ng-href="#/tab/dangke">在线党课</a>
+                    <a ng-href="#/tab/dangke" class="active">在线党课</a>
                     <a ng-href="#/tab/kaoshi">党员考试</a>
-                    <a ng-href="#/tab/zhichuang" class="active">党建之窗</a>
+                    <a ng-href="#/tab/zhichuang">党建之窗</a>
                 </div>
             </div>
         </ion-scroll>
     </ion-header-bar>
 
-    <ion-content class="sy-content">
-        <ion-list class="sy-djzc-list">
-            <ion-item ng-if="item.l_t == 2" href="#/tab/djnav/{{item.id}}/4" class="sy-xuexi-items"  ng-repeat="(key,item) in list">
+    <ion-content class="sy-content" on-swipe-left="leftChange()"  on-swipe-right="rightChange()">
+        <ion-list class="sy-dangke-list" >
+            <ion-item ng-if="item.l_t == 2" href="#/tab/djnav/{{item.id}}/2" class="sy-xuexi-items" ng-repeat="(key,item) in list">
                 <div class="img">
                     <img ng-src="{{item.imgUrl}}">
                 </div>
@@ -42,7 +42,7 @@
                 </div>
             </ion-item>
 
-            <ion-item ng-if="item.l_t == 1" href="#/djinfo/{{item.id}}/4/0" class="sy-xuexi-items"  ng-repeat="(key,item) in list">
+            <ion-item ng-if="item.l_t == 1" href="#/djinfo/{{item.id}}/2/0" class="sy-xuexi-items" ng-repeat="(key,item) in list">
                 <div class="img">
                     <img ng-src="{{item.imgUrl}}">
                 </div>

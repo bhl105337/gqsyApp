@@ -320,7 +320,7 @@ angular.module('starter.directives', [])
 
                 scope.$$childHead.$onScroll = function () {
                     distance = $ionicScrollDelegate.$getByHandle(delegateHandle).getScrollPosition();
-                    console.log(distance,translucentScrollMaxtop)
+                    console.log(distance, translucentScrollMaxtop)
                     scroollTop = distance.top;
 
                     if (scroollTop <= translucentScrollMaxtop) {
@@ -333,6 +333,157 @@ angular.module('starter.directives', [])
                     }
                 }
             }
+        };
+    }])
+
+
+    .directive('mfbMenu', ['$rootScope', '$timeout', '$ionicModal', '$ionicScrollDelegate', '$window', function ($rootScope, $timeout, $ionicModal, $ionicScrollDelegate, $window) {
+        return {
+            restrict: 'EA',
+            transclude: true,
+            replace: true,
+            scope: {
+                position: '@',
+                effect: '@',
+                label: '@',
+                resting: '@restingIcon',
+                active: '@activeIcon',
+                mainAction: '&',
+                menuState: '=?',
+                togglingMethod: '@',
+                targetButton: '@',
+                modalUrl: '@',
+                routerStatus: '@',
+                scrollTop: '@'
+            },
+            templateUrl: function (elem, attrs) {
+                return attrs.templateUrl || 'ng-mfb-menu-default.tpl.html';
+            },
+            controller: ['$scope', '$attrs', '$state', function ($scope, $attrs, $state) {
+                if ($scope.modalUrl === undefined && $scope.scrollTop === undefined && $scope.routerStatus === undefined) {
+                    // 定义函数对象
+                    var fns = {
+                        clicked: function clicked() {
+                            if ($scope.mainAction) {
+                                $scope.mainAction();
+                            }
+                            if (!fns.isHoverActive()) {
+                                fns.toggle();
+                            }
+                        },
+
+                        hovered: function hovered() {
+                            if (fns.isHoverActive()) {
+                                //toggle();
+                            }
+                        },
+
+                        /**
+                         * 根据当前菜单的状态切换按钮
+                         */
+                        toggle: function toggle() {
+                            if ($scope.menuState === openState) {
+                                fns.close();
+                                // $ionicBackdrop.release();
+                            } else {
+                                fns.open();
+                                // $ionicBackdrop.retain();
+                            }
+                        },
+
+                        open: function open() {
+                            $scope.menuState = openState;
+                        },
+
+                        close: function close() {
+                            $scope.menuState = closedState;
+                        },
+
+                        /**
+                         * Check if we're on a touch-enabled device.
+                         * Requires Modernizr to run, otherwise simply returns false
+                         */
+                        isTouchDevice: function _isTouchDevice() {
+                            return window.Modernizr && Modernizr.touch;
+                        },
+
+                        isHoverActive: function _isHoverActive() {
+                            return $scope.togglingMethod === 'hover';
+                        },
+
+                        /**
+                         * Convert the toggling method to 'click'.
+                         * This is used when 'hover' is selected by the user
+                         * but a touch device is enabled.
+                         */
+                        useClick: function useClick() {
+                            $scope.$apply(function () {
+                                $scope.togglingMethod = 'click';
+                            });
+                        }
+
+                    };
+
+                    var openState = 'open', closedState = 'closed';
+                    /**将当前的函数绑在this中，即该作用域控制器将对外暴露的函数，
+                     *可以在其他的作用域使用该函数
+                     */
+                    this.toggle = fns.toggle;
+                    this.close = fns.close;
+                    this.open = fns.open;
+
+                    $scope.clicked = fns.clicked;
+                    $scope.hovered = fns.hovered;
+
+                    /**
+                     * 判定当前状态
+                     */
+                    if (!$scope.menuState) {
+                        $scope.menuState = closedState;
+                    }
+
+                    /**
+                     * If on touch device AND 'hover' method is selected:
+                     * wait for the digest to perform and then change hover to click.
+                     */
+                    if (fns.isTouchDevice() && fns.isHoverActive()) {
+                        $timeout(fns.useClick);
+                    }
+
+                    $attrs.$observe('menuState', function () {
+                        $scope.currentState = $scope.menuState;
+                    });
+
+                    //监听，转态改变时，关闭弹出菜单。
+                    $rootScope.$on('$stateChangeSuccess', function () {
+                        fns.close();
+                    });
+
+                } else if ($scope.modalUrl) {
+                    this.template = $scope.modalUrl;
+                    $ionicModal.fromTemplateUrl(this.template, {
+                        scope: $scope,
+                        focusFirstInput: true,
+                        animation: 'slide-in-up'
+                    }).then(function (modal) {
+                        $scope.modal = modal;
+                    });
+
+                    $scope.clicked = function () {
+                        $scope.modal.show();
+                    };
+                } else if ($scope.scrollTop) {
+                    $scope.clicked = function () {
+                        $ionicScrollDelegate.scrollTop(true);
+                    };
+                } else if ($scope.routerStatus) {
+
+                    $scope.clicked = function () {
+                        $state.go($scope.routerStatus);
+                    };
+                }
+
+            }]
         };
     }])
 

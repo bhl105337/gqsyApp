@@ -1,63 +1,20 @@
 ctrls
-    .controller('Dangjian_aCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $ionicSlideBoxDelegate, $state, $ionicModal, $ionicScrollDelegate) {
+    .controller('Dangjian_aCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $ionicSlideBoxDelegate, $state, $ionicModal, $ionicScrollDelegate, $ionicViewSwitcher) {
         console.log($rootScope.server_url)
         // $rootScope.server_url = "http://guoqishuyuan.com/app.php";
         $scope.search_list = "none"
         $scope.search_backdrop = "none"
         $rootScope.page = 1;
         $rootScope.totalPage = 0;
-        /**
-         * 用户主页
-         */
-        $ionicModal.fromTemplateUrl('userInfo.html', function (userModal) {
-            $scope.modal = userModal;
-        }, {
-            scope: $scope,
-            animation: 'slide-in-left'
-        });
-        $scope.showUser = function () {
+        $scope.disImg = "inline-block"
 
-            $scope.modal.show();
-        };
-        /**
-         * 搜索页
-         */
-        $ionicModal.fromTemplateUrl('search.html', function (searchModal) {
-            $scope.searchModal = searchModal;
-        }, {
-            scope: $scope,
-            animation: 'slide-in-right'
-        });
-        $scope.search = function (key) {
-            if (key == "show") {
-                $scope.searchModal.show();
-            } else {
-                $scope.ItemSearch = []
-                $scope.search_list = "none"
-                $scope.search_backdrop = "none"
-                $scope.searchModal.hide();
-            }
-        };
-        /**
-         * 搜索结果
-         */
-        $ionicModal.fromTemplateUrl('searchInfo.html', function (searchInfoModal) {
-            $scope.searchInfo = searchInfoModal;
-        }, {
-            scope: $scope,
-            animation: 'slide-in-right'
-        });
 
-        $scope.search_Info = function (key) {
-            if (key == "show") {
-                $scope.searchInfo.show();
-            } else {
-                // $scope.ItemSearch = []
-                // $scope.search_list = "none"
-                // $scope.search_backdrop = "none"
-                $scope.searchInfo.hide();
-            }
-        };
+        $scope.leftChange = function () {
+            $state.go("tab.dangke");
+            $ionicViewSwitcher.nextDirection("forward");
+            return false
+        }
+
 
         $scope.toSearch = function (info, type) {
             $scope.ItemSearch = []
@@ -86,6 +43,7 @@ ctrls
          */
         $scope.goSearchInfo = function (id, type) {
             $scope.searchInfo.hide();
+            $scope.searchModal.hide();
             $rootScope.itemSearch = $rootScope.itemSearch;
             $state.go("search_info", {id: id, type: type});
             return false;
@@ -102,51 +60,23 @@ ctrls
                 $scope.banner = data.data.banner
                 $scope.init($scope.banner);
             });
+
         })
     })
-    .controller('Dangjian_bCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $state, $ionicPopup, $formValid, $ionicModal) {
+    .controller('Dangjian_bCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $state, $ionicPopup, $formValid, $ionicModal, $ionicViewSwitcher) {
 
         $rootScope.page = 1;
 
-        /**
-         * 搜索页
-         */
-        $ionicModal.fromTemplateUrl('search.html', function (searchModal) {
-            $scope.searchModal = searchModal;
-        }, {
-            scope: $scope,
-            animation: 'slide-in-right'
-        });
-        $scope.search = function (key) {
-            if (key == "show") {
-                $scope.searchModal.show();
-            } else {
-                $scope.ItemSearch = []
-                $scope.search_list = "none"
-                $scope.search_backdrop = "none"
-                $scope.searchModal.hide();
-            }
-        };
-        /**
-         * 搜索结果
-         */
-        $ionicModal.fromTemplateUrl('searchInfo.html', function (searchInfoModal) {
-            $scope.searchInfo = searchInfoModal;
-        }, {
-            scope: $scope,
-            animation: 'slide-in-right'
-        });
-
-        $scope.search_Info = function (key) {
-            if (key == "show") {
-                $scope.searchInfo.show();
-            } else {
-                // $scope.ItemSearch = []
-                // $scope.search_list = "none"
-                // $scope.search_backdrop = "none"
-                $scope.searchInfo.hide();
-            }
-        };
+        $scope.leftChange = function () {
+            $state.go("tab.kaoshi");
+            $ionicViewSwitcher.nextDirection("forward");
+            return false
+        }
+        $scope.rightChange = function () {
+            $state.go("tab.dangjian");
+            $ionicViewSwitcher.nextDirection("back");
+            return false
+        }
 
         $scope.toSearch = function (info, type) {
             $scope.ItemSearch = []
@@ -165,21 +95,6 @@ ctrls
                 }
             });
         }
-
-
-        /**
-         * 文章详情
-         * @param id
-         * @param type
-         * @returns {boolean}
-         */
-        $scope.goSearchInfo = function (id, type) {
-            $scope.searchInfo.hide();
-            $rootScope.itemSearch = $rootScope.itemSearch;
-            $state.go("search_info", {id: id, type: type});
-            return false;
-        }
-
 
         $scope.$on('$ionicView.beforeEnter', function () {
             //page_no     = 1;
@@ -222,49 +137,20 @@ ctrls
             return false;
         };
     })
-    .controller('Dangjian_cCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $state, $ionicPopup, $formValid, $ionicModal) {
+    .controller('Dangjian_cCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $state, $ionicPopup, $formValid, $ionicModal,$ionicViewSwitcher) {
 
         $rootScope.page = 1;
 
-        /**
-         * 搜索页
-         */
-        $ionicModal.fromTemplateUrl('search.html', function (searchModal) {
-            $scope.searchModal = searchModal;
-        }, {
-            scope: $scope,
-            animation: 'slide-in-right'
-        });
-        $scope.search = function (key) {
-            if (key == "show") {
-                $scope.searchModal.show();
-            } else {
-                $scope.ItemSearch = []
-                $scope.search_list = "none"
-                $scope.search_backdrop = "none"
-                $scope.searchModal.hide();
-            }
-        };
-        /**
-         * 搜索结果
-         */
-        $ionicModal.fromTemplateUrl('searchInfo.html', function (searchInfoModal) {
-            $scope.searchInfo = searchInfoModal;
-        }, {
-            scope: $scope,
-            animation: 'slide-in-right'
-        });
-
-        $scope.search_Info = function (key) {
-            if (key == "show") {
-                $scope.searchInfo.show();
-            } else {
-                // $scope.ItemSearch = []
-                // $scope.search_list = "none"
-                // $scope.search_backdrop = "none"
-                $scope.searchInfo.hide();
-            }
-        };
+        $scope.leftChange = function () {
+            $state.go("tab.zhichuang");
+            $ionicViewSwitcher.nextDirection("forward");
+            return false
+        }
+        $scope.rightChange = function () {
+            $state.go("tab.dangke");
+            $ionicViewSwitcher.nextDirection("back");
+            return false
+        }
 
         $scope.toSearch = function (info, type) {
             $scope.ItemSearch = []
@@ -285,62 +171,20 @@ ctrls
         }
 
 
-        /**
-         * 文章详情
-         * @param id
-         * @param type
-         * @returns {boolean}
-         */
-        $scope.goSearchInfo = function (id, type) {
-            $scope.searchInfo.hide();
-            $rootScope.itemSearch = $rootScope.itemSearch;
-            $state.go("search_info", {id: id, type: type});
-            return false;
-        }
+        $scope.$on('$ionicView.beforeEnter', function () {
+            //page_no     = 1;
+        })
     })
-    .controller('Dangjian_dCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $state, $ionicPopup, $formValid, $ionicModal) {
+
+    .controller('Dangjian_dCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $state, $ionicPopup, $formValid, $ionicModal,$ionicViewSwitcher) {
 
         $rootScope.page = 1;
 
-        /**
-         * 搜索页
-         */
-        $ionicModal.fromTemplateUrl('search.html', function (searchModal) {
-            $scope.searchModal = searchModal;
-        }, {
-            scope: $scope,
-            animation: 'slide-in-right'
-        });
-        $scope.search = function (key) {
-            if (key == "show") {
-                $scope.searchModal.show();
-            } else {
-                $scope.ItemSearch = []
-                $scope.search_list = "none"
-                $scope.search_backdrop = "none"
-                $scope.searchModal.hide();
-            }
-        };
-        /**
-         * 搜索结果
-         */
-        $ionicModal.fromTemplateUrl('searchInfo.html', function (searchInfoModal) {
-            $scope.searchInfo = searchInfoModal;
-        }, {
-            scope: $scope,
-            animation: 'slide-in-right'
-        });
-
-        $scope.search_Info = function (key) {
-            if (key == "show") {
-                $scope.searchInfo.show();
-            } else {
-                // $scope.ItemSearch = []
-                // $scope.search_list = "none"
-                // $scope.search_backdrop = "none"
-                $scope.searchInfo.hide();
-            }
-        };
+        $scope.rightChange = function () {
+            $state.go("tab.kaoshi");
+            $ionicViewSwitcher.nextDirection("back");
+            return false
+        }
 
         $scope.toSearch = function (info, type) {
             $scope.ItemSearch = []
@@ -360,19 +204,6 @@ ctrls
             });
         }
 
-
-        /**
-         * 文章详情
-         * @param id
-         * @param type
-         * @returns {boolean}
-         */
-        $scope.goSearchInfo = function (id, type) {
-            $scope.searchInfo.hide();
-            $rootScope.itemSearch = $rootScope.itemSearch;
-            $state.go("search_info", {id: id, type: type});
-            return false;
-        }
 
         $scope.$on('$ionicView.beforeEnter', function () {
             //page_no     = 1;
@@ -381,38 +212,6 @@ ctrls
 
             });
         })
-        $scope.submitFormSearch = function (search) {
-            var formRules = {
-                keywords: {required: "请输入内容"}
-            };
-            if ($formValid(formRules, search)) {
-                $http.post($rootScope.server_url + '/Base/search', search, null, "搜索中").success(function (data) {
-                    var msg = JSON.parse(data)
-                    if (msg.code == "FAIL") {
-                        $scope.showAlert(msg);
-                    } else {
-                        $scope.searchSuccess(msg, search.keyword);
-                    }
-                });
-            }
-        };
-
-        $scope.showAlert = function (msg) {
-            var alertPopup = $ionicPopup.alert({
-                title: '提示',
-                template: msg.info
-            });
-            alertPopup.then(function (res) {
-                console.log(res);
-            });
-        };
-
-        $scope.searchSuccess = function (data, keyword) {
-            $rootScope.data = data.data;
-            $rootScope.data.keyword = keyword;
-            $state.go("search");
-            return false;
-        };
     })
 
 
