@@ -15,7 +15,7 @@ var requireModules = [
 ]
 angular.module('starter', requireModules)
 
-    .run(function ($ionicPlatform, $rootScope, $ionicHistory, $ionicViewSwitcher, $ionicModal) {
+    .run(function ($ionicPlatform, $rootScope, $ionicHistory, $ionicViewSwitcher, $ionicModal, $ionicLoading, $state) {
 
         $rootScope.server_url = "http://guoqishuyuan.com/app.php";
 
@@ -40,6 +40,14 @@ angular.module('starter', requireModules)
         $rootScope.clearHistory = function () {
             $ionicHistory.clearHistory();
         };
+
+        $rootScope.$on('loading:show', function () {
+            $ionicLoading.show({template: 'loading'})
+        });
+
+        $rootScope.$on('loading:hide', function () {
+            $ionicLoading.hide()
+        });
 
         /**
          * 用户主页
@@ -94,6 +102,22 @@ angular.module('starter', requireModules)
                 $rootScope.searchInfo.hide();
             }
         };
+
+        $rootScope.goUserInfoNav = function (navInfo, uid) {
+            if (!uid) {
+                $rootScope.modal.show();
+                $state.go("login")
+                $ionicViewSwitcher.nextDirection("back");
+                return false
+            }
+            switch (navInfo) {
+                case "readLog":
+                    $state.go("tab.read_log", {uid: uid})
+                    break;
+            }
+            $ionicViewSwitcher.nextDirection("back");
+            return false
+        }
 
         /**
          * 初始化

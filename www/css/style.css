@@ -135,6 +135,26 @@ a{ text-decoration:none }
     padding-top:40px;
 }
 
+.slider-pager{
+    position:absolute;
+    bottom:20px;
+    z-index:1;
+    width:100%;
+    height:15px;
+    text-align:right;
+    padding:0 8px;
+}
+
+.slider-pager .slider-pager-page{
+    display:inline-block;
+    margin:0px 3px;
+    width:10px;
+    color:#000;
+    text-decoration:none;
+    opacity:0.3;
+    font-size:10px;
+}
+
 /** 底部自定义图标*/
 .icon.iconfont.icon-dangjian1,
 .icon.iconfont.icon-dangjian{
@@ -201,7 +221,7 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active{
 /** 切换*/
 /*从右向左*/
 .slide-in-right{
-    -webkit-transform:translateX(-100%);
+    -webkit-transform:translateX(100%);
     transform:translateX(100%);
 }
 

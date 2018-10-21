@@ -33,8 +33,9 @@ ctrls
     /**
      *登录
      */
-    .controller('loginCtrl', function ($scope, $rootScope, $http, $state, $formValid, $tips, $ionicPopup, $timeout) {
+    .controller('loginCtrl', function ($scope, $rootScope, $http, $state, $formValid, $tips, $ionicPopup, $timeout, $ionicViewSwitcher) {
         $rootScope.server_url = "http://guoqishuyuan.com/app.php";
+        $rootScope.login_logo = "http://guoqishuyuan.com/uploads/app/gqsy.png";
 
         $scope.submitForm = function (user) {
             var formRules = {
@@ -54,7 +55,9 @@ ctrls
             }
         };
         $scope.goBack = function () {
-            $state.go("tab.dangjian")
+            $state.go("tab.dangjian");
+            $ionicViewSwitcher.nextDirection("back");
+            return false;
         }
 
         $scope.showAlert = function (msg) {

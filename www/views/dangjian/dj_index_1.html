@@ -1,77 +1,33 @@
-<ion-view hide-nav-bar="true" hide-back-button="true" hide-show-nav-bar>
-    <link rel="stylesheet" href="./css/dj-1.css">
-    <style>
+<!-- start 轮播图-->
+<ion-slide-box auto-play="true" does-continue="true" slide-interval=2000 show-pager="true" delegate-handle="slideimgs" class="ion-img-slide">
+    <!--<ion-slide does-continue="true">-->
+    <ion-slide ng-repeat="(bkey,bitem) in banner">
+        <div class="box banner"><img src="{{bitem.imgUrl}}" style="width:100%; display:inline-block"/></div>
+        <!--<div class="box banner"><img src="../../img/banner1.jpg"/></div>-->
+    </ion-slide>
+</ion-slide-box>
+<!-- end 轮播图-->
+<ion-list class="sy-xuexi-list" on-swipe-left="leftChange()">
 
-        .sy-content .slide-img{
-            height:180px;
-        }
-
-        .sy-content .slider img{
-            float:left;
-            width:100%;
-            height:180px;
-        }
-    </style>
-
-    <ion-header-bar class="bar bar-header sy-top-search top-header-nav bar-positive" style="min-height:40px;">
-        <div class="header-comment">
-            <div class="user-comment">
-                <div class="user-info" ng-click="showUser()">
-                    <div class="u-top-img"><i class="user-top-img icon iconfont icon-yonghu"></i></div>
-                </div>
-            </div>
-            <div class="top-search">
-                <div class="top-s-con" ng-click="search('show')">
-                    <i class="search-icon icon iconfont icon-fangdajing"></i>
-                    <span></span>
-                </div>
-            </div>
+    <ion-item ng-if="item.l_t == 2" href="#/tab/djnav/{{item.id}}/1" class="sy-xuexi-items" ng-repeat="(key,item) in list">
+        <div class="img">
+            <img ng-src="{{item.imgUrl}}">
         </div>
-        <ion-slide-box class="sy-scroll-tab-x" direction="x" scrollbar-x="false" show-pager="fales" style="overflow-x: hidden; display:inline-block">
-            <div class="sy-nav-lv2" style="">
-                <div>
-                    <a ng-href="#/tab/dangjian" class="active">党员学习</a>
-                    <a ng-href="#/tab/dangke">在线党课</a>
-                    <a ng-href="#/tab/kaoshi">党员考试</a>
-                    <a ng-href="#/tab/zhichuang">党建之窗</a>
-                </div>
-            </div>
-        </ion-slide-box>
-    </ion-header-bar>
-    <ion-content class="sy-content" id="sy-cons" scrollbar-y="false">
-        <!-- start 轮播图-->
-        <ion-slide-box auto-play="true" does-continue="true" slide-interval=2000 show-pager="fales" delegate-handle="slideimgs">
-            <!--<ion-slide does-continue="true">-->
-            <ion-slide ng-repeat="(bkey,bitem) in banner">
-                <div class="box banner"><img src="{{bitem.imgUrl}}"/></div>
-                <!--<div class="box banner"><img src="../../img/banner1.jpg"/></div>-->
-            </ion-slide>
-        </ion-slide-box>
-        <!-- end 轮播图-->
+        <div class="sy-article">
+            <span class="sy-article-title">{{item.titles}}</span>
+            <span class="sy-article-memo">{{item.l_Memo}}</span>
+            <span class="sy-article-num" ng-show="{{item.l_t}}==2">文章：{{item.p_count}}</span>
+        </div>
+    </ion-item>
 
-        <ion-list class="sy-xuexi-list" on-swipe-left="leftChange()">
+    <ion-item ng-if="item.l_t == 1" href="#/djinfo/{{item.id}}/1/0" class="sy-xuexi-items" ng-repeat="(key,item) in list">
+        <div class="img">
+            <img ng-src="{{item.imgUrl}}">
+        </div>
+        <div class="sy-article">
+            <span class="sy-article-title">{{item.titles}}</span>
+            <span class="sy-article-memo">{{item.l_Memo}}</span>
+        </div>
+    </ion-item>
 
-            <ion-item ng-if="item.l_t == 2" href="#/tab/djnav/{{item.id}}/1" class="sy-xuexi-items" ng-repeat="(key,item) in list">
-                <div class="img">
-                    <img ng-src="{{item.imgUrl}}">
-                </div>
-                <div class="sy-article">
-                    <span class="sy-article-title">{{item.titles}}</span>
-                    <span class="sy-article-memo">{{item.l_Memo}}</span>
-                    <span class="sy-article-num" ng-show="{{item.l_t}}==2">文章：{{item.p_count}}</span>
-                </div>
-            </ion-item>
-
-            <ion-item ng-if="item.l_t == 1" href="#/djinfo/{{item.id}}/1/0" class="sy-xuexi-items" ng-repeat="(key,item) in list">
-                <div class="img">
-                    <img ng-src="{{item.imgUrl}}">
-                </div>
-                <div class="sy-article">
-                    <span class="sy-article-title">{{item.titles}}</span>
-                    <span class="sy-article-memo">{{item.l_Memo}}</span>
-                </div>
-            </ion-item>
-
-        </ion-list>
-    </ion-content>
-</ion-view>
+</ion-list>

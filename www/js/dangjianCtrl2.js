@@ -7,26 +7,22 @@ ctrls
         $rootScope.page = 1;
         $rootScope.totalPage = 0;
         $scope.disImg = "inline-block"
+        $scope.tabactive = 1
 
 
-        $scope.tabNames = ['党员学习', '在线党课', '党员考试', '党建之窗'];
-        $scope.slectIndex = 0;
-
-        $scope.activeSlide = function (index) {//点击时候触发
-            $ionicSlideBoxDelegate.slide(index);
-            $scope.slectIndex = index;
+        $scope.tabsChange = function (index) {//点击时候触发
+            $scope.className = true;
+            $scope.tabactive = index
+            if ($scope.tabactive == 1) {
+                $scope.dj2 = false;
+                $scope.className = false;
+                console.log($scope.dj2)
+            }
+            if ($scope.tabactive == 2) {
+                $scope.dj2 = true;
+                console.log($scope.dj2)
+            }
         };
-        $scope.slideChanged = function (index) {//滑动时候触发
-            // $ionicSlideBoxDelegate.enableSlide(false);
-            $scope.slectIndex = index;
-        };
-        $scope.pages = [
-            "views/dangjian/dj_index_1.html",
-            "views/dangjian/dj_index_2.html",
-            "views/dangjian/dj_index_3.html",
-            "views/dangjian/dj_index_4.html"
-        ];
-
 
         $scope.toSearch = function (info, type) {
             $scope.ItemSearch = []
@@ -71,9 +67,6 @@ ctrls
 
                 $scope.banner = data.data.banner
                 $scope.init($scope.banner);
-
-                $ionicSlideBoxDelegate.loop(true); //解决轮播至最后一个不轮播的问题
-                $ionicSlideBoxDelegate.update(); //解决图片加载不出来的问题
             });
 
             $http.get($rootScope.server_url + '/Dangjian/dangjian_b').success(function (data) {
@@ -84,7 +77,6 @@ ctrls
                 $scope.list4 = data.data
 
             });
-            // $ionicSlideBoxDelegate.enableSlide(false);
         })
     })
     .controller('Dangjian_bCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $state, $ionicPopup, $formValid, $ionicModal) {

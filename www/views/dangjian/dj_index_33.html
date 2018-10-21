@@ -1,18 +1,8 @@
-<ion-view hide-nav-bar="true" hide-back-button="true" hide-show-nav-bar>
+<ion-view hide-nav-bar="true" hide-back-button="true">
     <link rel="stylesheet" href="./css/dj-1.css">
     <style>
 
-        .sy-content .slide-img{
-            height:180px;
-        }
-
-        .sy-content .slide-img img{
-            float:left;
-            width:100%;
-            height:180px;
-        }
     </style>
-
     <ion-header-bar class="bar bar-header sy-top-search top-header-nav bar-positive" style="min-height:40px;">
         <div class="header-comment">
             <div class="user-comment">
@@ -30,16 +20,16 @@
         <ion-scroll class="sy-scroll-tab-x" direction="x" scrollbar-x="false" style="overflow-x: hidden; display:inline-block">
             <div class="sy-nav-lv2" style="">
                 <div>
-                    <a ng-href="#/tab/dangjian" ng-repeat="d in tabNames" ng-click="activeSlide($index,'c')" ng-class="slectIndex==$index ? 'active' : '' ">{{d}}</a>
+                    <a ng-href="#/tab/dangjian">党员学习</a>
+                    <a ng-href="#/tab/dangke">在线党课</a>
+                    <a ng-href="#/tab/kaoshi" class="active">党员考试</a>
+                    <a ng-href="#/tab/zhichuang">党建之窗</a>
                 </div>
             </div>
         </ion-scroll>
     </ion-header-bar>
-    <ion-content class="sy-content" id="sy-cons" scrollbar-y="false">
-        <ion-slide-box class="conrentSilde" on-slide-changed="slideChanged(index)" active-slide="slideIndex" does-continue="false" show-pager="false">
-            <ion-slide ng-repeat="p in pages">
-                <div ng-include="p"></div>
-            </ion-slide>
-        </ion-slide-box>
+
+    <ion-content class="sy-content" on-swipe-left="leftChange()"  on-swipe-right="rightChange()">
+        敬请期待
     </ion-content>
 </ion-view>

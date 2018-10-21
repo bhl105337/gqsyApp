@@ -65,18 +65,20 @@ angular.module('starter.routes', []).config(function ($stateProvider, $urlRouter
 
         .state('tab.dangjian', {
             url: '/dangjian',
+            cache: false,
             views: {
                 'tab-dangjian': {
-                    templateUrl: 'views/dangjian/dj_index_1.html',
+                    templateUrl: 'views/dangjian/dj_index_main.html',
                     controller: 'Dangjian_aCtrl'
                 }
             }
         })
         .state('tab.dangke', {
             url: '/dangke',
+            cache: false,
             views: {
                 'tab-dangjian': {
-                    templateUrl: 'views/dangjian/dj_index_2.html',
+                    templateUrl: 'views/dangjian/dj_index_22.html',
                     controller: 'Dangjian_bCtrl'
                 }
             }

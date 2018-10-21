@@ -13,13 +13,13 @@ ctrls
         $scope.slectIndex = 0;
 
         $scope.activeSlide = function (index) {//点击时候触发
+            console.log(111)
             $ionicSlideBoxDelegate.slide(index);
-            $scope.slectIndex = index;
         };
-        $scope.slideChanged = function (index) {//滑动时候触发
-            // $ionicSlideBoxDelegate.enableSlide(false);
-            $scope.slectIndex = index;
-        };
+        // $scope.slideChanged = function (index) {//滑动时候触发
+        //     console.log(111)
+        //     $scope.slectIndex = index;
+        // };
         $scope.pages = [
             "views/dangjian/dj_index_1.html",
             "views/dangjian/dj_index_2.html",
@@ -71,9 +71,6 @@ ctrls
 
                 $scope.banner = data.data.banner
                 $scope.init($scope.banner);
-
-                $ionicSlideBoxDelegate.loop(true); //解决轮播至最后一个不轮播的问题
-                $ionicSlideBoxDelegate.update(); //解决图片加载不出来的问题
             });
 
             $http.get($rootScope.server_url + '/Dangjian/dangjian_b').success(function (data) {
@@ -84,7 +81,6 @@ ctrls
                 $scope.list4 = data.data
 
             });
-            // $ionicSlideBoxDelegate.enableSlide(false);
         })
     })
     .controller('Dangjian_bCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $state, $ionicPopup, $formValid, $ionicModal) {
