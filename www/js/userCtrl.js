@@ -33,7 +33,7 @@ ctrls
     /**
      *登录
      */
-    .controller('loginCtrl', function ($scope, $rootScope, $http, $state, $formValid, $tips, $ionicPopup, $timeout, $ionicViewSwitcher) {
+    .controller('loginCtrl', function ($scope, $rootScope, $http, $state, $formValid, $tips, $ionicPopup, $timeout, $ionicViewSwitcher, $cookies) {
         $rootScope.server_url = "http://guoqishuyuan.com/app.php";
         $rootScope.login_logo = "http://guoqishuyuan.com/uploads/app/gqsy.png";
 
@@ -80,8 +80,11 @@ ctrls
                     $state.go("login");
                     return false;
                 }
+                var expireDate = new Date();
+                expireDate.setDate(expireDate.getDate() + 30);
+                $cookies.put('user', data.data.id, {'expires': expireDate});
                 $rootScope.clearHistory();
-                $state.go("tab.user");
+                $state.go("tab.dangjian");
                 console.log(data);
 
             });
@@ -91,7 +94,7 @@ ctrls
     /**
      *阅读记录
      */
-    .controller("Read_logCtrl", function ($scope, $rootScope, $http, $state, $stateParams) {
+    .controller("Read_logCtrl", function ($scope, $rootScope, $http, $state, $stateParams, $ionicHistory, $ionicViewSwitcher) {
         $rootScope.server_url = "http://guoqishuyuan.com/app.php";
         $scope.$on('$ionicView.beforeEnter', function () {
             //$scope.user = $rootScope.user;
@@ -114,14 +117,15 @@ ctrls
 
         $scope.goBack = function () {
             $rootScope.uid = $scope.uid;
-            $state.go("tab.user");
+            $ionicHistory.goBack();
+            $ionicViewSwitcher.nextDirection("back");
             return false;
         }
     })
     /**
      *阅读记录详情
      */
-    .controller("Read_infoCtrl", function ($scope, $rootScope, $http, $state, $stateParams) {
+    .controller("Read_infoCtrl", function ($scope, $rootScope, $http, $state, $stateParams, $ionicHistory, $ionicViewSwitcher) {
         $rootScope.server_url = "http://guoqishuyuan.com/app.php";
         $scope.$on('$ionicView.beforeEnter', function () {
             $scope.uid = $stateParams.uid;
@@ -138,7 +142,9 @@ ctrls
         })
 
         $scope.goBack = function (uid) {
-            $state.go("tab.read_log", {uid: uid});
+            $rootScope.uid = uid;
+            $ionicHistory.goBack();
+            $ionicViewSwitcher.nextDirection("back");
             return false;
         }
 
@@ -147,7 +153,7 @@ ctrls
     /**
      *学习心得列表
      */
-    .controller("Read_ideaCtrl", function ($scope, $rootScope, $http, $state, $stateParams) {
+    .controller("Read_ideaCtrl", function ($scope, $rootScope, $http, $state, $stateParams, $ionicHistory, $ionicViewSwitcher) {
         $rootScope.server_url = "http://guoqishuyuan.com/app.php";
         $scope.$on('$ionicView.beforeEnter', function () {
             //$scope.user = $rootScope.user;
@@ -169,15 +175,19 @@ ctrls
 
         $scope.goBack = function () {
             $rootScope.uid = $scope.uid;
-            $state.go("tab.user");
+            $ionicHistory.goBack();
+            $ionicViewSwitcher.nextDirection("back");
+            return false;
         }
         $scope.goIdeaAdd = function () {
             $rootScope.uid = $scope.uid;
             $state.go("read_idea_add", {uid: $rootScope.uid});
+            $ionicViewSwitcher.nextDirection("back");
+            return false;
         }
     })
 
-    .controller("Read_idea_addCtrl", function ($scope, $rootScope, $http, $state, $stateParams, $ionicPopup, $formValid) {
+    .controller("Read_idea_addCtrl", function ($scope, $rootScope, $http, $state, $stateParams, $ionicPopup, $formValid, $ionicHistory, $ionicViewSwitcher) {
         $rootScope.server_url = "http://guoqishuyuan.com/app.php";
         $scope.uid = $stateParams.uid;
         $scope.$on('$ionicView.beforeEnter', function () {
@@ -222,10 +232,12 @@ ctrls
 
         $scope.goBack = function () {
             $rootScope.uid = $scope.uid;
-            $state.go("tab.user");
+            $ionicHistory.goBack();
+            $ionicViewSwitcher.nextDirection("back");
+            return false;
         }
     })
-    .controller("Read_idea_infoCtrl", function ($scope, $rootScope, $http, $state, $stateParams) {
+    .controller("Read_idea_infoCtrl", function ($scope, $rootScope, $http, $state, $stateParams, $ionicHistory, $ionicViewSwitcher) {
         $rootScope.server_url = "http://guoqishuyuan.com/app.php";
         $scope.$on('$ionicView.beforeEnter', function () {
             $scope.uid = $stateParams.uid
@@ -237,7 +249,9 @@ ctrls
 
         $scope.goBack = function () {
             $rootScope.uid = $scope.uid;
-            $state.go("read_idea", {uid: $rootScope.uid});
+            $ionicHistory.goBack();
+            $ionicViewSwitcher.nextDirection("back");
+            return false;
         }
         $scope.goIdeaAdd = function () {
 
@@ -247,7 +261,7 @@ ctrls
     /**
      * 积分管理
      */
-    .controller("user_coinCtrl", function ($scope, $rootScope, $http, $state, $stateParams) {
+    .controller("user_coinCtrl", function ($scope, $rootScope, $http, $state, $stateParams, $ionicHistory, $ionicViewSwitcher) {
         $rootScope.server_url = "http://guoqishuyuan.com/app.php";
         $scope.$on('$ionicView.beforeEnter', function () {
             //$scope.user = $rootScope.user;
@@ -263,14 +277,16 @@ ctrls
 
         $scope.goBack = function () {
             $rootScope.uid = $scope.uid;
-            $state.go("tab.user");
+            $ionicHistory.goBack();
+            $ionicViewSwitcher.nextDirection("back");
+            return false;
         }
     })
 
     /**
      * 设置
      */
-    .controller("user_settingCtrl", function ($scope, $rootScope, $http, $state, $stateParams) {
+    .controller("user_settingCtrl", function ($scope, $rootScope, $http, $state, $stateParams, $ionicHistory, $ionicViewSwitcher) {
         $rootScope.server_url = "http://guoqishuyuan.com/app.php";
         $scope.$on('$ionicView.beforeEnter', function () {
             //$scope.user = $rootScope.user;
@@ -288,7 +304,9 @@ ctrls
 
         $scope.goBack = function () {
             $rootScope.uid = $scope.uid;
-            $state.go("tab.user");
+            $ionicHistory.goBack();
+            $ionicViewSwitcher.nextDirection("back");
+            return false;
         }
     })
 

@@ -11,13 +11,17 @@ var requireModules = [
     'starter.configs',
     'starter.routes',
     'starter.services',
-    'starter.directives'
+    'starter.directives',
+    'ngCordova',
+    'ngCookies',
 ]
 angular.module('starter', requireModules)
 
-    .run(function ($ionicPlatform, $rootScope, $ionicHistory, $ionicViewSwitcher, $ionicModal, $ionicLoading, $state) {
+    .run(function ($ionicPlatform, $rootScope, $ionicHistory, $ionicViewSwitcher, $ionicModal, $ionicLoading, $state, $cookies, $cookieStore) {
 
+        $rootScope.userId = $cookies.get('user');
         $rootScope.server_url = "http://guoqishuyuan.com/app.php";
+        $rootScope.userIcon = "http://guoqishuyuan.com/uploads/app/timg.png";
 
         //$rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState) {
         //    if ($rootScope.userIsLogin === -1) {
@@ -103,18 +107,41 @@ angular.module('starter', requireModules)
             }
         };
 
-        $rootScope.goUserInfoNav = function (navInfo, uid) {
-            if (!uid) {
-                $rootScope.modal.show();
+        $rootScope.goUserInfoNav = function (navInfo) {
+            if (!$rootScope.userId) {
+                $rootScope.modal.hide();
                 $state.go("login")
                 $ionicViewSwitcher.nextDirection("back");
                 return false
             }
+            var uid = $rootScope.userId;
             switch (navInfo) {
                 case "readLog":
+                    $rootScope.modal.hide();
+                    $state.go("read_log", {uid: uid})
+                    break;
+                case "ideaInfo":
+                    $rootScope.modal.hide();
+                    $state.go("read_idea", {uid: uid})
+                    break;
+                case "coinInfo":
+                    $rootScope.modal.hide();
+                    $state.go("user_coin", {uid: uid})
+                    break;
+                case "changeLog":
+                    $rootScope.modal.hide();
                     $state.go("tab.read_log", {uid: uid})
                     break;
+                case "mission":
+                    $rootScope.modal.hide();
+                    $state.go("tab.read_log", {uid: uid})
+                    break;
+                case "setting":
+                    $rootScope.modal.hide();
+                    $state.go("user_setting", {uid: uid})
+                    break;
             }
+            // $ionicViewSwitcher.nextDirection("forwoard");
             $ionicViewSwitcher.nextDirection("back");
             return false
         }
@@ -139,4 +166,4 @@ angular.module('starter', requireModules)
 
 
 var ctrls = angular.module('starter.controllers', []);
-var starter_services = angular.module('prosumer.services', []);
+var starter_services = angular.module('starter.services', []);

@@ -213,23 +213,15 @@ angular.module('starter.routes', []).config(function ($stateProvider, $urlRouter
                 }
             }
         })
-        .state('tab.read_log', {
+        .state('read_log', {
             url: '/read_log/{uid}',
-            views: {
-                'tab-user': {
-                    templateUrl: 'views/user/read_log.html',
-                    controller: 'Read_logCtrl'
-                }
-            }
+            controller: 'Read_logCtrl',
+            templateUrl: 'views/user/read_log.html'
         })
-        .state('tab.user_setting', {
+        .state('user_setting', {
             url: '/user_setting/{uid}',
-            views: {
-                'tab-user': {
-                    templateUrl: 'views/user/setting.html',
-                    controller: 'user_settingCtrl'
-                }
-            }
+            controller: 'user_settingCtrl',
+            templateUrl: 'views/user/setting.html'
         })
 
         .state('read_info', {
