@@ -46,9 +46,11 @@ angular.module('starter.routes', []).config(function ($stateProvider, $urlRouter
         //
         .state('tab.zixun', {
             url: '/zixun',
+            cache: false,
             views: {
                 'tab-zixun': {
-                    templateUrl: 'views/zixun/zixun.html',
+                    // templateUrl: 'views/zixun/zixun.html',
+                    templateUrl: 'views/zixun/news_main.html',
                     controller: 'ZixunCtrl'
                 }
             }

@@ -1,59 +1,26 @@
 ctrls
 
-    .controller('ZixunCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $formValid, $state, $ionicModal, $timeout) {
+    .controller('ZixunCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $formValid, $state, $ionicSlideBoxDelegate, $timeout) {
 
         $scope.newsList = [];
         $rootScope.page = 1;
         $rootScope.totalPage = 0;
 
-        $ionicModal.fromTemplateUrl('userInfo.html', function (userModal) {
-            $scope.modal = userModal;
-        }, {
-            scope: $scope,
-            animation: 'slide-in-left'
-        });
-        $scope.showUser = function () {
-            // $ionicBackdrop.retain();
-            $scope.modal.show();
-        };
+        $scope.tabNames = ['新闻资讯', '公告通知'];
+        $scope.slectIndex = 0;
 
-        $ionicModal.fromTemplateUrl('search.html', function (searchModal) {
-            $scope.searchModal = searchModal;
-        }, {
-            scope: $scope,
-            animation: 'slide-in-right'
-        });
-        $scope.search = function (key) {
-            if (key == "show") {
-                $scope.searchModal.show();
-            } else {
-                $scope.ItemSearch = []
-                $scope.search_list = "none"
-                $scope.search_backdrop = "none"
-                $scope.searchModal.hide();
-            }
+        $scope.activeSlide = function (index) {//点击时候触发
+            $ionicSlideBoxDelegate.slide(index);
+            $scope.slectIndex = index;
         };
-
-        /**
-         * 搜索结果
-         */
-        $ionicModal.fromTemplateUrl('searchInfo.html', function (searchInfoModal) {
-            $scope.searchInfo = searchInfoModal;
-        }, {
-            scope: $scope,
-            animation: 'slide-in-right'
-        });
-
-        $scope.search_Info = function (key) {
-            if (key == "show") {
-                $scope.searchInfo.show();
-            } else {
-                // $scope.ItemSearch = []
-                // $scope.search_list = "none"
-                // $scope.search_backdrop = "none"
-                $scope.searchInfo.hide();
-            }
+        $scope.slideChanged = function (index) {//滑动时候触发
+            // $ionicSlideBoxDelegate.enableSlide(false);
+            $scope.slectIndex = index;
         };
+        $scope.pages = [
+            "views/zixun/news_1.html",
+            "views/zixun/news_2.html",
+        ];
 
         $scope.toSearch = function (info, type) {
             $scope.ItemSearch = []
@@ -87,29 +54,36 @@ ctrls
             return false;
         }
 
-
         $scope.$on('$ionicView.beforeEnter', function () {
-            $rootScope.page = 1
             $ionicLoading.show({
-                template: '加载中...'
+                template: '<ion-spinner icon="android"></ion-spinner>',
+                duration: 8000
             });
+        })
+
+        $scope.$on('$ionicView.afterEnter', function () {
+            $rootScope.page = 1
             $http.get($rootScope.server_url + '/index/index?page=' + $rootScope.page).success(function (data) {
                 $scope.newsList = data.data.lists
 
                 $rootScope.totalPage = data.data.totalPage
+                $ionicLoading.hide();
+            });
+            $http.get($rootScope.server_url + '/index/tz').success(function (data) {
+                $scope.tiplist = data.data
 
             });
-            $ionicLoading.hide();
         });
 
 
-        $scope.reloadNews = function (types) {
+        $scope.reloadNews = function (types, nav = 1) {
             if (types == "infinite") {
                 $rootScope.page += 1;
+                var url = $rootScope.server_url + '/index/index?page=' + $rootScope.page
             } else if (types == "refresher") {
                 $rootScope.page = 1
             }
-            $http.get($rootScope.server_url + '/index/index?page=' + $rootScope.page).success(function (data) {
+            $http.get($rootScope.server_url + '/index/index?page=', {params: {page: $rootScope.page}}).success(function (data) {
                 if (types == "refresher") {
                     $scope.newsList = data.data.lists;
                     $scope.$broadcast('scroll.refreshComplete');
@@ -118,6 +92,7 @@ ctrls
                     $scope.$broadcast('scroll.infiniteScrollComplete');
                 }
             });
+
         }
         $scope.isLoadMore = function () {
             return $rootScope.page < $rootScope.totalPage;

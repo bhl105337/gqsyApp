@@ -32,6 +32,7 @@
     <script src="lib/angular/angular.min.js"></script>
     <!--<script src="lib/angular-cookie/angular-cookie.min.js"></script>-->
     <script src="lib/angular-cookies/angular-cookies.min.js"></script>
+    <script src="lib/ionic-native-transitions/dist/ionic-native-transitions.min.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
@@ -83,13 +84,17 @@
     <script id="userInfo.html" type="text/ng-template">
         <div class="modal" style="width:65%; background:#f2f2f2">
             <div class="sy-user-info">
-                <div class="sy-user-topImg">
+                <div class="sy-user-topImg" ng-if="userInfo.id > 1">
                     <div class="u-img"><img src="{{userIcon}}" alt=""></div>
-                    <div class="u-names">便当笑笑</div>
+                    <div class="u-names">{{userInfo.nickname}}</div>
                     <div class="u-coin">
                         <span>积分：</span>
                         <span>100</span>
                     </div>
+                </div>
+                <div class="sy-user-topImg" ng-if="!userInfo.id">
+                    <div class="u-img" ng-click="goLogin()"><img src="{{userIcon}}" alt=""></div>
+                    <div class="u-names">点击头像登录</div>
                 </div>
             </div>
             <div class="sy-user-nav">

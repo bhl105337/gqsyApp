@@ -3,7 +3,7 @@ ctrls
     .controller('BooksCtrl', function ($scope, $http, $rootScope, $state, $formValid, $ionicPopup, $ionicModal) {
         $rootScope.server_url = "http://guoqishuyuan.com/app.php";
 
-        $scope.$on('$ionicView.beforeEnter', function () {
+        $scope.$on('$ionicView.afterEnter', function () {
             //page_no     = 1;
             $http.get($rootScope.server_url + '/Yuedu/index').success(function (data) {
                 $scope.list = data.data

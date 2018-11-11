@@ -85,7 +85,7 @@
         </div>
     </ion-header-bar>
 
-    <ion-content class="sy-content" style="top:46px;">
+    <ion-content class="sy-content" style="top:46px;padding-top:0">
         <div class="user-s-info">
             <ul>
                 <li><span class="s-l">用户名</span><span class="s-r">{{user.username}}</span></li>
@@ -95,8 +95,8 @@
                 <!--<li><span class="s-l">登录密码</span><span class="s-r">******</span></li>-->
             </ul>
         </div>
-        <div class="logout">
-            <!--<span>退出</span>-->
+        <div class="logout" ng-click="logout()">
+            <span>退出</span>
         </div>
     </ion-content>
 </ion-view>

@@ -1,13 +1,11 @@
 ctrls
-    .controller('Dangjian_aCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $ionicSlideBoxDelegate, $state, $ionicModal, $ionicScrollDelegate) {
-        console.log($rootScope.server_url)
-        // $rootScope.server_url = "http://guoqishuyuan.com/app.php";
+    .controller('Dangjian_aCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $ionicSlideBoxDelegate, $state, $ionicModal, $ionicScrollDelegate, $cookies) {
         $scope.search_list = "none"
         $scope.search_backdrop = "none"
         $rootScope.page = 1;
         $rootScope.totalPage = 0;
         $scope.disImg = "inline-block"
-
+        $scope.userInfo = $rootScope.userInfo;
 
         $scope.tabNames = ['党员学习', '在线党课', '党员考试', '党建之窗'];
         $scope.slectIndex = 0;
@@ -65,7 +63,14 @@ ctrls
             $ionicSlideBoxDelegate.update(true);
         };
         $scope.$on('$ionicView.beforeEnter', function () {
+            $ionicLoading.show({
+                template: '<ion-spinner icon="android"></ion-spinner>',
+                duration: 8000
+            });
+        })
+        $scope.$on('$ionicView.afterEnter', function () {
             //page_no     = 1;
+            $rootScope.page = 1
             $http.get($rootScope.server_url + '/Dangjian/dangjian_a').success(function (data) {
                 $scope.list = data.data.list
 
@@ -74,6 +79,7 @@ ctrls
 
                 $ionicSlideBoxDelegate.loop(true); //解决轮播至最后一个不轮播的问题
                 $ionicSlideBoxDelegate.update(); //解决图片加载不出来的问题
+                $ionicLoading.hide();
             });
 
             $http.get($rootScope.server_url + '/Dangjian/dangjian_b').success(function (data) {
@@ -82,10 +88,30 @@ ctrls
 
             $http.get($rootScope.server_url + '/Dangjian/dangjian_d').success(function (data) {
                 $scope.list4 = data.data
-
             });
-            // $ionicSlideBoxDelegate.enableSlide(false);
         })
+
+        $scope.reloadDj = function (types, nav = 1) {
+            console.log(types)
+            // if (types == "infinite") {
+            //     $rootScope.page += 1;
+            //     var url = $rootScope.server_url + '/index/index?page=' + $rootScope.page
+            // } else if (types == "refresher") {
+            //     $rootScope.page = 1
+            // }
+            // $http.get($rootScope.server_url + '/index/index?page=', {params: {page: $rootScope.page}}).success(function (data) {
+            //     if (types == "refresher") {
+            //         $scope.newsList = data.data.lists;
+            //         $scope.$broadcast('scroll.refreshComplete');
+            //     } else {
+            //         $scope.newsList = $scope.newsList.concat(data.data.lists);
+            //         $scope.$broadcast('scroll.infiniteScrollComplete');
+            //     }
+            // });
+        }
+        $scope.isLoadMore = function () {
+            return $rootScope.page < $rootScope.totalPage;
+        }
     })
     .controller('Dangjian_bCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $state, $ionicPopup, $formValid, $ionicModal) {
 

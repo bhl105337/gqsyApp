@@ -1,0 +1,7 @@
+<ion-list class="sy-tz-list">
+    <ion-refresher pulling-text="下拉刷新..." on-refresh="reloadNews('refresher',2)" refreshing-text="正在刷新"></ion-refresher>
+    <ion-item href="#/tz_info/{{item.id}}" class="sy-tz-item" ng-repeat="(key,item) in tiplist">
+        <span>{{item.title}}</span>
+    </ion-item>
+</ion-list>
+<ion-infinite-scroll ng-if="isLoadMore()" on-infinite="reloadNews('infinite',2)"></ion-infinite-scroll>

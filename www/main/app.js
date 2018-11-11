@@ -14,15 +14,16 @@ var requireModules = [
     'starter.directives',
     'ngCordova',
     'ngCookies',
+    'ionic-native-transitions'
 ]
 angular.module('starter', requireModules)
 
-    .run(function ($ionicPlatform, $rootScope, $ionicHistory, $ionicViewSwitcher, $ionicModal, $ionicLoading, $state, $cookies, $cookieStore) {
-
-        $rootScope.userId = $cookies.get('user');
+    .run(function ($ionicPlatform, $rootScope, $ionicHistory, $ionicViewSwitcher, $ionicModal, $ionicLoading, $state, $cookies, $cookieStore, $ionicNativeTransitions) {
+        $rootScope.userInfo = $cookieStore.get('userInfo');
+        $rootScope.userId = $rootScope.userInfo ? $rootScope.userInfo.id : null;
         $rootScope.server_url = "http://guoqishuyuan.com/app.php";
         $rootScope.userIcon = "http://guoqishuyuan.com/uploads/app/timg.png";
-
+        console.log($rootScope.userId);
         //$rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState) {
         //    if ($rootScope.userIsLogin === -1) {
         //        $rootScope.userIsLogin = false;
@@ -41,6 +42,7 @@ angular.module('starter', requireModules)
         //        $state.go($rootScope.defaultPage);
         //    }
         //});
+
         $rootScope.clearHistory = function () {
             $ionicHistory.clearHistory();
         };
@@ -108,6 +110,7 @@ angular.module('starter', requireModules)
         };
 
         $rootScope.goUserInfoNav = function (navInfo) {
+            console.log($rootScope.userId)
             if (!$rootScope.userId) {
                 $rootScope.modal.hide();
                 $state.go("login")
@@ -145,6 +148,14 @@ angular.module('starter', requireModules)
             $ionicViewSwitcher.nextDirection("back");
             return false
         }
+
+        $rootScope.goLogin = function () {
+            $rootScope.modal.hide();
+            $state.go("login")
+            $ionicViewSwitcher.nextDirection("back");
+            return false
+        }
+
 
         /**
          * 初始化

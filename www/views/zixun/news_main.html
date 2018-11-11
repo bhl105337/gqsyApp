@@ -1,0 +1,38 @@
+<ion-view hide-nav-bar="true" hide-back-button="true" hide-show-nav-bar>
+    <link rel="stylesheet" href="./css/zx.css">
+    <style>
+        .item-input-inset{ background-image:linear-gradient(0deg, #fff, #fff 50%, transparent 50%) !important; }
+
+    </style>
+
+    <ion-header-bar class="bar bar-header sy-top-search top-header-nav" style="min-height:40px;">
+        <div class="header-comment">
+            <div class="user-comment">
+                <div class="user-info" ng-click="showUser()">
+                    <div class="u-top-img"><i class="user-top-img icon iconfont icon-yonghu"></i></div>
+                </div>
+            </div>
+            <div class="top-search">
+                <div class="top-s-con" ng-click="search('show')">
+                    <i class="search-icon icon iconfont icon-fangdajing"></i>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+        <ion-scroll class="sy-scroll-tab-x" direction="x" scrollbar-x="false" style="overflow-x: hidden; display:inline-block">
+            <div class="sy-nav-lv2" style="">
+                <div>
+                    <a ng-href="#/tab/zixun" ng-repeat="d in tabNames" ng-click="activeSlide($index)" ng-class="slectIndex==$index ? 'active' : '' ">{{d}}</a>
+                </div>
+            </div>
+        </ion-scroll>
+    </ion-header-bar>
+
+    <ion-content class="sy-content" style="background-color:#f0f0f0;" scrollbar-y="false">
+        <ion-slide-box class="conrentSilde" on-slide-changed="slideChanged(index)" active-slide="slideIndex" does-continue="false" show-pager="false">
+            <ion-slide ng-repeat="p in pages"  style=" min-height:375px">
+                <div ng-include="p"></div>
+            </ion-slide>
+        </ion-slide-box>
+    </ion-content>
+</ion-view>

@@ -49,8 +49,8 @@
 /** 通知列表页*/
 .sy-tz-list{
     float:left;
-    width:96%;
-    margin-left:2%;
+    width:100%;
+    /*margin-left:2%;*/
     border-top:0;
 }
 

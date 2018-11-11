@@ -52,6 +52,7 @@ angular.module('starter.configs', [])
     //     $ionicConfigProvider.platform.android.views.transition('android');
     // })
     .config(function ($urlRouterProvider, $httpProvider, $ionicConfigProvider) {
+        // $ionicConfigProvider.views.transition('no');
         // $httpProvider.interceptors.push('authInterceptor'); // 设置拦截器
         ionic.Platform.isFullScreen = false; // 禁止全屏显示
 

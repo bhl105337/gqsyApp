@@ -33,7 +33,7 @@ ctrls
     /**
      *登录
      */
-    .controller('loginCtrl', function ($scope, $rootScope, $http, $state, $formValid, $tips, $ionicPopup, $timeout, $ionicViewSwitcher, $cookies) {
+    .controller('loginCtrl', function ($scope, $rootScope, $http, $state, $formValid, $tips, $ionicPopup, $timeout, $ionicViewSwitcher, $cookies, $cookieStore, $ionicHistory) {
         $rootScope.server_url = "http://guoqishuyuan.com/app.php";
         $rootScope.login_logo = "http://guoqishuyuan.com/uploads/app/gqsy.png";
 
@@ -55,7 +55,7 @@ ctrls
             }
         };
         $scope.goBack = function () {
-            $state.go("tab.dangjian");
+            $ionicHistory.goBack();
             $ionicViewSwitcher.nextDirection("back");
             return false;
         }
@@ -82,8 +82,11 @@ ctrls
                 }
                 var expireDate = new Date();
                 expireDate.setDate(expireDate.getDate() + 30);
-                $cookies.put('user', data.data.id, {'expires': expireDate});
-                $rootScope.clearHistory();
+                $cookieStore.put('user', data.data.id, {'expires': expireDate});
+                $cookieStore.put('userInfo', data.data, {'expires': expireDate});
+                // $rootScope.clearHistory();
+                $rootScope.userId = $cookies.get('user');
+                $rootScope.userInfo = data.data;
                 $state.go("tab.dangjian");
                 console.log(data);
 
@@ -286,7 +289,7 @@ ctrls
     /**
      * 设置
      */
-    .controller("user_settingCtrl", function ($scope, $rootScope, $http, $state, $stateParams, $ionicHistory, $ionicViewSwitcher) {
+    .controller("user_settingCtrl", function ($scope, $rootScope, $http, $state, $stateParams, $ionicHistory, $ionicViewSwitcher, $cookies, $cookieStore) {
         $rootScope.server_url = "http://guoqishuyuan.com/app.php";
         $scope.$on('$ionicView.beforeEnter', function () {
             //$scope.user = $rootScope.user;
@@ -294,6 +297,7 @@ ctrls
             $http.get($rootScope.server_url + '/User/userCenter?uid=' + $scope.uid).success(function (data) {
                 if (data.code == "FAIL") {
                     $state.go("login");
+                    $ionicViewSwitcher.nextDirection("back");
                     return false;
                 }
 
@@ -301,6 +305,18 @@ ctrls
                 $rootScope.user = data.data;
             });
         })
+
+        $scope.logout = function () {
+            $ionicHistory.clearCache().then(function () {
+                $cookieStore.remove('user')
+                $cookieStore.remove('userInfo')
+                $rootScope.userId = null;
+                $rootScope.userInfo = null;
+                $state.go("tab.dangjian");
+                $ionicViewSwitcher.nextDirection("back");
+                return false;
+            })
+        }
 
         $scope.goBack = function () {
             $rootScope.uid = $scope.uid;
