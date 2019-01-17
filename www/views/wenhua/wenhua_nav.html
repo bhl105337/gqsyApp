@@ -95,7 +95,7 @@
         </div>
     </ion-header-bar>
 
-    <ion-content class="sy-content" style="top:5px!important;">
+    <ion-content class="sy-content" style="top:5px!important;" on-swipe-left="goBack()">
         <ion-list class="sy-wenku-list">
             <ion-item href="#/wenhuainfo/{{item.id}}/{{yid}}/{{nav}}" class="sy-wenhua-nav-items"  ng-repeat="(key,item) in list">
                 <div class="img">

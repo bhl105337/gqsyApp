@@ -70,7 +70,7 @@ angular.module('starter.routes', []).config(function ($stateProvider, $urlRouter
             cache: false,
             views: {
                 'tab-dangjian': {
-                    templateUrl: 'views/dangjian/dj_index_main.html',
+                    templateUrl: 'views/dangjian/dj_index_11.html',
                     controller: 'Dangjian_aCtrl'
                 }
             }
@@ -89,7 +89,7 @@ angular.module('starter.routes', []).config(function ($stateProvider, $urlRouter
             url: '/kaoshi',
             views: {
                 'tab-dangjian': {
-                    templateUrl: 'views/dangjian/dj_index_3.html',
+                    templateUrl: 'views/dangjian/dj_index_33.html',
                     controller: 'Dangjian_cCtrl'
                 }
             }
@@ -98,7 +98,7 @@ angular.module('starter.routes', []).config(function ($stateProvider, $urlRouter
             url: '/zhichuang',
             views: {
                 'tab-dangjian': {
-                    templateUrl: 'views/dangjian/dj_index_4.html',
+                    templateUrl: 'views/dangjian/dj_index_44.html',
                     controller: 'Dangjian_dCtrl'
                 }
             }
@@ -122,9 +122,10 @@ angular.module('starter.routes', []).config(function ($stateProvider, $urlRouter
         //
         .state('tab.books', {
             url: '/books',
+            cache: false,
             views: {
                 'tab-books': {
-                    templateUrl: 'views/books/books.html',
+                    templateUrl: 'views/books/books_a.html',
                     controller: 'BooksCtrl'
                 }
             }
@@ -164,8 +165,15 @@ angular.module('starter.routes', []).config(function ($stateProvider, $urlRouter
             templateUrl: 'views/books/books_info.html'
         })
 
+        .state('booksinfo2', {
+            url: '/booksinfo2',
+            controller: 'BookInfo2Ctrl',
+            templateUrl: 'views/books/books_info2.html'
+        })
+
         .state('tab.wenhua', {
             url: '/wenhua',
+            cache: false,
             views: {
                 'tab-wenhua': {
                     templateUrl: 'views/wenhua/wenhua_a.html',

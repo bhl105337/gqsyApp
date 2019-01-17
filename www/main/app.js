@@ -18,12 +18,16 @@ var requireModules = [
 ]
 angular.module('starter', requireModules)
 
-    .run(function ($ionicPlatform, $rootScope, $ionicHistory, $ionicViewSwitcher, $ionicModal, $ionicLoading, $state, $cookies, $cookieStore, $ionicNativeTransitions) {
+    .run(function ($ionicPlatform, $rootScope, $ionicHistory, $ionicViewSwitcher, $ionicModal, $ionicLoading, $state, $cookies, $cookieStore, $ionicNativeTransitions, $sce, $http) {
         $rootScope.userInfo = $cookieStore.get('userInfo');
-        $rootScope.userId = $rootScope.userInfo ? $rootScope.userInfo.id : null;
+        $rootScope.userId = $rootScope.userInfo ? parseInt($rootScope.userInfo.id) : 0;
         $rootScope.server_url = "http://guoqishuyuan.com/app.php";
         $rootScope.userIcon = "http://guoqishuyuan.com/uploads/app/timg.png";
-        console.log($rootScope.userId);
+
+        $rootScope.dzsUrl = "http://wap.cmread.com/hywap/thrdToBookDetail?";
+        $rootScope.enterpriseId = 77300001;
+
+
         //$rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState) {
         //    if ($rootScope.userIsLogin === -1) {
         //        $rootScope.userIsLogin = false;
@@ -77,8 +81,32 @@ angular.module('starter', requireModules)
             scope: $rootScope,
             animation: 'slide-in-right'
         });
-        $rootScope.search = function (key) {
+        $rootScope.search = function (key, type) {
             if (key == "show") {
+                switch (type) {
+                    case "zx":
+                        $rootScope.sType = "zx";
+                        $rootScope.server_Local = "/index/search?searchName=";
+                        break;
+                    case "dj":
+                        $rootScope.sType = "dj";
+                        $rootScope.server_Local = "/Dangjian/dangjian_search?searchName=";
+                        break;
+                    case "yd":
+                        $rootScope.sType = "yd";
+                        $rootScope.server_Local = "/Dangjian/dangjian_search?searchName=";
+                        break;
+                    case "wh":
+                        $rootScope.sType = "wh";
+                        $rootScope.server_Local = "/Dangjian/dangjian_search?searchName=";
+                        break;
+                    default:
+                        $rootScope.sType = "dj";
+                        $rootScope.server_Local = "/Dangjian/dangjian_search?searchName=";
+                        break;
+                }
+                console.log($rootScope.sType)
+
                 $rootScope.searchModal.show();
             } else {
                 $rootScope.ItemSearch = []
@@ -91,6 +119,28 @@ angular.module('starter', requireModules)
         /**
          * 搜索结果
          */
+
+        $rootScope.toSearch = function (info, type) {
+            var sType = $rootScope.sType;
+            var server_Local = $rootScope.server_Local;
+            console.log(sType)
+            $rootScope.ItemSearch = []
+            $http.get($rootScope.server_url + server_Local + info.searchName + '&page=' + $rootScope.page).success(function (data) {
+                $rootScope.search_list = "inline-block";
+                $rootScope.search_backdrop = "#333"
+                $rootScope.itemSearch = data.data;
+                if (type == "go") {
+                    $rootScope.search_list = "none"
+                    $rootScope.search_backdrop = "none"
+                    $rootScope.searchModal.hide();
+                    console.log(type)
+                    $rootScope.searchInfo.show();
+                    // $state.go("search");
+                    // return false;
+                }
+            });
+        }
+
         $ionicModal.fromTemplateUrl('searchInfo.html', function (searchInfoModal) {
             $rootScope.searchInfo = searchInfoModal;
         }, {
@@ -109,44 +159,63 @@ angular.module('starter', requireModules)
             }
         };
 
+        /**
+         * 文章详情
+         * @param id
+         * @param type
+         * @returns {boolean}
+         */
+        $rootScope.goSearchInfo = function (id, type) {
+            $rootScope.searchInfo.hide();
+            $rootScope.searchModal.hide();
+            $rootScope.itemSearch = $rootScope.itemSearch;
+            $state.go("search_info", {id: id, type: type});
+            return false;
+        }
+
+        /**
+         * 用户模块导航
+         * @param navInfo
+         * @returns {boolean}
+         */
         $rootScope.goUserInfoNav = function (navInfo) {
-            console.log($rootScope.userId)
-            if (!$rootScope.userId) {
+            if (!$rootScope.userInfo) {
                 $rootScope.modal.hide();
                 $state.go("login")
                 $ionicViewSwitcher.nextDirection("back");
                 return false
+            } else {
+                var uid = $rootScope.userInfo.id;
+                switch (navInfo) {
+                    case "readLog":
+                        $rootScope.modal.hide();
+                        $state.go("read_log", {uid: uid})
+                        break;
+                    case "ideaInfo":
+                        $rootScope.modal.hide();
+                        $state.go("read_idea", {uid: uid})
+                        break;
+                    case "coinInfo":
+                        $rootScope.modal.hide();
+                        $state.go("user_coin", {uid: uid})
+                        break;
+                    case "changeLog":
+                        $rootScope.modal.hide();
+                        $state.go("tab.read_log", {uid: uid})
+                        break;
+                    case "mission":
+                        $rootScope.modal.hide();
+                        $state.go("tab.read_log", {uid: uid})
+                        break;
+                    case "setting":
+                        $rootScope.modal.hide();
+                        $state.go("user_setting", {uid: uid})
+                        break;
+                }
+                // $ionicViewSwitcher.nextDirection("forwoard");
+                $ionicViewSwitcher.nextDirection("back");
+                return false
             }
-            var uid = $rootScope.userId;
-            switch (navInfo) {
-                case "readLog":
-                    $rootScope.modal.hide();
-                    $state.go("read_log", {uid: uid})
-                    break;
-                case "ideaInfo":
-                    $rootScope.modal.hide();
-                    $state.go("read_idea", {uid: uid})
-                    break;
-                case "coinInfo":
-                    $rootScope.modal.hide();
-                    $state.go("user_coin", {uid: uid})
-                    break;
-                case "changeLog":
-                    $rootScope.modal.hide();
-                    $state.go("tab.read_log", {uid: uid})
-                    break;
-                case "mission":
-                    $rootScope.modal.hide();
-                    $state.go("tab.read_log", {uid: uid})
-                    break;
-                case "setting":
-                    $rootScope.modal.hide();
-                    $state.go("user_setting", {uid: uid})
-                    break;
-            }
-            // $ionicViewSwitcher.nextDirection("forwoard");
-            $ionicViewSwitcher.nextDirection("back");
-            return false
         }
 
         $rootScope.goLogin = function () {

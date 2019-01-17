@@ -2,7 +2,7 @@
 .sy-xuexi-list, .sy--list{
     float:left;
     width:100%;
-    margin-bottom: 40px;
+    margin-bottom:40px;
 }
 
 .sy-xuexi-list .sy-xuexi-items{
@@ -247,4 +247,60 @@
     width:100%;
     bottom:0;
     right:0;
+}
+
+/*党建考试选择*/
+.ks-type-top{
+    width:100%;
+    padding:0 3%;
+    margin-top:30px;
+}
+
+.ks-div{
+    width:100%;
+    display:inline-block;
+    border-bottom:2px solid #fe2d4c;
+}
+
+.ks-title{
+    display:inline-block;
+    font-size:14px;
+    font-weight:normal;
+    background:#fe2d4c;
+    color:white;
+    padding:4px 10px;
+    border-radius:6px 6px 0 0;
+}
+
+.ks-choose .item-radio{
+    /*border-left: 0;*/
+    /*border-right: 0;*/
+    margin-top:5px;
+    border-radius:40px;
+}
+
+.ks-choose-radio-c .ks-choose-item.item-content{
+    padding:10px 20px;
+}
+
+.ks-choose-radio-c i.radio-icon{
+    padding:5px;
+    top:2px;
+    right:10px;
+    font-size:1.2rem;
+    color:#4cd964;
+}
+
+.ks-submit{
+    width:94%;
+    margin-left:3%;
+    margin-top:25px;
+    background:#4cd964;
+    border:0;
+    border-radius:6px;
+    height:40px;
+    line-height:40px;
+    text-align:center;
+    font-size:1.1rem;
+    color:white;
 }

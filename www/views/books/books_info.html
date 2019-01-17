@@ -24,6 +24,11 @@
             font-size:16px;
         }
 
+        .book-info-top button{
+            height:44px;
+            color:#ff2d4b;
+        }
+
         .sy-book-imgs{
             width:100%;
             height:275px;
@@ -100,11 +105,12 @@
             margin-left:0px;
             margin-right:0px;
             color:#8f8f94;
+            padding:0 4%;
         }
 
         .bc-top p img{
             float:left;
-            width:100%;
+            max-width:100%;
         }
 
         .bc-top span{
@@ -122,7 +128,7 @@
         </div>
     </ion-header-bar>
 
-    <ion-content class="sy-content" style="top:46px;">
+    <ion-content class="sy-content-book" style="top:46px;" on-swipe-left="goBack()">
         <div class="sy-book-imgs">
             <div>
                 <img src="{{info.imgUrl}}" alt="">
@@ -138,6 +144,8 @@
                 {{info.content}}
             </div>
             <input type="hidden" id="pdfck" value="{$Posts.pdfStatus}">
+            <!--<iframe data-tap-disabled="true" scroll="true" overflow-scroll="true" style="height:100%;width:100%;min-height: 100%" ng-src="{{paySrc}}"></iframe>-->
         </div>
     </ion-content>
+
 </ion-view>

@@ -71,18 +71,19 @@ ctrls
         };
 
         $scope.loginSuccess = function (data) {
-            $rootScope.user = data.data;
+            $rootScope.userData = data.data.user;
+            console.log($rootScope.userData)
             $rootScope.userIsLogin = true;
             var from = $rootScope["fromStateName"];
             $rootScope["fromStateName"] = null;
-            $http.get($rootScope.server_url + '/User/userCenter?uid=' + $rootScope.user.user.id).success(function (data) {
+            $http.get($rootScope.server_url + '/User/userCenter?uid=' + $rootScope.userData.id).success(function (data) {
                 if (data.code == "FAIL") {
                     $state.go("login");
                     return false;
                 }
                 var expireDate = new Date();
                 expireDate.setDate(expireDate.getDate() + 30);
-                $cookieStore.put('user', data.data.id, {'expires': expireDate});
+                // $cookieStore.put('user', data.data.id, {'expires': expireDate});
                 $cookieStore.put('userInfo', data.data, {'expires': expireDate});
                 // $rootScope.clearHistory();
                 $rootScope.userId = $cookies.get('user');
@@ -308,7 +309,6 @@ ctrls
 
         $scope.logout = function () {
             $ionicHistory.clearCache().then(function () {
-                $cookieStore.remove('user')
                 $cookieStore.remove('userInfo')
                 $rootScope.userId = null;
                 $rootScope.userInfo = null;

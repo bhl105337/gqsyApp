@@ -174,19 +174,6 @@ ctrls
             });
         }
 
-        /**
-         * 文章详情
-         * @param id
-         * @param type
-         * @returns {boolean}
-         */
-        $scope.goSearchInfo = function (id, type) {
-            $scope.searchInfo.hide();
-            $rootScope.itemSearch = $rootScope.itemSearch;
-            $state.go("search_info", {id: id, type: type});
-            return false;
-        }
-
         $scope.$on('$ionicView.beforeEnter', function () {
             //page_no     = 1;
             $http.get($rootScope.server_url + '/index/tz').success(function (data) {
@@ -221,7 +208,7 @@ ctrls
 
         $scope.goBack = function () {
             $ionicHistory.goBack();
-            $ionicViewSwitcher.nextDirection("back");
+            $ionicViewSwitcher.nextDirection("forward")
             return false;
         }
     })

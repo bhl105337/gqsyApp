@@ -37,12 +37,12 @@ $ keytool -list -v -keystore  prosumer.keystore -storepass prosumer >out.txt
 
 
 一次性运行
-$ D: && cd d:\www\gqsy\gqsy\ && cordova build  android --release  && jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA1 -keystore gqsy.keystore -storepass ljgqsy platforms\android\build\outputs\apk\android-release-unsigned.apk gqsy && start platforms\android\build\outputs\apk\android-release-unsigned.apk
+$ D: && cd D:\WWW\gqsy\gqsy && cordova build  android --release  && jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA1 -keystore gqsy.keystore -storepass ljgqsy platforms\android\build\outputs\apk\android-release-unsigned.apk gqsy && start platforms\android\build\outputs\apk\android-release-unsigned.apk
 
  p
 调试
 
-$ D: && cd d:\www\jeesell\prosumer\ && ionic run android -l -c -s
+$ D: && cd d:\www\gqsy\gqsy\ && ionic run android -l -c -s
 
 
 serve

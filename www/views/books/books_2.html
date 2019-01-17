@@ -1,0 +1,13 @@
+<ion-list class="sy-tuijian-list">
+    <ion-item ng-if="item.l_t == 2" href="#/tab/booksnav/{{item.id}}/2" class="sy-tuijian-item" ng-repeat="(key,item) in list2">
+        <img ng-src="{{item.imgUrl}}">
+        <!--<img ng-src="{{chat.face}}">-->
+        <span>{{item.titles}}</span>
+    </ion-item>
+    <ion-item ng-if="item.l_t == 1" href="#/booksinfo/{{item.id}}/0/2" class="sy-tuijian-item" ng-repeat="(key,item) in list2">
+        <img ng-src="{{item.imgUrl}}">
+        <!--<img ng-src="{{chat.face}}">-->
+        <span>{{item.titles}}</span>
+    </ion-item>
+</ion-list>
+

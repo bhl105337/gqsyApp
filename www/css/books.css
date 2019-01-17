@@ -379,3 +379,78 @@
     text-overflow:ellipsis;
     font-size:16px;
 }
+
+/*电子书*/
+.dzs-content{
+    display:inline-block;
+    width:94%;
+    margin-left:3%;
+}
+
+.sy-sylm-dzs{
+    padding:10px;
+    border:0;
+    width:33%;
+    display:inline-block;
+}
+
+.sy-sylm-dzs img{
+    width:100%;
+    display:inline-block;
+}
+
+@media (max-width:415px){
+    .sy-sylm-dzs img{
+        width:108px;
+        height:155px;
+        display:inline-block;
+    }
+    /*.sy-content-dzs{*/
+        /*height:736px;*/
+    /*}*/
+}
+
+@media (max-width:376px){
+    .sy-sylm-dzs img{
+        width:96px;
+        height:138px;
+        display:inline-block;
+    }
+    /*.sy-content-dzs{*/
+        /*height:667px;*/
+    /*}*/
+}
+
+@media (max-width:361px){
+    .sy-sylm-dzs img{
+        width:92px;
+        height:131px;
+        display:inline-block;
+    }
+}
+
+@media (max-width:321px){
+
+    .sy-sylm-dzs img{
+        width:79px;
+        height:113px;
+        display:inline-block;
+    }
+    /*.sy-content-dzs{*/
+        /*height:568px;*/
+    /*}*/
+}
+
+.sy-sylm-dzs span{
+    width:100%;
+    font-size:.8rem;
+    display:inline-block;
+    white-space:normal;
+    height:40px;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2;
+    overflow:hidden;
+}
+
+

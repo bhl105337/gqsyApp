@@ -99,13 +99,21 @@
             </div>
             <div class="sy-user-nav">
                 <ul>
-                    <li ng-click="goUserInfoNav('readLog')"><i class="icon iconfont icon-yuedu"></i><span>阅读记录</span></li>
-                    <li ng-click="goUserInfoNav('ideaInfo')"><i class="icon iconfont icon-jilu2-copy"></i><span>学习心得</span></li>
-                    <li ng-click="goUserInfoNav('coinInfo')"><i class="icon iconfont icon-guanli"></i><span>积分管理</span></li>
+                    <li ng-click="goUserInfoNav('readLog')">
+                        <i class="icon iconfont icon-yuedu"></i><span>阅读记录</span>
+                    </li>
+                    <li ng-click="goUserInfoNav('ideaInfo')">
+                        <i class="icon iconfont icon-jilu2-copy"></i><span>学习心得</span>
+                    </li>
+                    <li ng-click="goUserInfoNav('coinInfo')">
+                        <i class="icon iconfont icon-guanli"></i><span>积分管理</span>
+                    </li>
                     <!--<li ng-click="goUserInfoNav('changeLog')"><i class="icon iconfont icon-duihuan"></i><span>兑换记录</span></li>-->
                     <!--<li ng-click="goUserInfoNav('mission')"><i class="icon iconfont icon-renwu1"></i><span>历史任务</span></li>-->
                     <!--<li ng-click=""><i class="icon iconfont icon-shangcheng"></i><span>商城</span></li>-->
-                    <li ng-click="goUserInfoNav('setting')"><i class="icon iconfont icon-ttpodicon"></i><span>设置</span></li>
+                    <li ng-click="goUserInfoNav('setting')">
+                        <i class="icon iconfont icon-ttpodicon"></i><span>设置</span>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -124,6 +132,7 @@
                     <div class="sy-search-right" ng-click="search('hide')">
                         取 消
                     </div>
+                    <!--<input type="submit" value=" 搜索">-->
                 </form>
             </div>
             <div class="search-backdrop-bg" style="background: {{search_backdrop}};">

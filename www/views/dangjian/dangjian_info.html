@@ -36,16 +36,16 @@
             width:100%;
             display:inline-block;
             margin-top:10px;
-            padding:0 2%;
+            padding:0 4%;
         }
 
         .dj-content p img{
             display:inline-block;
-            width:100%;
+            max-width:100%;
         }
     </style>
 
-    <ion-content class="dj-info-content" delegate-handle="sy_content">
+    <ion-content class="dj-info-content" delegate-handle="sy_content" on-swipe-left="goBack()">
         <div class="sy-dj">
             <div class="dj-img"><img src="{{imgUrl}}" alt=""></div>
             <div class="dj-title">{{info.title}}</div>

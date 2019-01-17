@@ -1,0 +1,21 @@
+<ion-list class="sy-sylm-list">
+    <!--<ion-item ng-if="item.l_t == 2" href="#/tab/booksnav/{{item.id}}/3" class="sy-sylm-item" ng-repeat="(key,item) in list3">-->
+    <!--<img ng-src="{{item.imgUrl}}">-->
+    <!--&lt;!&ndash;<img ng-src="{{chat.face}}">&ndash;&gt;-->
+    <!--<span>{{item.titles}}</span>-->
+    <!--</ion-item>-->
+    <!--<ion-item ng-if="item.l_t == 1" href="#/booksinfo/{{item.id}}/0/3" class="sy-sylm-item" ng-repeat="(key,item) in list3">-->
+    <!--<img ng-src="{{item.imgUrl}}">-->
+    <!--&lt;!&ndash;<img ng-src="{{chat.face}}">&ndash;&gt;-->
+    <!--<span>{{item.titles}}</span>-->
+    <!--</ion-item>-->
+    <div class="dzs-content">
+        <ion-item class="sy-sylm-dzs" ng-click="bookContent(v3.id,v3.e_book_id)" ng-repeat="(k3,v3) in list3">
+            <!--<div class="img"><img ng-src="{{renmin}}"></div>-->
+            <div class="img"><img ng-src="{{v3.imgUrl}}"></div>
+            <!--<img ng-src="{{chat.face}}">-->
+            <span>{{v3.bookName}}</span>
+        </ion-item>
+    </div>
+</ion-list>
+

@@ -1,0 +1,12 @@
+<ion-list class="sy-wenku-list">
+    <ion-item ng-if="item.l_t == 2" href="#/tab/wenhua_nav/{{item.id}}/1" class="sy-wenku-item" ng-repeat="(key,item) in list">
+        <img ng-src="{{item.imgUrl}}">
+        <!--<img ng-src="{{chat.face}}">-->
+        <span>{{item.titles}}</span>
+    </ion-item>
+    <ion-item ng-if="item.l_t == 1" href="#/wenhuainfo/{{item.id}}/0/1" class="sy-wenku-item" ng-repeat="(key,item) in list">
+        <img ng-src="{{item.imgUrl}}">
+        <!--<img ng-src="{{chat.face}}">-->
+        <span>{{item.titles}}</span>
+    </ion-item>
+</ion-list>

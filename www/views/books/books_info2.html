@@ -1,0 +1,20 @@
+<ion-view hide-nav-bar="true" hide-back-button="true">
+    <link rel="stylesheet" href="./css/books.css">
+    <style>
+
+    </style>
+    <!--<ion-header-bar class="bar bar-header zx-info-top top-header-nav" style="">-->
+    <!--<div class="sy-info-nav dj_nav">-->
+    <!--<button class="button button-icon" ng-click="goBack()">-->
+    <!--<i class="icon ion-ios-arrow-back"></i>-->
+    <!--</button>-->
+    <!--<span>{{info.title}}</span>-->
+    <!--</div>-->
+    <!--</ion-header-bar>-->
+
+    <ion-content class="sy-content-book" style="top:0;" on-swipe-left="goBack()">
+        <iframe class="sy-content-dzs" data-tap-disabled="true" scroll="true" overflow-scroll="true" style="width:100%;min-height: 100%; height:{{h}}px" ng-src="{{paySrc}}"></iframe>
+        </div>
+    </ion-content>
+
+</ion-view>
