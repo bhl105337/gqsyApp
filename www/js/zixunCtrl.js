@@ -6,22 +6,6 @@ ctrls
         $rootScope.page = 1;
         $rootScope.totalPage = 0;
 
-        $scope.tabNames = ['新闻资讯', '公告通知'];
-        $scope.slectIndex = 0;
-
-        $scope.activeSlide = function (index) {//点击时候触发
-            $ionicSlideBoxDelegate.slide(index);
-            $scope.slectIndex = index;
-        };
-        $scope.slideChanged = function (index) {//滑动时候触发
-            // $ionicSlideBoxDelegate.enableSlide(false);
-            $scope.slectIndex = index;
-        };
-        $scope.pages = [
-            "views/zixun/news_1.html",
-            "views/zixun/news_2.html",
-        ];
-
         $scope.toSearch = function (info, type) {
             $scope.ItemSearch = []
             $http.get($rootScope.server_url + '/index/search?searchName=' + info.searchName + "&page=" + $rootScope.page).success(function (data) {
@@ -68,10 +52,6 @@ ctrls
 
                 $rootScope.totalPage = data.data.totalPage
                 $ionicLoading.hide();
-            });
-            $http.get($rootScope.server_url + '/index/tz').success(function (data) {
-                $scope.tiplist = data.data
-
             });
         });
 

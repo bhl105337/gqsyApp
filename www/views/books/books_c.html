@@ -21,9 +21,12 @@
         <ion-scroll class="sy-scroll-tab-x" direction="x" scrollbar-x="false" style="overflow-x: hidden;">
             <div class="sy-nav-lv2" style="">
                 <div>
-                    <a ng-href="#/tab/books">经典阅读</a>
-                    <a ng-href="#/tab/books_b">新书推荐</a>
-                    <a ng-href="#/tab/books_c" class="active">电子书</a>
+                    <a ng-click="tabsChange(1,'tab.books')" ng-class="tabactive==1 ? 'active' : '' ">经典阅读</a>
+                    <a ng-click="tabsChange(2,'tab.books_b')" ng-class="tabactive==2 ? 'active' : '' ">新书推荐</a>
+                    <a ng-click="tabsChange(3,'tab.books_c')" ng-class="tabactive==3 ? 'active' : '' ">电子书</a>
+                    <!--<a ng-href="#/tab/books">经典阅读</a>-->
+                    <!--<a ng-href="#/tab/books_b">新书推荐</a>-->
+                    <!--<a ng-href="#/tab/books_c" class="active">电子书</a>-->
                 </div>
             </div>
         </ion-scroll>
@@ -32,16 +35,12 @@
     <ion-content class="sy-content">
 
         <ion-list class="sy-sylm-list">
-            <ion-item  ng-if="item.l_t == 2" href="#/tab/booksnav/{{item.id}}/3" class="sy-sylm-item" ng-repeat="(key,item) in list">
-                <img ng-src="{{item.imgUrl}}">
-                <!--<img ng-src="{{chat.face}}">-->
-                <span>{{item.titles}}</span>
-            </ion-item>
-            <ion-item  ng-if="item.l_t == 1" href="#/booksinfo/{{item.id}}/0/3" class="sy-sylm-item" ng-repeat="(key,item) in list">
-                <img ng-src="{{item.imgUrl}}">
-                <!--<img ng-src="{{chat.face}}">-->
-                <span>{{item.titles}}</span>
-            </ion-item>
+            <div class="dzs-content">
+                <ion-item class="sy-sylm-dzs" ng-click="bookContent(v3.id,v3.e_book_id)" ng-repeat="(k3,v3) in list">
+                    <div class="img"><img ng-src="{{v3.imgUrl}}"></div>
+                    <span>{{v3.bookName}}</span>
+                </ion-item>
+            </div>
         </ion-list>
 
     </ion-content>

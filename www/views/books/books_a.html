@@ -25,8 +25,8 @@
                     <a ng-click="tabsChange(2,'tab.books_b')" ng-class="tabactive==2 ? 'active' : '' ">新书推荐</a>
                     <a ng-click="tabsChange(3,'tab.books_c')" ng-class="tabactive==3 ? 'active' : '' ">电子书</a>
 
-                    <!--<a ng-href="#/tab/books">经典阅读</a>-->
-                    <!--<a ng-href="#/tab/books_b" class="active">新书推荐</a>-->
+                    <!--<a ng-href="#/tab/books" class="active">经典阅读</a>-->
+                    <!--<a ng-href="#/tab/books_b">新书推荐</a>-->
                     <!--<a ng-href="#/tab/books_c">电子书</a>-->
                 </div>
             </div>
@@ -35,18 +35,21 @@
 
     <ion-content class="sy-content">
 
-        <ion-list class="sy-tuijian-list">
-            <ion-item  ng-if="item.l_t == 2" href="#/tab/booksnav/{{item.id}}/2" class="sy-tuijian-item" ng-repeat="(key,item) in list">
+        <ion-list class="sy-shumu-list">
+
+            <ion-item ng-if="item.l_t == 2" href="#/tab/booksnav/{{item.id}}/1" class="sy-shumu-item" ng-repeat="(key,item) in list">
                 <img ng-src="{{item.imgUrl}}">
                 <!--<img ng-src="{{chat.face}}">-->
                 <span>{{item.titles}}</span>
             </ion-item>
-            <ion-item  ng-if="item.l_t == 1" href="#/booksinfo/{{item.id}}/0/2" class="sy-tuijian-item" ng-repeat="(key,item) in list">
+            <ion-item ng-if="item.l_t == 1" href="#/booksinfo/{{item.id}}/0/1" class="sy-shumu-item" ng-repeat="(key,item) in list">
                 <img ng-src="{{item.imgUrl}}">
                 <!--<img ng-src="{{chat.face}}">-->
                 <span>{{item.titles}}</span>
             </ion-item>
+
         </ion-list>
+
 
     </ion-content>
 </ion-view>

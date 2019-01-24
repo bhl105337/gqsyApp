@@ -27,6 +27,8 @@ angular.module('starter', requireModules)
         $rootScope.dzsUrl = "http://wap.cmread.com/hywap/thrdToBookDetail?";
         $rootScope.enterpriseId = 77300001;
 
+        $rootScope.tabactive = 1;
+
 
         //$rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState) {
         //    if ($rootScope.userIsLogin === -1) {
@@ -223,6 +225,16 @@ angular.module('starter', requireModules)
             $state.go("login")
             $ionicViewSwitcher.nextDirection("back");
             return false
+        };
+
+        /**
+         *跳转动画
+         */
+        $rootScope.tabsChange = function (tabs, href) {
+            $rootScope.tabactive = tabs;
+            $state.go(href);
+            $ionicViewSwitcher.nextDirection("forward");
+            return false;
         }
 
 

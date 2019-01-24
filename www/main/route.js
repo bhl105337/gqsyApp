@@ -49,8 +49,8 @@ angular.module('starter.routes', []).config(function ($stateProvider, $urlRouter
             cache: false,
             views: {
                 'tab-zixun': {
-                    // templateUrl: 'views/zixun/zixun.html',
-                    templateUrl: 'views/zixun/news_main.html',
+                    templateUrl: 'views/zixun/zixun.html',
+                    // templateUrl: 'views/zixun/news_main.html',
                     controller: 'ZixunCtrl'
                 }
             }
@@ -167,6 +167,7 @@ angular.module('starter.routes', []).config(function ($stateProvider, $urlRouter
 
         .state('booksinfo2', {
             url: '/booksinfo2',
+            cache: false,
             controller: 'BookInfo2Ctrl',
             templateUrl: 'views/books/books_info2.html'
         })
