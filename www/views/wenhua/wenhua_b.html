@@ -30,6 +30,7 @@
     </ion-header-bar>
 
     <ion-content class="sy-content">
+        <ion-refresher pulling-text="下拉刷新..." on-refresh="reloadNews('refresher')" refreshing-text="正在刷新"></ion-refresher>
         <ion-list class="sy-yxgq-list">
             <ion-item href="#/wenhuainfo/{{item.id}}/0/2" class="sy-yxgq-item" ng-repeat="(key,item) in list">
                 <img ng-src="{{item.imgUrl}}">

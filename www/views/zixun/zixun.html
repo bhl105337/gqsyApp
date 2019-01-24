@@ -30,10 +30,8 @@
     </ion-header-bar>
 
     <ion-content class="sy-content" style="background-color:#f0f0f0;" scrollbar-y="false">
-
+        <ion-refresher pulling-text="下拉刷新..." on-refresh="reloadNews('refresher')" refreshing-text="正在刷新"></ion-refresher>
         <ion-list class="sy-zx-list" style="top: 100px;">
-            <ion-refresher pulling-text="下拉刷新..." on-refresh="reloadNews('refresher')" refreshing-text="正在刷新"></ion-refresher>
-
             <ion-item href="#/zixun_info/{{item.id}}" class="sy-zx-item" ng-repeat="(key,item) in newsList">
             <!--<ion-item href="http://wap.cmread.com/hywap/thrdToBookDetail?enterpriseId=77300001&username=fanyun&bookid=454533618&key=7f2f4e7e4c36437c7f682538f2285102" class="sy-zx-item" ng-repeat="(key,item) in newsList">-->
                 <img ng-src="{{item.imgUrl}}">

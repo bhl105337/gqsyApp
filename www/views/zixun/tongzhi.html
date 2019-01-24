@@ -28,14 +28,13 @@
         </ion-scroll>
     </ion-header-bar>
 
-    <ion-content class="sy-content">
-
+    <ion-content class="sy-content" scrollbar-y="false">
+        <ion-refresher pulling-text="下拉刷新..." on-refresh="reloadNews('refresher')" refreshing-text="正在刷新"></ion-refresher>
         <ion-list class="sy-tz-list">
-            <ion-refresher pulling-text="下拉刷新..." on-refresh="reloadTz('refresher')" refreshing-text="正在刷新"></ion-refresher>
             <ion-item href="#/tz_info/{{item.id}}" class="sy-tz-item" ng-repeat="(key,item) in list">
                 <span>{{item.title}}</span>
             </ion-item>
         </ion-list>
-
+        <ion-infinite-scroll ng-if="isLoadMore()" on-infinite="reloadNews('infinite')"></ion-infinite-scroll>
     </ion-content>
 </ion-view>

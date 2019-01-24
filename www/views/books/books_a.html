@@ -34,7 +34,7 @@
     </ion-header-bar>
 
     <ion-content class="sy-content">
-
+        <ion-refresher pulling-text="下拉刷新..." on-refresh="reloadNews('refresher')" refreshing-text="正在刷新"></ion-refresher>
         <ion-list class="sy-shumu-list">
 
             <ion-item ng-if="item.l_t == 2" href="#/tab/booksnav/{{item.id}}/1" class="sy-shumu-item" ng-repeat="(key,item) in list">

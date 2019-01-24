@@ -33,7 +33,7 @@
     </ion-header-bar>
 
     <ion-content class="sy-content">
-
+        <ion-refresher pulling-text="下拉刷新..." on-refresh="reloadNews('refresher')" refreshing-text="正在刷新"></ion-refresher>
         <ion-list class="sy-sylm-list">
             <div class="dzs-content">
                 <ion-item class="sy-sylm-dzs" ng-click="bookContent(v3.id,v3.e_book_id)" ng-repeat="(k3,v3) in list">

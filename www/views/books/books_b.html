@@ -34,7 +34,7 @@
     </ion-header-bar>
 
     <ion-content class="sy-content">
-
+        <ion-refresher pulling-text="下拉刷新..." on-refresh="reloadNews('refresher')" refreshing-text="正在刷新"></ion-refresher>
         <ion-list class="sy-tuijian-list">
             <ion-item  ng-if="item.l_t == 2" href="#/tab/booksnav/{{item.id}}/2" class="sy-tuijian-item" ng-repeat="(key,item) in list">
                 <img ng-src="{{item.imgUrl}}">

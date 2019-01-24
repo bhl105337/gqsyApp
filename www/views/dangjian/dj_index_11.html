@@ -72,6 +72,7 @@
         </ion-slide-box>
     </ion-header-bar>
     <ion-content class="sy-content" id="sy-cons" scrollbar-y="false">
+        <ion-refresher pulling-text="下拉刷新..." on-refresh="reloadNews('refresher')" refreshing-text="正在刷新"></ion-refresher>
         <div class="sy_dj_1" style="width:100%; float:left" ng-class="{true:'dj_hide',false:'dj_show'}[className]">
             <!-- start 轮播图-->
             <ion-slide-box auto-play="true" does-continue="true" slide-interval=2000 show-pager="fales" delegate-handle="slideimgs">
@@ -133,5 +134,6 @@
 
             </ion-list>
         </div>
+        <ion-infinite-scroll ng-if="isLoadMore()" on-infinite="reloadNews('infinite')"></ion-infinite-scroll>
     </ion-content>
 </ion-view>

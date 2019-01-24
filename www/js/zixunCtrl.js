@@ -86,34 +86,6 @@ ctrls
         $rootScope.page = 1;
         $rootScope.totalPage = 0;
 
-        $ionicModal.fromTemplateUrl('userInfo.html', function (userModal) {
-            $scope.modal = userModal;
-        }, {
-            scope: $scope,
-            animation: 'slide-in-left'
-        });
-        $scope.showUser = function () {
-            // $ionicBackdrop.retain();
-            $scope.modal.show();
-        };
-
-        $ionicModal.fromTemplateUrl('search.html', function (searchModal) {
-            $scope.searchModal = searchModal;
-        }, {
-            scope: $scope,
-            animation: 'slide-in-right'
-        });
-        $scope.search = function (key) {
-            if (key == "show") {
-                $scope.searchModal.show();
-            } else {
-                $scope.ItemSearch = []
-                $scope.search_list = "none"
-                $scope.search_backdrop = "none"
-                $scope.searchModal.hide();
-            }
-        };
-
         /**
          * 搜索结果
          */
@@ -160,7 +132,26 @@ ctrls
                 $scope.list = data.data
 
             });
-        })
+        });
+
+        $scope.reloadNews = function (types, nav = 1) {
+            if (types == "infinite") {
+                $rootScope.page += 1;
+                var url = $rootScope.server_url + '/index/index?page=' + $rootScope.page
+            } else if (types == "refresher") {
+                $rootScope.page = 1
+            }
+            $http.get($rootScope.server_url + '/index/index?page=', {params: {page: $rootScope.page}}).success(function (data) {
+                if (types == "refresher") {
+                    $scope.newsList = data.data.lists;
+                    $scope.$broadcast('scroll.refreshComplete');
+                } else {
+                    $scope.newsList = $scope.newsList.concat(data.data.lists);
+                    $scope.$broadcast('scroll.infiniteScrollComplete');
+                }
+            });
+
+        }
 
         $scope.reloadTz = function (types) {
 
