@@ -34,10 +34,9 @@
         </ion-scroll>
     </ion-header-bar>
 
-    <ion-content class="sy-content" on-swipe-left="leftChange()"  on-swipe-right="rightChange()">
-        <ion-refresher pulling-text="下拉刷新..." on-refresh="reloadNews('refresher')" refreshing-text="正在刷新"></ion-refresher>
-        <ion-list class="sy-dangke-list" >
-            <ion-item ng-if="item.l_t == 2" href="#/tab/djnav/{{item.id}}/2" class="sy-xuexi-items" ng-repeat="(key,item) in list">
+    <ion-content class="sy-content" on-swipe-left="leftChange()" on-swipe-right="rightChange()">
+        <ion-list class="sy-dangke-list">
+            <ion-item ng-if="item.l_t == 2" href="#/tab/djnav/{{item.id}}/2" class="sy-xuexi-items" ng-repeat="(key,item) in lists">
                 <div class="img">
                     <img ng-src="{{item.imgUrl}}">
                 </div>
@@ -47,8 +46,10 @@
                     <span class="sy-article-num" ng-show="{{item.l_t}}==2">文章：{{item.p_count}}</span>
                 </div>
             </ion-item>
-
-            <ion-item ng-if="item.l_t == 1" href="#/djinfo/{{item.id}}/2/0" class="sy-xuexi-items" ng-repeat="(key,item) in list">
+        </ion-list>
+        <ion-refresher pulling-text="下拉刷新..." on-refresh="reloadDJ('refresher')" refreshing-text="正在刷新"></ion-refresher>
+        <ion-list class="sy-dangke-list" style="margin-bottom:45px;">
+            <ion-item ng-if="item.l_t == 1" href="#/djinfo/{{item.id}}/2/0" class="sy-xuexi-items" ng-repeat="(key,item) in lists">
                 <div class="img">
                     <img ng-src="{{item.imgUrl}}">
                 </div>
@@ -58,5 +59,6 @@
                 </div>
             </ion-item>
         </ion-list>
+        <ion-infinite-scroll ng-if="isLoadMore()" on-infinite="reloadDJ('infinite')" refreshing-text="正在加载"></ion-infinite-scroll>
     </ion-content>
 </ion-view>

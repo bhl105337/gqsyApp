@@ -33,15 +33,15 @@
     </ion-header-bar>
 
     <ion-content class="sy-content">
-        <ion-refresher pulling-text="下拉刷新..." on-refresh="reloadNews('refresher')" refreshing-text="正在刷新"></ion-refresher>
+        <ion-refresher pulling-text="下拉刷新..." on-refresh="reloadBook('refresher')" refreshing-text="正在刷新"></ion-refresher>
         <ion-list class="sy-sylm-list">
             <div class="dzs-content">
-                <ion-item class="sy-sylm-dzs" ng-click="bookContent(v3.id,v3.e_book_id)" ng-repeat="(k3,v3) in list">
+                <ion-item class="sy-sylm-dzs" ng-click="bookContent(v3.id,v3.e_book_id)" ng-repeat="(k3,v3) in lists">
                     <div class="img"><img ng-src="{{v3.imgUrl}}"></div>
                     <span>{{v3.bookName}}</span>
                 </ion-item>
             </div>
         </ion-list>
-
+        <ion-infinite-scroll ng-if="isLoadMore()" on-infinite="reloadBook('infinite')" refreshing-text="正在加载"></ion-infinite-scroll>
     </ion-content>
 </ion-view>

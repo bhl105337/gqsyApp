@@ -46,61 +46,46 @@ ctrls
         $scope.init = function (data) {
             $ionicSlideBoxDelegate.update(true);
         };
-        $scope.$on('$ionicView.beforeEnter', function () {
+        $scope.$on('$ionicView.afterEnter', function () {
             //page_no     = 1;
             $http.get($rootScope.server_url + '/Dangjian/dangjian_a').success(function (data) {
-                $scope.list = data.data.list
+                $scope.lists = data.data.lists.list;
 
-                $scope.banner = data.data.banner
+                $scope.banner = data.data.lists.banner;
                 $scope.init($scope.banner);
+
+                $rootScope.totalPage = data.data.totalPage
             });
 
         });
+
+        $scope.reloadDJ = function (types, nav = 1) {
+            if (types == "infinite") {
+                $rootScope.page += 1;
+            } else if (types == "refresher") {
+                $rootScope.page = 1
+            }
+            $http.get($rootScope.server_url + '/dangjian/dangjianAMore', {params: {page: $rootScope.page}}).success(function (data) {
+                if (types == "refresher") {
+                    $scope.list = data.data.lists;
+                    $scope.$broadcast('scroll.refreshComplete');
+                } else {
+                    $scope.list = $scope.list.concat(data.data.lists);
+                    $scope.$broadcast('scroll.infiniteScrollComplete');
+                }
+            });
+
+        }
+        $scope.isLoadMore = function () {
+            return $rootScope.page < $rootScope.totalPage;
+        }
 
     })
     .controller('Dangjian_bCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $state, $ionicPopup, $formValid, $ionicModal) {
 
         $rootScope.page = 1;
-
-        /**
-         * 搜索页
-         */
-        $ionicModal.fromTemplateUrl('search.html', function (searchModal) {
-            $scope.searchModal = searchModal;
-        }, {
-            scope: $scope,
-            animation: 'slide-in-right'
-        });
-        $scope.search = function (key) {
-            if (key == "show") {
-                $scope.searchModal.show();
-            } else {
-                $scope.ItemSearch = []
-                $scope.search_list = "none"
-                $scope.search_backdrop = "none"
-                $scope.searchModal.hide();
-            }
-        };
-        /**
-         * 搜索结果
-         */
-        $ionicModal.fromTemplateUrl('searchInfo.html', function (searchInfoModal) {
-            $scope.searchInfo = searchInfoModal;
-        }, {
-            scope: $scope,
-            animation: 'slide-in-right'
-        });
-
-        $scope.search_Info = function (key) {
-            if (key == "show") {
-                $scope.searchInfo.show();
-            } else {
-                // $scope.ItemSearch = []
-                // $scope.search_list = "none"
-                // $scope.search_backdrop = "none"
-                $scope.searchInfo.hide();
-            }
-        };
+        $rootScope.totalPage = 0;
+        $scope.tabactive = 2
 
         $scope.toSearch = function (info, type) {
             $scope.ItemSearch = []
@@ -136,50 +121,43 @@ ctrls
         }
 
 
-        $scope.$on('$ionicView.beforeEnter', function () {
+        $scope.$on('$ionicView.afterEnter', function () {
             //page_no     = 1;
             $http.get($rootScope.server_url + '/Dangjian/dangjian_b').success(function (data) {
-                $scope.list = data.data
+                $rootScope.lists = data.data.lists;
 
+                $rootScope.totalPage = data.data.totalPage;
+                console.log(data.data)
             });
         })
 
-        $scope.submitFormSearch = function (search) {
-            var formRules = {
-                keywords: {required: "请输入内容"}
-            };
-            if ($formValid(formRules, search)) {
-                $http.post($rootScope.server_url + '/Base/search', search, null, "搜索中").success(function (data) {
-                    var msg = JSON.parse(data)
-                    if (msg.code == "FAIL") {
-                        $scope.showAlert(msg);
-                    } else {
-                        $scope.searchSuccess(msg, search.keyword);
-                    }
-                });
+        $scope.reloadDJ = function (types, nav = 1) {
+            if (types == "infinite") {
+                $rootScope.page += 1;
+            } else if (types == "refresher") {
+                $rootScope.page = 1
             }
+            $http.get($rootScope.server_url + '/dangjian/dangjianBMore', {params: {page: $rootScope.page}}).success(function (data) {
+                if (types == "refresher") {
+                    $scope.lists = data.data;
+                    $scope.$broadcast('scroll.refreshComplete');
+                } else {
+                    console.log($rootScope.lists);
+                    $scope.lists = $scope.lists.concat(data.data.lists);
+                    // $scope.$broadcast('scroll.infiniteScrollComplete');
+                }
+            });
+        };
+        $scope.isLoadMore = function () {
+            return $rootScope.page < $rootScope.totalPage;
         };
 
-        $scope.showAlert = function (msg) {
-            var alertPopup = $ionicPopup.alert({
-                title: '提示',
-                template: msg.info
-            });
-            alertPopup.then(function (res) {
-                console.log(res);
-            });
-        };
-
-        $scope.searchSuccess = function (data, keyword) {
-            $rootScope.data = data.data;
-            $rootScope.data.keyword = keyword;
-            $state.go("search");
-            return false;
-        };
     })
+
     .controller('Dangjian_cCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $state, $ionicPopup, $formValid, $ionicModal) {
 
         $rootScope.page = 1;
+        $scope.tabactive = 3
 
         /**
          * 搜索页
@@ -257,46 +235,8 @@ ctrls
     .controller('Dangjian_dCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $state, $ionicPopup, $formValid, $ionicModal) {
 
         $rootScope.page = 1;
-
-        /**
-         * 搜索页
-         */
-        $ionicModal.fromTemplateUrl('search.html', function (searchModal) {
-            $scope.searchModal = searchModal;
-        }, {
-            scope: $scope,
-            animation: 'slide-in-right'
-        });
-        $scope.search = function (key) {
-            if (key == "show") {
-                $scope.searchModal.show();
-            } else {
-                $scope.ItemSearch = []
-                $scope.search_list = "none"
-                $scope.search_backdrop = "none"
-                $scope.searchModal.hide();
-            }
-        };
-        /**
-         * 搜索结果
-         */
-        $ionicModal.fromTemplateUrl('searchInfo.html', function (searchInfoModal) {
-            $scope.searchInfo = searchInfoModal;
-        }, {
-            scope: $scope,
-            animation: 'slide-in-right'
-        });
-
-        $scope.search_Info = function (key) {
-            if (key == "show") {
-                $scope.searchInfo.show();
-            } else {
-                // $scope.ItemSearch = []
-                // $scope.search_list = "none"
-                // $scope.search_backdrop = "none"
-                $scope.searchInfo.hide();
-            }
-        };
+        $rootScope.totalPage = 0;
+        $scope.tabactive = 4
 
         $scope.toSearch = function (info, type) {
             $scope.ItemSearch = []
@@ -330,44 +270,34 @@ ctrls
             return false;
         }
 
-        $scope.$on('$ionicView.beforeEnter', function () {
+        $scope.$on('$ionicView.afterEnter', function () {
             //page_no     = 1;
             $http.get($rootScope.server_url + '/Dangjian/dangjian_d').success(function (data) {
-                $scope.list = data.data
+                $scope.lists = data.data.lists
 
+                $rootScope.totalPage = data.data.totalPage;
             });
         })
-        $scope.submitFormSearch = function (search) {
-            var formRules = {
-                keywords: {required: "请输入内容"}
-            };
-            if ($formValid(formRules, search)) {
-                $http.post($rootScope.server_url + '/Base/search', search, null, "搜索中").success(function (data) {
-                    var msg = JSON.parse(data)
-                    if (msg.code == "FAIL") {
-                        $scope.showAlert(msg);
-                    } else {
-                        $scope.searchSuccess(msg, search.keyword);
-                    }
-                });
+        $scope.reloadDJ = function (types, nav = 1) {
+            if (types == "infinite") {
+                $rootScope.page += 1;
+            } else if (types == "refresher") {
+                $rootScope.page = 1
             }
-        };
-
-        $scope.showAlert = function (msg) {
-            var alertPopup = $ionicPopup.alert({
-                title: '提示',
-                template: msg.info
+            $http.get($rootScope.server_url + '/dangjian/dangjianDMore', {params: {page: $rootScope.page}}).success(function (data) {
+                console.log(data.data)
+                if (types == "refresher") {
+                    $scope.lists = data.data.lists;
+                    $scope.$broadcast('scroll.refreshComplete');
+                } else {
+                    console.log($rootScope.lists);
+                    $scope.lists = $scope.lists.concat(data.data.lists);
+                    // $scope.$broadcast('scroll.infiniteScrollComplete');
+                }
             });
-            alertPopup.then(function (res) {
-                console.log(res);
-            });
         };
-
-        $scope.searchSuccess = function (data, keyword) {
-            $rootScope.data = data.data;
-            $rootScope.data.keyword = keyword;
-            $state.go("search");
-            return false;
+        $scope.isLoadMore = function () {
+            return $rootScope.page < $rootScope.totalPage;
         };
     })
 

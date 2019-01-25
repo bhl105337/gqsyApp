@@ -59,7 +59,6 @@ ctrls
         $scope.reloadNews = function (types, nav = 1) {
             if (types == "infinite") {
                 $rootScope.page += 1;
-                var url = $rootScope.server_url + '/index/index?page=' + $rootScope.page
             } else if (types == "refresher") {
                 $rootScope.page = 1
             }
@@ -68,6 +67,7 @@ ctrls
                     $scope.newsList = data.data.lists;
                     $scope.$broadcast('scroll.refreshComplete');
                 } else {
+                    console.log($scope.newsList);
                     $scope.newsList = $scope.newsList.concat(data.data.lists);
                     $scope.$broadcast('scroll.infiniteScrollComplete');
                 }

@@ -57,6 +57,7 @@ angular.module('starter.routes', []).config(function ($stateProvider, $urlRouter
         })
         .state('tab.tongzhi', {
             url: '/tongzhi',
+            cache: false,
             views: {
                 'tab-zixun': {
                     templateUrl: 'views/zixun/tongzhi.html',
@@ -87,6 +88,7 @@ angular.module('starter.routes', []).config(function ($stateProvider, $urlRouter
         })
         .state('tab.kaoshi', {
             url: '/kaoshi',
+            cache: false,
             views: {
                 'tab-dangjian': {
                     templateUrl: 'views/dangjian/dj_index_33.html',
@@ -96,6 +98,7 @@ angular.module('starter.routes', []).config(function ($stateProvider, $urlRouter
         })
         .state('tab.zhichuang', {
             url: '/zhichuang',
+            cache: false,
             views: {
                 'tab-dangjian': {
                     templateUrl: 'views/dangjian/dj_index_44.html',
@@ -112,14 +115,11 @@ angular.module('starter.routes', []).config(function ($stateProvider, $urlRouter
                 }
             }
         })
-        //
         .state('djinfo', {
             url: '/djinfo/{id}/{nav}/{cid}',
             controller: 'DjInfoCtrl',
             templateUrl: 'views/dangjian/dangjian_info.html'
         })
-        //
-        //
         .state('tab.books', {
             url: '/books',
             cache: false,
@@ -132,6 +132,7 @@ angular.module('starter.routes', []).config(function ($stateProvider, $urlRouter
         })
         .state('tab.books_b', {
             url: '/books_b',
+            cache: false,
             views: {
                 'tab-books': {
                     templateUrl: 'views/books/books_b.html',
@@ -141,6 +142,7 @@ angular.module('starter.routes', []).config(function ($stateProvider, $urlRouter
         })
         .state('tab.books_c', {
             url: '/books_c',
+            cache: false,
             views: {
                 'tab-books': {
                     templateUrl: 'views/books/books_c.html',
@@ -184,6 +186,7 @@ angular.module('starter.routes', []).config(function ($stateProvider, $urlRouter
         })
         .state('tab.wenhua_b', {
             url: '/wenhua_b',
+            cache: false,
             views: {
                 'tab-wenhua': {
                     templateUrl: 'views/wenhua/wenhua_b.html',
@@ -193,6 +196,7 @@ angular.module('starter.routes', []).config(function ($stateProvider, $urlRouter
         })
         .state('tab.wenhua_c', {
             url: '/wenhua_c',
+            cache: false,
             views: {
                 'tab-wenhua': {
                     templateUrl: 'views/wenhua/wenhua_c.html',

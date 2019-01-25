@@ -1,15 +1,16 @@
 ctrls
 
     .controller('BooksCtrl', function ($scope, $http, $rootScope, $state, $formValid, $ionicPopup, $ionicModal, $ionicSlideBoxDelegate, $ionicLoading, $sce, $ionicViewSwitcher) {
-        $rootScope.server_url = "http://guoqishuyuan.com/app.php";
         $scope.tabactive = 1
+        $rootScope.page = 1;
+        $rootScope.totalPage = 0;
 
         $scope.$on('$ionicView.afterEnter', function () {
             //page_no     = 1;
             $http.get($rootScope.server_url + '/Yuedu/index').success(function (data) {
-                $scope.list = data.data
-                //console.log(data.data);
-
+                $scope.lists = data.data.lists
+                // console.log(data.data);
+                $rootScope.totalPage = data.data.totalPage
             });
         })
         $scope.submitFormSearch = function (search) {
@@ -28,109 +29,96 @@ ctrls
             }
         };
 
-        $ionicModal.fromTemplateUrl('userInfo.html', function (userModal) {
-            $scope.modal = userModal;
-        }, {
-            scope: $scope,
-            animation: 'slide-in-left'
-        });
-
-        $scope.showUser = function () {
-            // $ionicBackdrop.retain();
-            $scope.modal.show();
-        };
-
-        $ionicModal.fromTemplateUrl('search.html', function (searchModal) {
-            $scope.searchModal = searchModal;
-        }, {
-            scope: $scope,
-            animation: 'slide-in-right'
-        });
-        $scope.search = function (key) {
-            if (key == "show") {
-                $scope.searchModal.show();
-            } else {
-                $scope.searchModal.hide();
+        $scope.reloadBook = function (types, nav = 1) {
+            if (types == "infinite") {
+                $rootScope.page += 1;
+            } else if (types == "refresher") {
+                $rootScope.page = 1
             }
-        };
+            $http.get($rootScope.server_url + '/yuedu/indexMore', {params: {page: $rootScope.page}}).success(function (data) {
+                if (types == "refresher") {
+                    $scope.lists = data.data.lists;
+                    $scope.$broadcast('scroll.refreshComplete');
+                } else {
+                    console.log($scope.lists);
+                    $scope.lists = $scope.lists.concat(data.data.lists);
+                    $scope.$broadcast('scroll.infiniteScrollComplete');
+                }
+            });
+
+        }
+        $scope.isLoadMore = function () {
+            return $rootScope.page < $rootScope.totalPage;
+        }
 
     })
     .controller('Books_bCtrl', function ($scope, $http, $rootScope, $state, $formValid, $ionicPopup) {
-        $rootScope.server_url = "http://guoqishuyuan.com/app.php";
-
-        $scope.$on('$ionicView.beforeEnter', function () {
-            //page_no     = 1;
-            $http.get($rootScope.server_url + '/Yuedu/book_b').success(function (data) {
-                $scope.list = data.data
-
-            });
-        })
-        $scope.submitFormSearch = function (search) {
-            var formRules = {
-                keywords: {required: "请输入内容"}
-            };
-            if ($formValid(formRules, search)) {
-                $http.post($rootScope.server_url + '/Base/search', search, null, "搜索中").success(function (data) {
-                    var msg = JSON.parse(data)
-                    if (msg.code == "FAIL") {
-                        $scope.showAlert(msg);
-                    } else {
-                        $scope.searchSuccess(msg, search.keyword);
-                    }
-                });
-            }
-        };
-
-        $scope.showAlert = function (msg) {
-            var alertPopup = $ionicPopup.alert({
-                title: '提示',
-                template: msg.info
-            });
-            alertPopup.then(function (res) {
-                console.log(res);
-            });
-        };
-
-        $scope.searchSuccess = function (data, keyword) {
-            $rootScope.data = data.data;
-            $rootScope.data.keyword = keyword;
-            $state.go("search");
-            return false;
-        };
-    })
-    .controller('Books_cCtrl', function ($scope, $http, $rootScope, $state, $formValid, $ionicPopup, $ionicViewSwitcher) {
-        $rootScope.server_url = "http://guoqishuyuan.com/app.php";
+        $rootScope.page = 1;
+        $rootScope.totalPage = 0;
 
         $scope.$on('$ionicView.afterEnter', function () {
             //page_no     = 1;
-            $http.get($rootScope.server_url + '/Yuedu/book_c').success(function (data3) {
-                $scope.list = data3.data
-                console.log($scope.list)
+            $http.get($rootScope.server_url + '/Yuedu/book_b').success(function (data) {
+                $scope.lists = data.data.lists
+
+                $rootScope.totalPage = data.data.totalPage
             });
         })
-        $scope.submitFormSearch = function (search) {
-            var formRules = {
-                keywords: {required: "请输入内容"}
-            };
-            if ($formValid(formRules, search)) {
-                $http.post($rootScope.server_url + '/Base/search', search, null, "搜索中").success(function (data) {
-                    var msg = JSON.parse(data)
-                    if (msg.code == "FAIL") {
-                        $scope.showAlert(msg);
-                    } else {
-                        $scope.searchSuccess(msg, search.keyword);
-                    }
-                });
+        $scope.reloadBook = function (types, nav = 1) {
+            if (types == "infinite") {
+                $rootScope.page += 1;
+            } else if (types == "refresher") {
+                $rootScope.page = 1
             }
-        };
+            $http.get($rootScope.server_url + '/yuedu/bookBMore', {params: {page: $rootScope.page}}).success(function (data) {
+                if (types == "refresher") {
+                    $scope.lists = data.data.lists;
+                    $scope.$broadcast('scroll.refreshComplete');
+                } else {
+                    console.log($scope.lists);
+                    $scope.lists = $scope.lists.concat(data.data.lists);
+                    $scope.$broadcast('scroll.infiniteScrollComplete');
+                }
+            });
 
-        $scope.bookContent = function (id, bookId) {
-            // console.log(id)
-            // console.log($rootScope.userInfo)
-            $rootScope.dzsId = bookId;
-            $state.go("booksinfo2");
-            $ionicViewSwitcher.nextDirection("forward");
-            return false;
+        }
+        $scope.isLoadMore = function () {
+            return $rootScope.page < $rootScope.totalPage;
+        }
+    })
+    .controller('Books_cCtrl', function ($scope, $http, $rootScope, $state, $formValid, $ionicPopup, $ionicViewSwitcher) {
+        $rootScope.page = 1;
+        $rootScope.totalPage = 0;
+
+        $scope.$on('$ionicView.afterEnter', function () {
+            //page_no     = 1;
+            $http.get($rootScope.server_url + '/Yuedu/book_c').success(function (data) {
+                $scope.lists = data.data.lists
+
+                $rootScope.totalPage = data.data.totalPage
+            });
+        });
+
+        $scope.reloadBook = function (types, nav = 1) {
+            if (types == "infinite") {
+                $rootScope.page += 1;
+            } else if (types == "refresher") {
+                $rootScope.page = 1
+            }
+            $http.get($rootScope.server_url + '/yuedu/bookCMore', {params: {page: $rootScope.page}}).success(function (data) {
+                if (types == "refresher") {
+                    $scope.lists = data.data.lists;
+                    $scope.$broadcast('scroll.refreshComplete');
+                } else {
+                    console.log($scope.lists);
+                    $scope.lists = $scope.lists.concat(data.data.lists);
+                    $scope.$broadcast('scroll.infiniteScrollComplete');
+                }
+            });
+
+        }
+        $scope.isLoadMore = function () {
+            return $rootScope.page < $rootScope.totalPage;
         }
 
     })

@@ -30,18 +30,19 @@
     </ion-header-bar>
 
     <ion-content class="sy-content" scrollbar-y="false">
-        <ion-refresher pulling-text="下拉刷新..." on-refresh="reloadNews('refresher')" refreshing-text="正在刷新"></ion-refresher>
+        <ion-refresher pulling-text="下拉刷新..." on-refresh="reloadWenhua('refresher')" refreshing-text="正在刷新"></ion-refresher>
         <ion-list class="sy-wenku-list">
-            <ion-item  ng-if="item.l_t == 2" href="#/tab/wenhua_nav/{{item.id}}/1" class="sy-wenku-item"  ng-repeat="(key,item) in list">
+            <ion-item  ng-if="item.l_t == 2" href="#/tab/wenhua_nav/{{item.id}}/1" class="sy-wenku-item"  ng-repeat="(key,item) in lists">
                 <img ng-src="{{item.imgUrl}}">
                 <!--<img ng-src="{{chat.face}}">-->
                 <span>{{item.titles}}</span>
             </ion-item>
-            <ion-item ng-if="item.l_t == 1" href="#/wenhuainfo/{{item.id}}/0/1" class="sy-wenku-item"  ng-repeat="(key,item) in list">
+            <ion-item ng-if="item.l_t == 1" href="#/wenhuainfo/{{item.id}}/0/1" class="sy-wenku-item"  ng-repeat="(key,item) in lists">
                 <img ng-src="{{item.imgUrl}}">
                 <!--<img ng-src="{{chat.face}}">-->
                 <span>{{item.titles}}</span>
             </ion-item>
         </ion-list>
+        <ion-infinite-scroll ng-if="isLoadMore()" on-infinite="reloadWenhua('infinite')" refreshing-text="正在加载"></ion-infinite-scroll>
     </ion-content>
 </ion-view>

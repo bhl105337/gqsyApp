@@ -72,7 +72,6 @@
         </ion-slide-box>
     </ion-header-bar>
     <ion-content class="sy-content" id="sy-cons" scrollbar-y="false">
-        <ion-refresher pulling-text="下拉刷新..." on-refresh="reloadNews('refresher')" refreshing-text="正在刷新"></ion-refresher>
         <div class="sy_dj_1" style="width:100%; float:left" ng-class="{true:'dj_hide',false:'dj_show'}[className]">
             <!-- start 轮播图-->
             <ion-slide-box auto-play="true" does-continue="true" slide-interval=2000 show-pager="fales" delegate-handle="slideimgs">
@@ -83,9 +82,10 @@
                 </ion-slide>
             </ion-slide-box>
             <!-- end 轮播图-->
+            <ion-refresher pulling-text="下拉刷新..." on-refresh="reloadDJ('refresher')" refreshing-text="正在刷新"></ion-refresher>
             <ion-list class="sy-xuexi-list" on-swipe-left="leftChange()">
 
-                <ion-item ng-if="item.l_t == 2" href="#/tab/djnav/{{item.id}}/1" class="sy-xuexi-items" ng-repeat="(key,item) in list">
+                <ion-item ng-if="item.l_t == 2" href="#/tab/djnav/{{item.id}}/1" class="sy-xuexi-items" ng-repeat="(key,item) in lists">
                     <div class="img">
                         <img ng-src="{{item.imgUrl}}">
                     </div>
@@ -96,7 +96,7 @@
                     </div>
                 </ion-item>
 
-                <ion-item ng-if="item.l_t == 1" href="#/djinfo/{{item.id}}/1/0" class="sy-xuexi-items" ng-repeat="(key,item) in list">
+                <ion-item ng-if="item.l_t == 1" href="#/djinfo/{{item.id}}/1/0" class="sy-xuexi-items" ng-repeat="(key,item) in lists">
                     <div class="img">
                         <img ng-src="{{item.imgUrl}}">
                     </div>
@@ -107,33 +107,7 @@
                 </ion-item>
 
             </ion-list>
+            <ion-infinite-scroll ng-if="isLoadMore()" on-infinite="reloadDJ('infinite')" refreshing-text="正在加载"></ion-infinite-scroll>
         </div>
-        <div class="sy_dj_2" style="width:100%; float:left" ng-class="{true:'sy_dj_2_l ng-enter active ng-enter-active',false:'sy_dj_2_l ng-enter active ng-enter-active'}[dj2]">
-            <ion-list class="sy-xuexi-list" on-swipe-left="leftChange()">
-
-                <ion-item ng-if="item.l_t == 2" href="#/tab/djnav/{{item.id}}/1" class="sy-xuexi-items" ng-repeat="(key,item) in list2">
-                    <div class="img">
-                        <img ng-src="{{item.imgUrl}}">
-                    </div>
-                    <div class="sy-article">
-                        <span class="sy-article-title">{{item.titles}}</span>
-                        <span class="sy-article-memo">{{item.l_Memo}}</span>
-                        <span class="sy-article-num" ng-show="{{item.l_t}}==2">文章：{{item.p_count}}</span>
-                    </div>
-                </ion-item>
-
-                <ion-item ng-if="item.l_t == 1" href="#/djinfo/{{item.id}}/1/0" class="sy-xuexi-items" ng-repeat="(key,item) in list2">
-                    <div class="img">
-                        <img ng-src="{{item.imgUrl}}">
-                    </div>
-                    <div class="sy-article">
-                        <span class="sy-article-title">{{item.titles}}</span>
-                        <span class="sy-article-memo">{{item.l_Memo}}</span>
-                    </div>
-                </ion-item>
-
-            </ion-list>
-        </div>
-        <ion-infinite-scroll ng-if="isLoadMore()" on-infinite="reloadNews('infinite')"></ion-infinite-scroll>
     </ion-content>
 </ion-view>
