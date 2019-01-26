@@ -5,11 +5,11 @@ ctrls
         $scope.newsList = [];
         $rootScope.page = 1;
         $rootScope.totalPage = 0;
+        $scope.tabactive = 1;
 
         $scope.toSearch = function (info, type) {
             $scope.ItemSearch = []
             $http.get($rootScope.server_url + '/index/search?searchName=' + info.searchName + "&page=" + $rootScope.page).success(function (data) {
-                console.log(data)
                 $scope.search_list = "inline-block";
                 $scope.search_backdrop = "#333"
                 $rootScope.itemSearch = data.data;
@@ -19,8 +19,6 @@ ctrls
                     $scope.searchModal.hide();
                     console.log(type)
                     $scope.searchInfo.show();
-                    // $state.go("search");
-                    // return false;
                 }
             });
         }
@@ -47,7 +45,7 @@ ctrls
 
         $scope.$on('$ionicView.afterEnter', function () {
             $rootScope.page = 1
-            $http.get($rootScope.server_url + '/index/index?page=' + $rootScope.page).success(function (data) {
+            $http.get($rootScope.server_url + '/index/index', {params: {page: $rootScope.page}}).success(function (data) {
                 $scope.newsList = data.data.lists
 
                 $rootScope.totalPage = data.data.totalPage
@@ -62,7 +60,7 @@ ctrls
             } else if (types == "refresher") {
                 $rootScope.page = 1
             }
-            $http.get($rootScope.server_url + '/index/index?page=', {params: {page: $rootScope.page}}).success(function (data) {
+            $http.get($rootScope.server_url + '/index/index', {params: {page: $rootScope.page}}).success(function (data) {
                 if (types == "refresher") {
                     $scope.newsList = data.data.lists;
                     $scope.$broadcast('scroll.refreshComplete');
@@ -85,6 +83,7 @@ ctrls
         $scope.newsList = [];
         $rootScope.page = 1;
         $rootScope.totalPage = 0;
+        $scope.tabactive = 2;
 
         /**
          * 搜索结果

@@ -84,7 +84,6 @@
             <!-- end 轮播图-->
             <ion-refresher pulling-text="下拉刷新..." on-refresh="reloadDJ('refresher')" refreshing-text="正在刷新"></ion-refresher>
             <ion-list class="sy-xuexi-list" on-swipe-left="leftChange()">
-
                 <ion-item ng-if="item.l_t == 2" href="#/tab/djnav/{{item.id}}/1" class="sy-xuexi-items" ng-repeat="(key,item) in lists">
                     <div class="img">
                         <img ng-src="{{item.imgUrl}}">
@@ -105,7 +104,6 @@
                         <span class="sy-article-memo">{{item.l_Memo}}</span>
                     </div>
                 </ion-item>
-
             </ion-list>
             <ion-infinite-scroll ng-if="isLoadMore()" on-infinite="reloadDJ('infinite')" refreshing-text="正在加载"></ion-infinite-scroll>
         </div>

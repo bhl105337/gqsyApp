@@ -35,9 +35,9 @@
     </ion-header-bar>
 
     <ion-content class="sy-content" style="top:5px!important;" on-swipe-left="goBack()">
+        <ion-refresher pulling-text="下拉刷新..." on-refresh="reloadDJ('refresher')" refreshing-text="正在刷新"></ion-refresher>
         <ion-list class="sy-dj_nav-list">
-
-            <ion-item href="#/djinfo/{{item.id}}/{{nav}}/{{yid}}" class="sy-xuexi-items"  ng-repeat="(key,item) in list">
+            <ion-item href="#/djinfo/{{item.id}}/{{nav}}/{{yid}}" class="sy-xuexi-items"  ng-repeat="(key,item) in lists">
                 <div class="img">
                     <img ng-src="{{item.imgUrl}}">
                 </div>
@@ -47,5 +47,6 @@
                 </div>
             </ion-item>
         </ion-list>
+        <ion-infinite-scroll ng-if="isLoadMore()" on-infinite="reloadDJ('infinite')" refreshing-text="正在加载"></ion-infinite-scroll>
     </ion-content>
 </ion-view>

@@ -206,6 +206,7 @@ angular.module('starter.routes', []).config(function ($stateProvider, $urlRouter
         })
         .state('tab.wenhua_nav', {
             url: '/wenhua_nav/{id}/{nav}',
+            cache: false,
             views: {
                 'tab-wenhua': {
                     templateUrl: 'views/wenhua/wenhua_nav.html',
@@ -216,18 +217,11 @@ angular.module('starter.routes', []).config(function ($stateProvider, $urlRouter
 
         .state('wenhuainfo', {
             url: '/wenhuainfo/{id}/{cid}/{nav}',
+            cache: false,
             controller: 'WenhuaInfoCtrl',
             templateUrl: 'views/wenhua/wenhua_info.html'
         })
-        .state('tab.user', {
-            url: '/user',
-            views: {
-                'tab-user': {
-                    templateUrl: 'views/user/user_center.html',
-                    controller: 'userCtrl'
-                }
-            }
-        })
+
         .state('read_log', {
             url: '/read_log/{uid}',
             controller: 'Read_logCtrl',

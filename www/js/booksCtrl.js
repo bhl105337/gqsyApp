@@ -5,12 +5,19 @@ ctrls
         $rootScope.page = 1;
         $rootScope.totalPage = 0;
 
+        $scope.$on('$ionicView.beforeEnter', function () {
+            $ionicLoading.show({
+                template: '<ion-spinner icon="android"></ion-spinner>',
+                duration: 8000
+            });
+        });
+
         $scope.$on('$ionicView.afterEnter', function () {
-            //page_no     = 1;
             $http.get($rootScope.server_url + '/Yuedu/index').success(function (data) {
-                $scope.lists = data.data.lists
-                // console.log(data.data);
-                $rootScope.totalPage = data.data.totalPage
+                $scope.lists = data.data.lists;
+
+                $rootScope.totalPage = data.data.totalPage;
+                $ionicLoading.hide();
             });
         })
         $scope.submitFormSearch = function (search) {
@@ -52,16 +59,24 @@ ctrls
         }
 
     })
-    .controller('Books_bCtrl', function ($scope, $http, $rootScope, $state, $formValid, $ionicPopup) {
+    .controller('Books_bCtrl', function ($scope, $http, $rootScope, $state, $formValid, $ionicPopup, $ionicLoading) {
+        $scope.tabactive = 2;
         $rootScope.page = 1;
         $rootScope.totalPage = 0;
 
+        $scope.$on('$ionicView.beforeEnter', function () {
+            $ionicLoading.show({
+                template: '<ion-spinner icon="android"></ion-spinner>',
+                duration: 8000
+            });
+        });
+
         $scope.$on('$ionicView.afterEnter', function () {
-            //page_no     = 1;
             $http.get($rootScope.server_url + '/Yuedu/book_b').success(function (data) {
                 $scope.lists = data.data.lists
 
-                $rootScope.totalPage = data.data.totalPage
+                $rootScope.totalPage = data.data.totalPage;
+                $ionicLoading.hide();
             });
         })
         $scope.reloadBook = function (types, nav = 1) {
@@ -86,16 +101,25 @@ ctrls
             return $rootScope.page < $rootScope.totalPage;
         }
     })
-    .controller('Books_cCtrl', function ($scope, $http, $rootScope, $state, $formValid, $ionicPopup, $ionicViewSwitcher) {
+
+    .controller('Books_cCtrl', function ($scope, $http, $rootScope, $state, $formValid, $ionicPopup, $ionicViewSwitcher,$ionicLoading) {
+        $scope.tabactive = 3;
         $rootScope.page = 1;
         $rootScope.totalPage = 0;
 
+        $scope.$on('$ionicView.beforeEnter', function () {
+            $ionicLoading.show({
+                template: '<ion-spinner icon="android"></ion-spinner>',
+                duration: 8000
+            });
+        });
+
         $scope.$on('$ionicView.afterEnter', function () {
-            //page_no     = 1;
             $http.get($rootScope.server_url + '/Yuedu/book_c').success(function (data) {
                 $scope.lists = data.data.lists
 
-                $rootScope.totalPage = data.data.totalPage
+                $rootScope.totalPage = data.data.totalPage;
+                $ionicLoading.hide();
             });
         });
 

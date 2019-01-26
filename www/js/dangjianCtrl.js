@@ -1,6 +1,5 @@
 ctrls
     .controller('Dangjian_aCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $ionicSlideBoxDelegate, $state, $ionicModal, $ionicScrollDelegate) {
-        console.log($rootScope.server_url)
         // $rootScope.server_url = "http://guoqishuyuan.com/app.php";
         $scope.search_list = "none"
         $scope.search_backdrop = "none"
@@ -20,10 +19,7 @@ ctrls
                     $scope.search_list = "none"
                     $scope.search_backdrop = "none"
                     $scope.searchModal.hide();
-                    console.log(type)
                     $scope.searchInfo.show();
-                    // $state.go("search");
-                    // return false;
                 }
             });
         }
@@ -42,19 +38,28 @@ ctrls
             $state.go("search_info", {id: id, type: type});
             return false;
         }
+        $scope.$on('$ionicView.beforeEnter', function () {
+            $ionicLoading.show({
+                template: '<ion-spinner icon="android"></ion-spinner>',
+                duration: 8000
+            });
+        })
 
         $scope.init = function (data) {
             $ionicSlideBoxDelegate.update(true);
         };
         $scope.$on('$ionicView.afterEnter', function () {
-            //page_no     = 1;
             $http.get($rootScope.server_url + '/Dangjian/dangjian_a').success(function (data) {
-                $scope.lists = data.data.lists.list;
-
-                $scope.banner = data.data.lists.banner;
-                $scope.init($scope.banner);
+                $scope.lists = data.data.lists;
 
                 $rootScope.totalPage = data.data.totalPage
+
+                $scope.banner = data.data.banner;
+                $ionicSlideBoxDelegate.loop(true); //解决轮播至最后一个不轮播的问题
+                $ionicSlideBoxDelegate.update(); //解决图片加载不出来的问题
+                $scope.init($scope.banner);
+
+                $ionicLoading.hide();
             });
 
         });
@@ -67,10 +72,10 @@ ctrls
             }
             $http.get($rootScope.server_url + '/dangjian/dangjianAMore', {params: {page: $rootScope.page}}).success(function (data) {
                 if (types == "refresher") {
-                    $scope.list = data.data.lists;
+                    $scope.lists = data.data.lists;
                     $scope.$broadcast('scroll.refreshComplete');
                 } else {
-                    $scope.list = $scope.list.concat(data.data.lists);
+                    $scope.lists = $scope.lists.concat(data.data.lists);
                     $scope.$broadcast('scroll.infiniteScrollComplete');
                 }
             });
@@ -97,10 +102,7 @@ ctrls
                     $scope.search_list = "none"
                     $scope.search_backdrop = "none"
                     $scope.searchModal.hide();
-                    console.log(type)
                     $scope.searchInfo.show();
-                    // $state.go("search");
-                    // return false;
                 }
             });
         }
@@ -120,14 +122,19 @@ ctrls
             return false;
         }
 
+        $scope.$on('$ionicView.beforeEnter', function () {
+            $ionicLoading.show({
+                template: '<ion-spinner icon="android"></ion-spinner>',
+                duration: 8000
+            });
+        })
 
         $scope.$on('$ionicView.afterEnter', function () {
-            //page_no     = 1;
             $http.get($rootScope.server_url + '/Dangjian/dangjian_b').success(function (data) {
                 $rootScope.lists = data.data.lists;
 
                 $rootScope.totalPage = data.data.totalPage;
-                console.log(data.data)
+                $ionicLoading.hide();
             });
         })
 
@@ -142,9 +149,8 @@ ctrls
                     $scope.lists = data.data;
                     $scope.$broadcast('scroll.refreshComplete');
                 } else {
-                    console.log($rootScope.lists);
                     $scope.lists = $scope.lists.concat(data.data.lists);
-                    // $scope.$broadcast('scroll.infiniteScrollComplete');
+                    $scope.$broadcast('scroll.infiniteScrollComplete');
                 }
             });
         };
@@ -192,9 +198,6 @@ ctrls
             if (key == "show") {
                 $scope.searchInfo.show();
             } else {
-                // $scope.ItemSearch = []
-                // $scope.search_list = "none"
-                // $scope.search_backdrop = "none"
                 $scope.searchInfo.hide();
             }
         };
@@ -209,10 +212,7 @@ ctrls
                     $scope.search_list = "none"
                     $scope.search_backdrop = "none"
                     $scope.searchModal.hide();
-                    console.log(type)
                     $scope.searchInfo.show();
-                    // $state.go("search");
-                    // return false;
                 }
             });
         }
@@ -248,10 +248,7 @@ ctrls
                     $scope.search_list = "none"
                     $scope.search_backdrop = "none"
                     $scope.searchModal.hide();
-                    console.log(type)
                     $scope.searchInfo.show();
-                    // $state.go("search");
-                    // return false;
                 }
             });
         }
@@ -270,12 +267,19 @@ ctrls
             return false;
         }
 
+        $scope.$on('$ionicView.beforeEnter', function () {
+            $ionicLoading.show({
+                template: '<ion-spinner icon="android"></ion-spinner>',
+                duration: 8000
+            });
+        })
+
         $scope.$on('$ionicView.afterEnter', function () {
-            //page_no     = 1;
             $http.get($rootScope.server_url + '/Dangjian/dangjian_d').success(function (data) {
                 $scope.lists = data.data.lists
 
                 $rootScope.totalPage = data.data.totalPage;
+                $ionicLoading.hide();
             });
         })
         $scope.reloadDJ = function (types, nav = 1) {
@@ -285,14 +289,12 @@ ctrls
                 $rootScope.page = 1
             }
             $http.get($rootScope.server_url + '/dangjian/dangjianDMore', {params: {page: $rootScope.page}}).success(function (data) {
-                console.log(data.data)
                 if (types == "refresher") {
                     $scope.lists = data.data.lists;
                     $scope.$broadcast('scroll.refreshComplete');
                 } else {
-                    console.log($rootScope.lists);
                     $scope.lists = $scope.lists.concat(data.data.lists);
-                    // $scope.$broadcast('scroll.infiniteScrollComplete');
+                    $scope.$broadcast('scroll.infiniteScrollComplete');
                 }
             });
         };
@@ -305,20 +307,54 @@ ctrls
     .controller('Dangjian_navCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $ionicHistory, $state, $ionicViewSwitcher) {
         $scope.yid = $stateParams.id;
         $scope.nav = $stateParams.nav;
-        //page_no     = 1;
-        $http.get($rootScope.server_url + '/Dangjian/dangjian_nav?yid=' + $scope.yid).success(function (data) {
-            $scope.list = data.data.list
+        $rootScope.page = 1;
+        $rootScope.totalPage = 0;
 
-            $scope.title = data.data.cate_name;
-        });
+        $scope.$on('$ionicView.beforeEnter', function () {
+            $ionicLoading.show({
+                template: '<ion-spinner icon="android"></ion-spinner>',
+                duration: 8000
+            });
+        })
+
+        $scope.params = {page: $rootScope.page, yid: $scope.yid};
+
+        $scope.$on('$ionicView.afterEnter', function () {
+            $http.get($rootScope.server_url + '/Dangjian/dangjian_nav', {params: $scope.params}).success(function (data) {
+                $scope.lists = data.data.lists
+
+                $scope.title = data.data.cate_name;
+                $rootScope.totalPage = data.data.totalPage;
+                $ionicLoading.hide();
+            });
+        })
 
 
-        $scope.goBackDj = function () {
+        $scope.reloadDJ = function (types, nav = 1) {
+            if (types == "infinite") {
+                $rootScope.page += 1;
+            } else if (types == "refresher") {
+                $rootScope.page = 1
+            }
+            $http.get($rootScope.server_url + '/dangjian/dangjian_nav', {params: $scope.params}).success(function (data) {
+                if (types == "refresher") {
+                    $scope.lists = data.data.lists;
+                    $scope.$broadcast('scroll.refreshComplete');
+                } else {
+                    $scope.lists = $scope.lists.concat(data.data.lists);
+                    $scope.$broadcast('scroll.infiniteScrollComplete');
+                }
+            });
+        };
+        $scope.isLoadMore = function () {
+            return $rootScope.page < $rootScope.totalPage;
+        };
+
+        $scope.goBack = function () {
             $ionicHistory.goBack();
             $ionicViewSwitcher.nextDirection("back");
             return false;
         }
-
 
     })
     .controller('DjInfoCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $ionicHistory, $state, $ionicViewSwitcher) {
@@ -339,15 +375,3 @@ ctrls
             return false;
         }
     })
-
-
-//
-//.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-//  $scope.chat = Chats.get($stateParams.chatId);
-//})
-//
-//.controller('AccountCtrl', function($scope) {
-//  $scope.settings = {
-//    enableFriends: true
-//  };
-//});

@@ -1,6 +1,12 @@
 <ion-view hide-nav-bar="true" hide-back-button="true">
     <style>
-
+        .sy-tz-list .item-complex .item-content, .item-radio .item-content{
+            position:relative;
+            z-index:2;
+            padding:8px 10px;
+            border:none;
+            background-color:#fff;
+        }
 
     </style>
 
@@ -21,8 +27,8 @@
         <ion-scroll class="sy-scroll-tab-x" direction="x" scrollbar-x="false" style="overflow-x: hidden;">
             <div class="sy-nav-lv2" style="">
                 <div>
-                    <a ng-href="#/tab/zixun">新闻资讯</a>
-                    <a ng-href="#/tab/tongzhi" class="active">公告通知</a>
+                    <a ng-click="tabsChange(1,'tab.zixun')" ng-class="tabactive==1 ? 'active' : '' ">新闻资讯</a>
+                    <a ng-click="tabsChange(2,'tab.tongzhi')" ng-class="tabactive==2 ? 'active' : '' ">公告通知</a>
                 </div>
             </div>
         </ion-scroll>

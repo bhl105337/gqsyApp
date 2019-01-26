@@ -21,18 +21,18 @@
         <ion-scroll class="sy-scroll-tab-x" direction="x" scrollbar-x="false" style="overflow-x: hidden;">
             <div class="sy-nav-lv2" style="">
                 <div>
-                    <a ng-href="#/tab/wenhua">国企文库</a>
-                    <a ng-href="#/tab/wenhua_b">影像国企</a>
-                    <a ng-href="#/tab/wenhua_c" class="active">国企论坛</a>
+                    <a ng-click="tabsChange(1,'tab.wenhua')" ng-class="tabactive==1 ? 'active' : '' ">国企文库</a>
+                    <a ng-click="tabsChange(2,'tab.wenhua_b')" ng-class="tabactive==2 ? 'active' : '' ">影像国企</a>
+                    <a ng-click="tabsChange(3,'tab.wenhua_c')" ng-class="tabactive==3 ? 'active' : '' ">国企论坛</a>
                 </div>
             </div>
         </ion-scroll>
     </ion-header-bar>
 
     <ion-content class="sy-content">
-        <ion-refresher pulling-text="下拉刷新..." on-refresh="reloadNews('refresher')" refreshing-text="正在刷新"></ion-refresher>
+        <ion-refresher pulling-text="下拉刷新..." on-refresh="reloadWenhua('refresher')" refreshing-text="正在刷新"></ion-refresher>
         <ion-list class="sy-kt-list">
-            <ion-item href="#/wenhuainfo/{{item.id}}/0/3" class="sy-lt-items" ng-repeat="(key,item) in list">
+            <ion-item href="#/wenhuainfo/{{item.id}}/0/3" class="sy-lt-items" ng-repeat="(key,item) in lists">
                 <div class="img">
                     <img ng-src="{{item.imgUrl}}">
                 </div>
@@ -43,6 +43,6 @@
                 </div>
             </ion-item>
         </ion-list>
-
+        <ion-infinite-scroll ng-if="isLoadMore()" on-infinite="reloadWenhua('infinite')" refreshing-text="正在加载"></ion-infinite-scroll>
     </ion-content>
 </ion-view>
