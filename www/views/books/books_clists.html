@@ -1,0 +1,50 @@
+<ion-view hide-nav-bar="true" hide-back-button="true">
+    <style>
+        .sy-info-nav.dj_nav{
+            width:100%;
+            min-height:44px;
+            border-bottom:1px solid #f0f0f0;
+            background:#ff2d4b;
+            overflow:hidden;
+        }
+
+        .sy-info-nav button{
+            height:44px;
+            color:white;
+        }
+
+        .sy-info-nav button:hover{
+            color:white;
+        }
+
+        .sy-info-nav span{
+            height:44px;
+            line-height:44px;
+            color:white;
+            font-size:16px;
+        }
+
+
+    </style>
+    <ion-header-bar class="bar bar-header zx-info-top top-header-nav" style="">
+        <div class="sy-info-nav dj_nav">
+            <button class="button button-icon" ng-click="goBackYd()">
+                <i class="icon ion-ios-arrow-back"></i>
+            </button>
+            <span>{{navtitle}}</span>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="sy-content" style="top:46px;">
+        <ion-list class="sy-sylm-list">
+            <div class="dzs-content">
+                <ion-item class="sy-sylm-dzs" ng-click="bookContent(v3.id,v3.e_book_id)" ng-repeat="(k3,v3) in list3">
+                    <!--<div class="img"><img ng-src="{{renmin}}"></div>-->
+                    <div class="img"><img ng-src="{{v3.imgUrl}}"></div>
+                    <!--<img ng-src="{{chat.face}}">-->
+                    <span>{{v3.bookName}}</span>
+                </ion-item>
+            </div>
+        </ion-list>
+    </ion-content>
+</ion-view>
