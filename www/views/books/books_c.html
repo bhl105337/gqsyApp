@@ -90,7 +90,11 @@
         <ion-list class="sy-E-cate-r">
             <div class="cate-r-list">
                 <ul class="">
-                    <li ng-repeat="(ck2,cv2) in catlists" ng-click="ebookNav(cv2.cat_name)">{{cv2.cat_name}}</li>
+                    <li ng-repeat="(ck2,cv2) in catlists" ng-click="ebookNav(cv2.cat_name)">
+                        <img src="" alt="" class="topImg">
+                        <span class="cateName">{{cv2.cat_name}}</span>
+                        <span class="bookNum"> 1000 本</span>
+                    </li>
                 </ul>
             </div>
         </ion-list>
