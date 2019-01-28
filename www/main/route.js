@@ -142,7 +142,7 @@ angular.module('starter.routes', []).config(function ($stateProvider, $urlRouter
         })
         .state('tab.books_c', {
             url: '/books_c',
-            cache: false,
+            // cache: false,
             views: {
                 'tab-books': {
                     templateUrl: 'views/books/books_c.html',

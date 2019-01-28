@@ -102,7 +102,7 @@ ctrls
         }
     })
 
-    .controller('Books_cCtrl', function ($scope, $http, $rootScope, $state, $formValid, $ionicPopup, $ionicViewSwitcher,$ionicLoading) {
+    .controller('Books_cCtrl', function ($scope, $http, $rootScope, $state, $formValid, $ionicPopup, $ionicViewSwitcher, $ionicLoading) {
         $scope.tabactive = 3;
         $rootScope.page = 1;
         $rootScope.totalPage = 0;
@@ -143,6 +143,15 @@ ctrls
         }
         $scope.isLoadMore = function () {
             return $rootScope.page < $rootScope.totalPage;
+        }
+
+        $scope.bookContent = function (id, bookId) {
+            // console.log(id)
+            // console.log($rootScope.userInfo)
+            $rootScope.dzsId = bookId;
+            $state.go("booksinfo2");
+            $ionicViewSwitcher.nextDirection("forward");
+            return false;
         }
 
     })
