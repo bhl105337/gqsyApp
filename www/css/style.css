@@ -168,10 +168,10 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active{
 }
 
 /*左侧用户栏*/
-.modal-backdrop-bg{
-    background:rgba(0, 0, 0, 0.4);
-    opacity:0.8;
-}
+/*.modal-backdrop-bg{*/
+    /*background:rgba(0, 0, 0, 0.4);*/
+    /*opacity:0.8;*/
+/*}*/
 
 .sy-user-info{
     display:inline-block;

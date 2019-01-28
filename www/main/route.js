@@ -142,7 +142,6 @@ angular.module('starter.routes', []).config(function ($stateProvider, $urlRouter
         })
         .state('tab.books_c', {
             url: '/books_c',
-            // cache: false,
             views: {
                 'tab-books': {
                     templateUrl: 'views/books/books_c.html',
@@ -151,14 +150,11 @@ angular.module('starter.routes', []).config(function ($stateProvider, $urlRouter
             }
         })
 
-        .state('tab.booksnav', {
-            url: '/booksnav/{id}/{nav}',
-            views: {
-                'tab-books': {
-                    templateUrl: 'views/books/booksnav.html',
-                    controller: 'BooksNavCtrl'
-                }
-            }
+        .state('ebooklists', {
+            url: '/books/{catename}',
+            cache: false,
+            controller: 'BooksListsCtrl',
+            templateUrl: 'views/books/books_clists.html'
         })
 
         .state('booksinfo', {
