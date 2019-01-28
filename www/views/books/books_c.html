@@ -1,6 +1,53 @@
 <ion-view hide-nav-bar="true" hide-back-button="true">
     <link rel="stylesheet" href="./css/books.css">
     <style>
+        .sy-content{
+            top:43px !important;
+            padding-top:40px;
+        }
+
+        .cate-l{
+            width:25%;
+            display:inline-block;
+            float:left;
+            background:#f9f9f9;
+        }
+
+        .sy-E-cate-l, .cate-l-list{
+            width:100%;
+            float:left;
+        }
+
+        .cate-l-list{
+            text-align:center;
+        }
+
+        .cate-l-list li{
+            padding:8px 0;
+            border-bottom:1px solid #ccc;
+        }
+
+        .cate-l-list li.cate-active{
+            background:white;
+            border-left:3px solid orangered;
+        }
+
+        .cate-r{
+            width:75%;
+            display:inline-block;
+            float:right;
+            margin-left:25%;
+        }
+
+        .sy-E-cate-r, .cate-r-list{
+            width:100%;
+            float:left;
+        }
+
+        .cate-r-list li{
+            padding:5px;
+        }
+
 
     </style>
 
@@ -24,24 +71,28 @@
                     <a ng-click="tabsChange(1,'tab.books')" ng-class="tabactive==1 ? 'active' : '' ">经典阅读</a>
                     <a ng-click="tabsChange(2,'tab.books_b')" ng-class="tabactive==2 ? 'active' : '' ">新书推荐</a>
                     <a ng-click="tabsChange(3,'tab.books_c')" ng-class="tabactive==3 ? 'active' : '' ">电子书</a>
-                    <!--<a ng-href="#/tab/books">经典阅读</a>-->
-                    <!--<a ng-href="#/tab/books_b">新书推荐</a>-->
-                    <!--<a ng-href="#/tab/books_c" class="active">电子书</a>-->
                 </div>
             </div>
         </ion-scroll>
     </ion-header-bar>
 
-    <ion-content class="sy-content">
-        <ion-refresher pulling-text="下拉刷新..." on-refresh="reloadBook('refresher')" refreshing-text="正在刷新"></ion-refresher>
-        <ion-list class="sy-sylm-list">
-            <div class="dzs-content">
-                <ion-item class="sy-sylm-dzs" ng-click="bookContent(v3.id,v3.e_book_id)" ng-repeat="(k3,v3) in lists">
-                    <div class="img"><img ng-src="{{v3.imgUrl}}"></div>
-                    <span>{{v3.bookName}}</span>
-                </ion-item>
+    <ion-content class="sy-content cate-l">
+        <ion-list class="sy-E-cate-l">
+            <div class="cate-l-list">
+                <ul class="cate-com-l">
+                    <li ng-repeat="(ck,cv) in lists" ng-class="cv.id==cat_active ? 'cate-active' : '' " ng-click="eTabChange(cv.id)">{{cv.cat_name}}</li>
+                </ul>
             </div>
         </ion-list>
-        <ion-infinite-scroll ng-if="isLoadMore()" on-infinite="reloadBook('infinite')" refreshing-text="正在加载"></ion-infinite-scroll>
+    </ion-content>
+
+    <ion-content class="sy-content cate-r">
+        <ion-list class="sy-E-cate-r">
+            <div class="cate-r-list">
+                <ul class="">
+                    <li ng-repeat="(ck2,cv2) in catlists" ng-click="ebookNav(cv2.cat_name)">{{cv2.cat_name}}</li>
+                </ul>
+            </div>
+        </ion-list>
     </ion-content>
 </ion-view>
