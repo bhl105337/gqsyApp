@@ -172,6 +172,15 @@ ctrls
             return false;
         }
 
+        $scope.bookContent = function (id, bookId) {
+            // console.log(id)
+            // console.log($rootScope.userInfo)
+            $rootScope.dzsId = bookId;
+            $state.go("booksinfo2");
+            $ionicViewSwitcher.nextDirection("forward");
+            return false;
+        }
+
     })
 
     .controller('BooksListsCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $ionicHistory, $state) {
