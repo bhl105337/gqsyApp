@@ -119,6 +119,7 @@ ctrls
             $http.get($rootScope.server_url + '/Yuedu/book_E_Cate1').success(function (data) {
                 $scope.lists = data.data.lists
                 $scope.catlists = data.data.firstCate;
+                console.log(data);
 
                 $rootScope.totalPage = data.data.totalPage;
                 $ionicLoading.hide();
@@ -152,7 +153,7 @@ ctrls
             var params = {id: tabs};
             $http.get($rootScope.server_url + '/Yuedu/book_E_Cate2', {params: params}).success(function (data) {
                 $scope.catlists = data.data.lists
-
+                console.log($scope.catlists)
                 $ionicLoading.hide();
             });
         }

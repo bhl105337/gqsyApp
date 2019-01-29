@@ -1,52 +1,6 @@
 <ion-view hide-nav-bar="true" hide-back-button="true">
     <link rel="stylesheet" href="./css/books.css">
     <style>
-        .sy-content{
-            top:43px !important;
-            padding-top:40px;
-        }
-
-        .cate-l{
-            width:25%;
-            display:inline-block;
-            float:left;
-            background:#f9f9f9;
-        }
-
-        .sy-E-cate-l, .cate-l-list{
-            width:100%;
-            float:left;
-        }
-
-        .cate-l-list{
-            text-align:center;
-        }
-
-        .cate-l-list li{
-            padding:8px 0;
-            border-bottom:1px solid #ccc;
-        }
-
-        .cate-l-list li.cate-active{
-            background:white;
-            border-left:3px solid orangered;
-        }
-
-        .cate-r{
-            width:75%;
-            display:inline-block;
-            float:right;
-            margin-left:25%;
-        }
-
-        .sy-E-cate-r, .cate-r-list{
-            width:100%;
-            float:left;
-        }
-
-        .cate-r-list li{
-            padding:5px;
-        }
 
 
     </style>
@@ -90,10 +44,10 @@
         <ion-list class="sy-E-cate-r">
             <div class="cate-r-list">
                 <ul class="">
-                    <li ng-repeat="(ck2,cv2) in catlists" ng-click="ebookNav(cv2.cat_name)">
-                        <img src="" alt="" class="topImg">
+                    <li ng-repeat="(ck2,cv2) in catlists" ng-click="ebooklists(cv2.cat_name)">
+                        <img src="{{cv2.firstBook.imgUrl}}" alt="" class="topImg">
                         <span class="cateName">{{cv2.cat_name}}</span>
-                        <span class="bookNum"> 1000 本</span>
+                        <span class="bookNum"> <i>{{cv2.bookNum}}</i> 本</span>
                     </li>
                 </ul>
             </div>
