@@ -41,6 +41,7 @@
     </ion-content>
 
     <ion-content class="sy-content cate-r">
+        <ion-refresher pulling-text="下拉刷新..." on-refresh="reloadBook('refresher')" refreshing-text="正在刷新"></ion-refresher>
         <ion-list class="sy-E-cate-r">
             <div class="cate-r-list">
                 <ul class="">
@@ -52,5 +53,6 @@
                 </ul>
             </div>
         </ion-list>
+        <ion-infinite-scroll immediate-check="false" ng-if="isLoadMore()" on-infinite="reloadBook('infinite')" refreshing-text="正在加载"></ion-infinite-scroll>
     </ion-content>
 </ion-view>
