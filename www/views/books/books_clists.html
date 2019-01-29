@@ -1,50 +1,29 @@
 <ion-view hide-nav-bar="true" hide-back-button="true">
+    <link rel="stylesheet" href="./css/books.css">
+    <link rel="stylesheet" href="./css/books/book_clists.css">
     <style>
-        .sy-info-nav.dj_nav{
-            width:100%;
-            min-height:44px;
-            border-bottom:1px solid #f0f0f0;
-            background:#ff2d4b;
-            overflow:hidden;
-        }
-
-        .sy-info-nav button{
-            height:44px;
-            color:white;
-        }
-
-        .sy-info-nav button:hover{
-            color:white;
-        }
-
-        .sy-info-nav span{
-            height:44px;
-            line-height:44px;
-            color:white;
-            font-size:16px;
-        }
 
 
     </style>
     <ion-header-bar class="bar bar-header zx-info-top top-header-nav" style="">
         <div class="sy-info-nav dj_nav">
-            <button class="button button-icon" ng-click="goBackYd()">
+            <button class="button button-icon" ng-click="goBack()">
                 <i class="icon ion-ios-arrow-back"></i>
             </button>
-            <span>{{navtitle}}</span>
+            <span>{{cateName}}</span>
         </div>
     </ion-header-bar>
 
-    <ion-content class="sy-content" style="top:46px;">
+    <ion-content class="sy-content bookLists" style="">
+        <ion-refresher pulling-text="下拉刷新..." on-refresh="reloadBook('refresher')" refreshing-text="正在刷新"></ion-refresher>
         <ion-list class="sy-sylm-list">
             <div class="dzs-content">
-                <ion-item class="sy-sylm-dzs" ng-click="bookContent(v3.id,v3.e_book_id)" ng-repeat="(k3,v3) in list3">
-                    <!--<div class="img"><img ng-src="{{renmin}}"></div>-->
-                    <div class="img"><img ng-src="{{v3.imgUrl}}"></div>
-                    <!--<img ng-src="{{chat.face}}">-->
-                    <span>{{v3.bookName}}</span>
+                <ion-item class="sy-sylm-dzs" ng-click="bookContent(v.id,v.e_book_id)" ng-repeat="(k,v) in lists">
+                    <div class="img"><img ng-src="{{v.imgUrl}}"></div>
+                    <span>{{v.bookName}}</span>
                 </ion-item>
             </div>
         </ion-list>
+        <ion-infinite-scroll immediate-check="false" ng-if="isLoadMore()" on-infinite="reloadBook('infinite')" refreshing-text="正在加载"></ion-infinite-scroll>
     </ion-content>
 </ion-view>

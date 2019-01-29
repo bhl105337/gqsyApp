@@ -152,7 +152,7 @@ angular.module('starter.routes', []).config(function ($stateProvider, $urlRouter
 
         .state('ebooklists', {
             url: '/books/{catename}',
-            cache: false,
+            // cache: false,
             controller: 'BooksListsCtrl',
             templateUrl: 'views/books/books_clists.html'
         })

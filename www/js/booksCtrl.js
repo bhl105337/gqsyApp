@@ -158,13 +158,6 @@ ctrls
             });
         }
 
-        $scope.bookContent = function (id, bookId) {
-            $rootScope.dzsId = bookId;
-            $state.go("booksinfo2");
-            $ionicViewSwitcher.nextDirection("forward");
-            return false;
-        }
-
         $scope.ebooklists = function (cateName) {
             console.log(cateName)
             $state.go("ebooklists", {catename: cateName})
@@ -172,21 +165,12 @@ ctrls
             return false;
         }
 
-        $scope.bookContent = function (id, bookId) {
-            // console.log(id)
-            // console.log($rootScope.userInfo)
-            $rootScope.dzsId = bookId;
-            $state.go("booksinfo2");
-            $ionicViewSwitcher.nextDirection("forward");
-            return false;
-        }
-
     })
 
-    .controller('BooksListsCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $ionicHistory, $state) {
+    .controller('BooksListsCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $ionicHistory, $state, $ionicViewSwitcher) {
         $rootScope.page = 1;
         $rootScope.totalPage = 0;
-        $scope.cateName = $stateParams.cateName;
+        $scope.cateName = $stateParams.catename;
 
         $scope.$on('$ionicView.beforeEnter', function () {
             $ionicLoading.show({
@@ -199,12 +183,47 @@ ctrls
             var params = {cateName: $scope.cateName, page: $rootScope.page}
             $http.get($rootScope.server_url + '/Yuedu/eBookLists', {params: params}).success(function (data) {
                 $scope.lists = data.data.lists
-                $scope.catlists = data.data.firstCate;
 
                 $rootScope.totalPage = data.data.totalPage;
                 $ionicLoading.hide();
             });
         });
+
+        $scope.reloadBook = function (types, nav = 1) {
+            if (types == "infinite") {
+                $rootScope.page += 1;
+            } else if (types == "refresher") {
+                $rootScope.page = 1;
+            }
+
+            var params = {cateName: $scope.cateName, page: $rootScope.page}
+            $http.get($rootScope.server_url + '/yuedu/eBookLists', {params: params}).success(function (data) {
+                if (types == "refresher") {
+                    $scope.lists = data.data.lists;
+                    $scope.$broadcast('scroll.refreshComplete');
+                } else {
+                    $scope.lists = $scope.lists.concat(data.data.lists);
+                    $scope.$broadcast('scroll.infiniteScrollComplete');
+                }
+            });
+
+        }
+        $scope.isLoadMore = function () {
+            return $rootScope.page < $rootScope.totalPage;
+        }
+
+        $scope.bookContent = function (id, bookId) {
+            $rootScope.dzsId = bookId;
+            $state.go("booksinfo2");
+            $ionicViewSwitcher.nextDirection("forward");
+            return false;
+        }
+
+        $scope.goBack = function () {
+            $ionicHistory.goBack();
+            $ionicViewSwitcher.nextDirection("forward");
+            return false;
+        }
 
     })
 

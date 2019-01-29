@@ -312,6 +312,7 @@ ctrls
                 $cookieStore.remove('userInfo')
                 $rootScope.userId = null;
                 $rootScope.userInfo = null;
+                $rootScope.user = null;
                 $state.go("tab.dangjian");
                 $ionicViewSwitcher.nextDirection("back");
                 return false;
