@@ -106,7 +106,7 @@ ctrls
         $scope.tabactive = 3;
         $rootScope.page = 1;
         $rootScope.totalPage = 0;
-        $scope.cat_active = 1
+        $scope.cat_active = $rootScope.cat_active ? $rootScope.cat_active : 1;
 
         $scope.$on('$ionicView.beforeEnter', function () {
             $ionicLoading.show({
@@ -116,10 +116,10 @@ ctrls
         });
 
         $scope.$on('$ionicView.afterEnter', function () {
-            $http.get($rootScope.server_url + '/Yuedu/book_E_Cate1').success(function (data) {
+            var params = {id: $scope.cat_active};
+            $http.get($rootScope.server_url + '/Yuedu/book_E_Cate1', {params: params}).success(function (data) {
                 $scope.lists = data.data.lists
                 $scope.catlists = data.data.firstCate;
-                console.log(data);
 
                 $rootScope.totalPage = data.data.totalPage;
                 $ionicLoading.hide();
@@ -153,13 +153,13 @@ ctrls
             var params = {id: tabs};
             $http.get($rootScope.server_url + '/Yuedu/book_E_Cate2', {params: params}).success(function (data) {
                 $scope.catlists = data.data.lists
-                console.log($scope.catlists)
+                console.log(data)
                 $ionicLoading.hide();
             });
         }
 
         $scope.ebooklists = function (cateName) {
-            console.log(cateName)
+            $rootScope.cat_active = $scope.cat_active;
             $state.go("ebooklists", {catename: cateName})
             $ionicViewSwitcher.nextDirection("forward");
             return false;
@@ -168,6 +168,7 @@ ctrls
     })
 
     .controller('BooksListsCtrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $ionicHistory, $state, $ionicViewSwitcher) {
+        $scope.cat_active = $rootScope.cat_active;
         $rootScope.page = 1;
         $rootScope.totalPage = 0;
         $scope.cateName = $stateParams.catename;
@@ -220,7 +221,9 @@ ctrls
         }
 
         $scope.goBack = function () {
-            $ionicHistory.goBack();
+            $rootScope.cat_active = $scope.cat_active;
+            // $ionicHistory.goBack();
+            $state.go("tab.books_c");
             $ionicViewSwitcher.nextDirection("forward");
             return false;
         }

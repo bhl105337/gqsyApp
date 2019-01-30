@@ -475,6 +475,10 @@
     float:left;
 }
 
+.sy-E-cate-l, .sy-E-cate-r{
+    margin-bottom:40px;
+}
+
 .cate-l-list{
     text-align:center;
 }
