@@ -90,7 +90,6 @@ ctrls
                     $scope.lists = data.data.lists;
                     $scope.$broadcast('scroll.refreshComplete');
                 } else {
-                    console.log($scope.lists);
                     $scope.lists = $scope.lists.concat(data.data.lists);
                     $scope.$broadcast('scroll.infiniteScrollComplete');
                 }
@@ -236,10 +235,8 @@ ctrls
         $scope.yid = $stateParams.id;
         $scope.cid = $stateParams.cid;
         $scope.nav = $stateParams.nav;
-        //page_no     = 1;
         $http.get($rootScope.server_url + '/Yuedu/book_info?yid=' + $scope.yid).success(function (data) {
             $scope.info = data.data
-            //console.log($scope.info)
         });
 
 
@@ -248,8 +245,6 @@ ctrls
             $ionicViewSwitcher.nextDirection("forward");
             return false;
         }
-
-
     })
 
     .controller('BookInfo2Ctrl', function ($scope, $http, $rootScope, $stateParams, $ionicLoading, $ionicHistory, $state, $ionicViewSwitcher, $sce, $window) {
@@ -260,11 +255,6 @@ ctrls
         console.log($scope.bookId)
 
         // $scope.paySrc = $sce.trustAsResourceUrl('http://wap.cmread.com/hywap/thrdToBookDetail?' + $scope.enterpriseId + '&' + $scope.username + '&bookid=' + $scope.bookId + "&key=" + $scope.dzskey);
-
-        // $scope.yid = $stateParams.id;
-        // $scope.cid = $stateParams.cid;
-        // $scope.nav = $stateParams.nav;
-        // //page_no     = 1;
 
         $http.get($rootScope.server_url + '/Yuedu/book_user?username=' + $scope.username + '&bookId=' + $scope.bookId).success(function (data) {
             $scope.data = data.data
@@ -277,7 +267,6 @@ ctrls
             $ionicViewSwitcher.nextDirection("forward");
             return false;
         }
-
 
     })
 
